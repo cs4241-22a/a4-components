@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Movie Watchlist</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Work+Sans:wght@500&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+    <header>
+      <h1 id="page-title">
+        Movie Watchlist
+      </h1>
+    </header>  
+
+    <div id="content">
+      <div id="movie-list">
+        Loading...
+      </div>
+      <div id="create-entry">
+        <button type="button" id="new-movie" class="collapsible">+ New Movie</button>
+        <div id="new-entry" class="collapsible-content">
+          <div id="new-entry-box">
+            Search for a *<span class="scrambleable">great</span>* movie:
+            <input type="text" id="search-bar"/>
+            <button type="button" class="btn" id="search">Search</button>
+            <div id="search-results">
+              <div id="titles">
+                Use the search to find movies and add them to your list.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Ted Clifford (c) 2022
+    </footer>
+
+    <script src="./js/scripts.js"></script> 
+  </body>
+</html>
