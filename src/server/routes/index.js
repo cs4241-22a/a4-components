@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 router.get("/", require("../middleware/is-logged-in"), (req, res) =>
-  res.sendFile(path.join(__dirname, "../public/index.html"))
+  res.sendFile(path.join(__dirname, "../../client/public/index.html"))
 );
 router.get("/login", require("../middleware/is-not-logged-in"), (req, res) =>
   res.redirect("/auth/github")

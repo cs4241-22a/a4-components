@@ -1,10 +1,10 @@
 {
   "name": "a3-persistence",
   "description": "Assignment 3 for CS4241: Webware",
-  "main": "src/app.js",
+  "main": "build/server/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "start": "snowpack build & node build/server/app.js",
+    "dev": "snowpack build & node build/server/app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -13,8 +13,13 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.6.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19",
     "passport": "^0.6.0",
-    "passport-github2": "^0.1.12"
+    "passport-github2": "^0.1.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "snowpack": "^3.8.8",
+    "nodemon": "^2.0.19"
   }
 }

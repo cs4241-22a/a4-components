@@ -4,7 +4,7 @@ const path = require("path");
 const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github2").Strategy;
-require("dotenv").config({ path: path.join(__dirname, "../.env") });
+require("dotenv").config({ path: path.join(__dirname, "../../.env") });
 const routes = require("./routes");
 
 const app = express();
@@ -51,6 +51,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../../build")));
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
