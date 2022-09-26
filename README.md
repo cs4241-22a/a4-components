@@ -1,33 +1,13 @@
-Assignment 4 - Components
-===
-
-Due: October 4th, by 11:59 AM.
-
-For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
-
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
-
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
-
-Deliverables
+Readme
 ---
+https://a2-csnow99.glitch.me/
 
-Do the following to complete this assignment:
+## Name This Rat
+This great app allows you to name a rat! I used a CSS flexbox to position the data. I ran out of time so unfortunately I tried but couldn't get it to delete. No additional instruction required to use the application.
 
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
+## Technical Achievements
+- **Tech Achievement 1**: I created a single-page app that shows the current rat data upon submitting on the same page.
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-
-your hosting link e.g. http://a4-charlieroberts.glitch.me
-
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+## Design/Evaluation Achievements
+- **Design Achievement 1**: I interviewed Owen Pfannenstiehl. He said that my app UI was simple, readable, and intuitive. He thought that there were no issues and had no trouble. He named the rat Carter. He didn't like the solid white background and that everything was left justified. The left justified comment surprised me because I like that. I would change it to make the site more visually interesting.
+- **Design Achievement 2**: I also interviewed Natalie McClain. She thought it was a solid website but wanted the ability to modify existing entries. Cute rat, fun names, 9/10. She named the rat sweaty. I was surprised by the comment to modify existing entries. I would change it to add this feature.
