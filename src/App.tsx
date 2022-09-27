@@ -26,7 +26,16 @@ function App() {
     [currentGames]
   );
 
+const deleteGame = useCallback(
+    (id: string) => {
+      const newGames = currentGames.filter((g) => g._id !== id);
+      setCurrentGames(newGames);
+    },
+    [currentGames]
+  );
+
   const selectGame = (game: Game) => {
+    console.log(game);
     setSelectedGame(game);
     setIsSubmitForm(!isSubmitForm);
   };
@@ -100,7 +109,7 @@ function App() {
         {isSubmitForm ? (
           <SubmitForm callback={submitGame} />
         ) : (
-          <ModifyForm selectedGame={selectedGame} callback={modifyGame} />
+          <ModifyForm selectedGame={selectedGame} modifyCallback={modifyGame} deleteCallback={deleteGame}/>
         )}
       </section>
     </main>

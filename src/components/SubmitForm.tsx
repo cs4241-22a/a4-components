@@ -29,8 +29,9 @@ const SubmitForm = (props: Props) => {
                 props.callback(data);
             })
             .catch((err) => {
+                if(process.env.NODE_ENV === "development"){
+
                 //Mock data
-                console.log("MOCK")
                 props.callback({
                     _id: Math.random().toString(36).substr(2, 9),
                     date: date,
@@ -39,6 +40,9 @@ const SubmitForm = (props: Props) => {
                     avg: parseInt(hits) / parseInt(atBats),
                     owner: "6320c57f9e2f1b1146b1a2ee",
                 });
+              }else{
+                console.error("Error submitting game: ", err);
+              }
             });
     }
 

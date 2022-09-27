@@ -49,7 +49,10 @@ router.delete("/", express.json(), async (req, res)=> {
     if(!query){
         res.status(404).send("error");
     }else{
-        res.status(200).send("DELETED");
+        res.status(200).send(JSON.stringify({
+            _id: req.body._id,
+            message: "deleted"
+        }));
     }
 })
 
