@@ -1,12 +1,14 @@
 {
   "name": "shoppinglistcreator",
-  "version": "1.0.1",
-  "description": "Create your own shopping list!",
+  "version": "1.0.2",
+  "description": "Create your own shopping list! Now with React!",
   "author": "Zaq Humphrey",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "body-parser": "*",
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.2",
@@ -15,5 +17,16 @@
     "mime": "^2.6.0",
     "mongodb": "^4.10.0",
     "sanitize.css": "^13.0.0"
-  }
+  },
+  "main": "server.improved.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zaq02/a4-components.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zaq02/a4-components/issues"
+  },
+  "homepage": "https://github.com/Zaq02/a4-components#readme"
 }

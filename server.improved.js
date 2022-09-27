@@ -10,7 +10,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect()
   .then( () => {
     // will only create collection if it doesn't exist
-    return client.db( 'datatest1' ).collection( 'test' )
+    return client.db( 'datatest1' ).collection( 'a4' )
   })
   .then( collection => {
     // blank query returns all documents
@@ -26,7 +26,7 @@ client.connect()
     }
   })
 
-let collection = client.db('datatest1').collection('test')
+let collection = client.db('datatest1').collection('a4')
 
 
 app.use( express.static( './public' ) )
@@ -35,6 +35,10 @@ app.use( express.json() )
 app.engine('handlebars', hbs() )
 app.set('view engine', 'handlebars' )
 app.set( 'views', './views')
+
+
+
+
 
 app.use( cookie({
   name: 'session',
@@ -122,4 +126,4 @@ app.post('/modifyData', (req, res) => {
     res.end( JSON.stringify(""))
 })
 
-app.listen( process.env.PORT || 8000 )
+app.listen( process.env.PORT || 3000 )
