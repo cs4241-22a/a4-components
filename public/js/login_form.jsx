@@ -17,7 +17,7 @@ const login_form = <form className="form1" action="/login" method="POST">
   placeholder="Password"
   name="password"
 />
-<button type="submit" className="submit" align="center" />
+<button type="submit" className="submit" align="center">Submit</button>
 </form>;
 
 
@@ -30,14 +30,14 @@ class LoggedIn extends React.Component {
 
   render() {
     if(this.state.submitted){
-      setTimeout('',3000);
-      return login_form
+     return login_form
     }
+    
 
     return e(
-      'button',
+      'text',
       {onClick: () => this.setState({submitted: true})},
-      'Submit'
+      <button type="submit" className="special_submit" align="center">Click here to enter information...</button>,
     );
   }
 }
