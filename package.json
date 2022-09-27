@@ -1,7 +1,7 @@
 {
-  "name": "a3-persistence",
+  "name": "a4-components",
   "version": "0.1.0",
-  "description": "WPI CS 4241 third assignment",
+  "description": "WPI CS 4241 fourth assignment",
   "author": "Jacob Chlebowski",
   "scripts": {
     "start": "node server.improved.js"
@@ -14,7 +14,12 @@
     "handlebars": "^4.7.7",
     "heroku": "^7.63.4",
     "mime": "^2.6.0",
-    "mongodb": "^4.10.0"
+    "mongodb": "^4.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "snowpack": "^3.8.8"
   },
   "runArgs": [
     "--env-file",
