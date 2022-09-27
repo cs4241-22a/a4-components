@@ -7,6 +7,8 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
@@ -24,5 +26,16 @@
   "runArgs": [
     "--env-file",
     ".env"
-  ]
+  ],
+  "main": "server.improved.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobchlebowski/a4-components.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacobchlebowski/a4-components/issues"
+  },
+  "homepage": "https://github.com/jacobchlebowski/a4-components#readme"
 }

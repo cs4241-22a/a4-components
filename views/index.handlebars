@@ -11,11 +11,10 @@
 <body>
   <div class="main">
     <p class="sign" align="center">Sign in</p>
-    <form class="form1" action="/login" method="POST">
-      <input class="un " type="text" align="center" placeholder="Username" name="username">
-      <input class="pass" type="password" align="center" placeholder="Password" name="password">
-      <input type="submit" class="submit" align="center"></a>
-    </form>
+  
+    <div id="login_form"></div>
+
+
       <br>
       <p class="forgot" align="center">default username: 'tester' , default password: 'tester123'</p>
       
@@ -32,16 +31,24 @@
 
     <div class "other">
       <p class="new_sign" align="center">New Account</p>
+
     <form class="form1" action="/new_account" method="POST">
       <input class="new_un " id="new_username" type="text" align="center" placeholder="new username" name="new_username">
       <input class="new_pass" id="new_password" type="password" align="center" placeholder="new password" name="new_password">
-      <input type="submit" class="new_submit" align="center"></a>
+      <button type="submit" class="new_submit" align="center"></a>
       <br>
     </form>
 
     </div>
 
-     
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    
+
+    <script type="text/babel" src="./js/login_form.jsx"></script>
+
+
 </body>
 
 </html>
