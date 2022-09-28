@@ -1,5 +1,5 @@
 
-import { response } from 'express';
+// import { response } from 'express';
 import React from 'react';
 
 // we could place this Todo component in a separate file, but it's
@@ -25,7 +25,7 @@ class Workout extends React.Component {
       <td>{this.props.sets}</td>
       <td>{this.props.reps}</td>
       <td>{this.props.weight}</td>
-      <button onClick={ () => this.remove(this.props)}>Remove</button>
+      <button onClick={ () => remove(this.props)}>Remove</button>
     </tr>
   }
 }
