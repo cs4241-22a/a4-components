@@ -144,7 +144,7 @@ const submit = function( e ) {
       })
     })
     })
-    // location.reload()
+    location.reload()
     return false
   }
 
