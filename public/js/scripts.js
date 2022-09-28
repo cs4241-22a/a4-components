@@ -117,11 +117,14 @@ getData = function() {
     
     })
     let insertPrice = document.getElementById("totalInsert")
+    let insertTempPrice = document.getElementById("tempTotalInsert")
     insertPrice.innerHTML = "$" + Math.round(totalPrice * 100)/100
+    insertTempPrice.innerHTML = "€" + Math.round(totalPrice * 100)/100 * 1.03
     if (shoppingList.length === 0) {
       let shoppingTable = document.getElementById("insertInfo")
       shoppingTable.innerHTML = ""
       insertPrice.innerHTML = "$0"
+      insertTempPrice.innerHTML = "€0"
     }
   })
 }

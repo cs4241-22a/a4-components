@@ -22,7 +22,7 @@
     </form>
 
     <h2>Shopping List</h2>
-    <table WIDTH="50%" id="tableShop"> 
+    {{!-- <table WIDTH="50%" id="tableShop"> 
       <thead>
         <tr>
           <td align="center"> Item </div></td>
@@ -32,14 +32,15 @@
       </thead>
       <tbody id="insertInfo">
       </tbody>
-    </table>
+    </table> --}}
+    <div id ="header_container"></div>
 
   <h3> Delete </h3>
     <form action="">
     <input type='text' type="submit" id='delete' placeholder="Enter the row of the item you want to delete..." maxlength="50" size="50">
     <br>
     <input type="hidden" id="username" value={{{username}}}>
-    <button id="deleteButton">submit</button>
+    <button id="deleteButton">delete</button>
     </form>
 
   <h3> Modify </h3>
@@ -57,7 +58,19 @@
     </form>
 
   <h3> Total Price: </h3>
-  <p id="totalInsert">$</p>
+
+  <div id ="convert_container"></div>  
+
+  <h3> Rate my website: </h3>
+  <div id ="rate_container"></div>
+ 
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+  <script type="text/babel" src="./js/convert.jsx"></script>
+  <script type="text/babel" src="./js/rate.jsx"></script>
+  <script type="text/babel" src="./js/header.jsx"></script>
   </body>
   <script src="./js/scripts.js"></script>
 </html>
