@@ -1,10 +1,9 @@
 {
-  "name": "a3-persistence",
-  "description": "Assignment 3 for CS4241: Webware",
-  "main": "build/server/app.js",
+  "name": "a4-components",
+  "description": "Assignment 4 for CS4241: Webware",
   "scripts": {
-    "start": "snowpack build & node build/server/app.js",
-    "dev": "snowpack build & node build/server/app.js"
+    "start": "node src/server/app.js",
+    "dev": "nodemon src/server/app.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -19,7 +18,15 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "snowpack": "^3.8.8",
-    "nodemon": "^2.0.19"
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "nodemon": "^2.0.19",
+    "process": "^0.11.10",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-middleware": "^5.3.3",
+    "webpack-hot-middleware": "^2.25.2"
   }
 }
