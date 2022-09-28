@@ -104,7 +104,7 @@ class App extends React.Component {
                                 </label>
                                 <input
                                     type={"text"}
-                                    id={"title"}
+                                    id={"Assignment"}
                                     placeholder={"Title"}
                                     class={"Inputs"}
                                     onChange={this.handleTitleChange}
