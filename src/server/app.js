@@ -46,6 +46,7 @@ passport.use(
   // Step 1: Create & configure a webpack compiler
   const webpack = require("webpack");
   const webpackConfig = require("../../webpack.config");
+  console.log(webpackConfig);
   const compiler = webpack(webpackConfig);
 
   // Step 2: Attach the dev middleware to the compiler & the server
