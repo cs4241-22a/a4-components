@@ -3,17 +3,6 @@
 const e = React.createElement;
 
 const colorButton = <button id="colButton">Change color of table text?</button>
-// let dataTable = 
-// <table width="100%" id="tableShop">
-//   <thead>
-//     <tr>
-//       <td align="center"> Item </td>
-//       <td align="center"> Quantity </td>
-//       <td align="center"> Price (per singular item) </td>
-//     </tr>
-//   </thead>
-//   <tbody id="insertInfo"></tbody>
-// </table>
 
 class headerTable extends React.Component {
   constructor(props) {
