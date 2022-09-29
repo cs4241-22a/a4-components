@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm dist/bundle.js",
-    "start": "snowpack dev",
+    "start": "node server.js",
     "build": "snowpack build"
   },
   "dependencies": {
@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "snowpack": "^3.8.8"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
