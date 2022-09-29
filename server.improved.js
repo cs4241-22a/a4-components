@@ -27,15 +27,15 @@ app.post( '/add', ( req,res ) => {
   res.json( assignments )
 })
 
-app.post('/delete', function(request, response){
+app.post('/delete', function(req, res){
   let index = -1;
   for (let i = 0; i < assignments.length; i++) {
-    if (JSON.stringify(assignments[i]) === JSON.stringify(request.body)) {
+    if (JSON.stringify(assignments[i]) === JSON.stringify(req.body)) {
       index = i;
     }
   }
   assignments.splice(index, 1);
-  response.json(assignments)
+  res.json(assignments)
 
 })
 
