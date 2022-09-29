@@ -8,11 +8,15 @@ const workouts = [
   { exercise: 'Fly', sets: '3', reps: '6', weight: '35' }
 ]
 
+// For avoiding Heroku $PORT error
 app.set('port', (process.env.PORT || 8080));
 
 app.get('/', function(request, response) {
+    var result = 'App is running'
     response.send(result);
-})
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
 
 app.use( express.json() )
 
