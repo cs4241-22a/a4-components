@@ -49,6 +49,40 @@ class App extends React.Component {
 	}
 
 	render() {
+		let content;
+		if (JSON.stringify(this.state.birthdays) === "[]") {
+			content = (
+				<p>
+					There are no saved birthdays. Add a new birthday using the form above!
+				</p>
+			);
+		} else {
+			content = (
+				<table className="results">
+					<tr className="results">
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Birthday</th>
+						<th>Days Until Next Birthday</th>
+						<th>Gift Idea</th>
+						<th style={{ backgroundColor: "black" }}></th>
+						<th style={{ backgroundColor: "black" }}></th>
+					</tr>
+					{this.state.birthdays.map((birthday, i) => (
+						<Birthday
+							firstName={birthday.firstName}
+							lastName={birthday.lastName}
+							birthday={birthday.birthday}
+							daysUntil={birthday.daysUntil}
+							giftIdea={birthday.giftIdea}
+							submitTime={birthday.submitTime}
+							deleteBirthday={this.deleteBirthday}
+							editBirthday={this.editBirthday}
+						/>
+					))}
+				</table>
+			);
+		}
 		return (
 			<main>
 				<h1>Welcome to Birthday Tracker</h1>
@@ -108,31 +142,7 @@ class App extends React.Component {
 					</li>
 				</ul>
 				<h2>Your List of Saved Birthdays</h2>
-				<div className="resultsContainer">
-					<table className="results">
-						<tr className="results">
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Birthday</th>
-							<th>Days Until Next Birthday</th>
-							<th>Gift Idea</th>
-							<th style={{ backgroundColor: "black" }}></th>
-							<th style={{ backgroundColor: "black" }}></th>
-						</tr>
-						{this.state.birthdays.map((birthday, i) => (
-							<Birthday
-								firstName={birthday.firstName}
-								lastName={birthday.lastName}
-								birthday={birthday.birthday}
-								daysUntil={birthday.daysUntil}
-								giftIdea={birthday.giftIdea}
-								submitTime={birthday.submitTime}
-								deleteBirthday={this.deleteBirthday}
-								editBirthday={this.editBirthday}
-							/>
-						))}
-					</table>
-				</div>
+				<div className="resultsContainer">{content}</div>
 			</main>
 		);
 	}

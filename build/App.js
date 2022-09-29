@@ -26,6 +26,29 @@ class App extends React.Component {
     });
   }
   render() {
+    let content;
+    if (JSON.stringify(this.state.birthdays) === "[]") {
+      content = /* @__PURE__ */ React.createElement("p", null, "There are no saved birthdays. Add a new birthday using the form above!");
+    } else {
+      content = /* @__PURE__ */ React.createElement("table", {
+        className: "results"
+      }, /* @__PURE__ */ React.createElement("tr", {
+        className: "results"
+      }, /* @__PURE__ */ React.createElement("th", null, "First Name"), /* @__PURE__ */ React.createElement("th", null, "Last Name"), /* @__PURE__ */ React.createElement("th", null, "Birthday"), /* @__PURE__ */ React.createElement("th", null, "Days Until Next Birthday"), /* @__PURE__ */ React.createElement("th", null, "Gift Idea"), /* @__PURE__ */ React.createElement("th", {
+        style: {backgroundColor: "black"}
+      }), /* @__PURE__ */ React.createElement("th", {
+        style: {backgroundColor: "black"}
+      })), this.state.birthdays.map((birthday, i) => /* @__PURE__ */ React.createElement(Birthday, {
+        firstName: birthday.firstName,
+        lastName: birthday.lastName,
+        birthday: birthday.birthday,
+        daysUntil: birthday.daysUntil,
+        giftIdea: birthday.giftIdea,
+        submitTime: birthday.submitTime,
+        deleteBirthday: this.deleteBirthday,
+        editBirthday: this.editBirthday
+      })));
+    }
     return /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement("h1", null, "Welcome to Birthday Tracker"), /* @__PURE__ */ React.createElement("form", {
       action: ""
     }, /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("label", {
@@ -56,24 +79,7 @@ class App extends React.Component {
       onClick: this.addBirthday
     }, "Submit")), /* @__PURE__ */ React.createElement("h3", null, "Instructions:"), /* @__PURE__ */ React.createElement("ul", null, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "To add a birthday: "), "Fill out the form and click the submit button."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "To delete a birthday: "), "Click the delete button for the birthday you want to delete."), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("strong", null, "To modify a birthday: "), "Fill out the form including any edits, ", /* @__PURE__ */ React.createElement("em", null, "but do not click the submit button."), " Instead click the modify button for the birthday you wish to modify.")), /* @__PURE__ */ React.createElement("h2", null, "Your List of Saved Birthdays"), /* @__PURE__ */ React.createElement("div", {
       className: "resultsContainer"
-    }, /* @__PURE__ */ React.createElement("table", {
-      className: "results"
-    }, /* @__PURE__ */ React.createElement("tr", {
-      className: "results"
-    }, /* @__PURE__ */ React.createElement("th", null, "First Name"), /* @__PURE__ */ React.createElement("th", null, "Last Name"), /* @__PURE__ */ React.createElement("th", null, "Birthday"), /* @__PURE__ */ React.createElement("th", null, "Days Until Next Birthday"), /* @__PURE__ */ React.createElement("th", null, "Gift Idea"), /* @__PURE__ */ React.createElement("th", {
-      style: {backgroundColor: "black"}
-    }), /* @__PURE__ */ React.createElement("th", {
-      style: {backgroundColor: "black"}
-    })), this.state.birthdays.map((birthday, i) => /* @__PURE__ */ React.createElement(Birthday, {
-      firstName: birthday.firstName,
-      lastName: birthday.lastName,
-      birthday: birthday.birthday,
-      daysUntil: birthday.daysUntil,
-      giftIdea: birthday.giftIdea,
-      submitTime: birthday.submitTime,
-      deleteBirthday: this.deleteBirthday,
-      editBirthday: this.editBirthday
-    })))));
+    }, content));
   }
   addBirthday(e) {
     e.preventDefault();
