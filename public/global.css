@@ -1,0 +1,237 @@
+/*Style your own assignment! This is fun! */
+
+:root {
+    --bg: #121212;
+    --grey : #1d1d1d;
+    --text: #e1e1e1;
+    --white: #FFFFFF;
+}
+
+html {
+    height: 100%;
+}
+
+#header {
+    color: var(--white);
+    font-size: 5rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-color: var(--bg);
+    font-family: 'Comfortaa', cursive;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-color: var(--bg);
+    font-family: 'Comfortaa', cursive;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 25px;
+    background-color: var(--grey);
+    padding: 50px;
+    border-radius: 1rem;
+}
+
+form button{
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    align-self: center;
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--text);
+    color: var(--bg);
+    font-family: 'Comfortaa', cursive;
+}
+
+form button:hover {
+    border: solid;
+    border-color: var(--white);
+    color: var(--white);
+    background-color: var(--grey);
+}
+
+form input {
+    width: 250px;
+    height: 50px;
+    margin-top: 10px;
+    border-color: gray;
+    border-radius: 1rem;
+    background-color: var(--text);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    font-family: 'Comfortaa', cursive;
+}
+
+.edit-imgs {
+    margin: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+img {
+    user-select: none;
+}
+
+img:hover{
+    filter: invert(100%);
+}
+
+.container input {
+    width: 250px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 1rem;
+    background-color: var(--white);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-width: 0.5rem;
+    border: none;
+}
+
+::placeholder {
+    text-align: center;
+    color: var(--bg);
+    font-family: 'Comfortaa', cursive;
+}
+
+details {
+    background-color: var(--grey);
+    padding: 50px;
+    border-radius: 1rem;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+summary {
+    list-style: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+0% { opacity: 1; }
+100% { opacity: 0; }
+}
+
+.task-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.task-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.check {
+    width: 48px;
+    height: 48px;
+    margin-right: 15px;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.pencil {
+    width: 48px;
+    height: 48px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.task-card hr {
+    width: 80%;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+}
+
+.container.open{
+    background-color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    margin-top: 15px;
+    transition: 2s;
+    animation: fadeIn 2s;
+}
+
+.container.closed{
+    height: 0px;
+    transition: 2s;
+    animation: fadeOut 2s;
+}
+
+.container :last-child hr{
+    visibility: hidden;
+}
+
+.container h2 {
+    color: var(--bg);
+    font-size: 2rem;
+}
+
+.priority {
+    width: 500px;
+    height: 50px;
+    border-radius: 1rem;
+}
+
+.priority.high{
+    background-color: red;
+}
+
+.priority.medium{
+    background-color: yellow;
+}
+
+.priority.low{
+    background-color: green;
+}
+
+.dropdown.closed{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    filter: invert(88%);
+    transition: 0.5s;
+    transform: rotate(-90deg);
+    user-select: none;
+}
+
+.dropdown.open{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    filter: invert(88%);
+    transition: 0.5s;
+    user-select: none;
+}
