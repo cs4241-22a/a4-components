@@ -8,6 +8,12 @@ const workouts = [
   { exercise: 'Fly', sets: '3', reps: '6', weight: '35' }
 ]
 
+app.set('port', (process.env.PORT || 8080));
+
+app.get('/', function(request, response) {
+    response.send(result);
+})
+
 app.use( express.json() )
 
 app.use( express.static( 'build' ) )
