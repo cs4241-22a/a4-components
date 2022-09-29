@@ -4,7 +4,8 @@ const express  = require( 'express' ),
       app      = express()
 
 const workouts = [
-  { exercise: 'Dumbbell Chest Press', sets: '3', reps: '6', weight: '50' }
+  { exercise: 'Dumbbell Chest Press', sets: '3', reps: '6', weight: '50' },
+  { exercise: 'Fly', sets: '3', reps: '6', weight: '35' }
 ]
 
 app.use( express.json() )
@@ -18,9 +19,16 @@ app.post( '/add', ( req,res ) => {
   res.json( workouts )
 })
 
-app.post( '/change', function( req,res ) {
-  const idx = workouts.findIndex( v => v.name === req.body.name )
-  workouts[ idx ].completed = req.body.completed
+app.post( '/remove', ( req,res ) => {
+  const idx = workouts.findIndex( v => v.exercise === req.body.exercise )
+  workouts.pop(idx)
+  res.json( workouts )
+})
+
+app.post( '/update', function( req,res ) {
+  debugger
+  const body = ({exercise: req.body.exercise, sets: req.body.sets, reps: req.body.reps, weight: req.body.weight})
+  workouts[ req.body.index ] = body
   
   res.sendStatus( 200 )
 })
