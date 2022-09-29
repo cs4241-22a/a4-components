@@ -14,7 +14,7 @@ const textBox = <form action="/action_page.php">
 class Review extends React.Component {
     constructor(props){
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',submitted:false};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,21 +26,33 @@ class Review extends React.Component {
 
       handleSubmit(event) {
         alert('A review was submitted: ' + this.state.value);
+        this.setState({submitted:true})
         event.preventDefault();
       }
 
       render() {
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Write a review to display!
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        );
+        if(this.state.submitted){
+            return e(
+                'label',
+                {onClick: () => this.setState({})},
+                this.state.value,
+              );
+        }else{
+            return (
+                'button',
+                {onClick: () => this.setState({submitted:true})},
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    Write a review to display!
+                    <input type="text" value={this.state.value} onChange={this.handleChange}  />
+                  </label>
+                  <input type="submit" value="Submit" />
+                </form>
+              );
+        }
+        //  {onClick: () => this.setState({title: false})},
+        //  onChange={this.setState({submitted:true})}
       }
-
 
 }
 
@@ -49,3 +61,20 @@ class Review extends React.Component {
 const domContainer = document.getElementById('review');
 const root = ReactDOM.createRoot(domContainer);
 root.render(e(Review));
+
+
+//older version--------
+// render() {
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <label>
+//           Write a review to display!
+//           <input type="text" value={this.state.value} onChange={this.handleChange} />
+//         </label>
+//         <input type="submit" value="Submit" />
+//       </form>
+//     );
+//   }
+
+
+
