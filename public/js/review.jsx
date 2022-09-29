@@ -35,7 +35,7 @@ class Review extends React.Component {
             return e(
                 'label',
                 {onClick: () => this.setState({})},
-                this.state.value,
+                "Your Review: "+ this.state.value,
               );
         }else{
             return (
