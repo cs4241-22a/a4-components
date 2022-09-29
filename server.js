@@ -7,12 +7,14 @@ let appdata = [
 		lastName: "User",
 		birthday: "2000-05-16",
 		giftIdea: "Fancy Hat",
+		submitTime: "1664468063250",
 	},
 	{
 		firstName: "Test2",
 		lastName: "User2Furious",
 		birthday: "1980-06-15",
 		giftIdea: "Fancier Hat",
+		submitTime: "1664468063251",
 	},
 ];
 
@@ -30,7 +32,7 @@ app.get("/birthdays", (req, res) => {
 	res.json(appdata);
 });
 
-app.post("/submit", (req, res) => {
+app.post("/addBirthday", (req, res) => {
 	console.log(JSON.stringify(req.body));
 	let submission = req.body;
 	let newEntry = calcField(submission);
@@ -38,7 +40,33 @@ app.post("/submit", (req, res) => {
 	res.json(appdata);
 });
 
-app.post("/remove", (req, res) => {});
+app.post("/deleteBirthday", (req, res) => {
+	let UID = req.body.submitTime;
+	let index = appdata.findIndex((element) => {
+		if (element.submitTime === UID) {
+			return true;
+		}
+	});
+	appdata.splice(index, 1);
+	updateDaysUntil(appdata);
+	res.json(appdata);
+});
+
+app.post("/editBirthday", (req, res) => {
+	let modEntry = req.body;
+	let oldUID = modEntry[0];
+	let index = appdata.findIndex((element) => {
+		if (element.submitTime === oldUID.oldUID) {
+			return true;
+		}
+	});
+	//Create new entry to replace deleted one
+	let submission = modEntry[1];
+	let newEntry = calcField(submission);
+	appdata.splice(index, 1, newEntry);
+	updateDaysUntil(appdata);
+	res.json(appdata);
+});
 
 app.listen(3000);
 

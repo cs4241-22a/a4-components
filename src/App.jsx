@@ -3,14 +3,25 @@ import React from "react";
 class Birthday extends React.Component {
 	render() {
 		return (
-			<tr className="results">
+			<tr className="results" id={this.props.submitTime}>
 				<td>{this.props.firstName}</td>
 				<td>{this.props.lastName}</td>
 				<td>{this.props.birthday}</td>
 				<td>{this.props.daysUntil}</td>
 				<td>{this.props.giftIdea}</td>
 				<td>
-					<button id={this.props.submitTime}>Delete</button>
+					<button
+						onClick={() => this.props.editBirthday(this.props.submitTime)}
+					>
+						Edit
+					</button>
+				</td>
+				<td>
+					<button
+						onClick={() => this.props.deleteBirthday(this.props.submitTime)}
+					>
+						Delete
+					</button>
 				</td>
 			</tr>
 		);
@@ -23,6 +34,9 @@ class App extends React.Component {
 		super(props);
 		// initialize our state
 		this.state = { birthdays: [] };
+		this.addBirthday = this.addBirthday.bind(this);
+		this.deleteBirthday = this.deleteBirthday.bind(this);
+		this.editBirthday = this.editBirthday.bind(this);
 		this.load();
 	}
 
@@ -45,12 +59,7 @@ class App extends React.Component {
 								<label for="firstName">First Name: </label>
 							</td>
 							<td>
-								<input
-									type="text"
-									id="firstName"
-									placeholder="First Name"
-									required
-								/>
+								<input type="text" id="firstName" placeholder="First Name" />
 							</td>
 						</tr>
 						<tr>
@@ -58,12 +67,7 @@ class App extends React.Component {
 								<label for="lastName">Last Name: </label>
 							</td>
 							<td>
-								<input
-									type="text"
-									id="lastName"
-									placeholder="Last Name"
-									required
-								/>
+								<input type="text" id="lastName" placeholder="Last Name" />
 							</td>
 						</tr>
 						<tr>
@@ -71,7 +75,7 @@ class App extends React.Component {
 								<label for="birthday">Birthday: </label>
 							</td>
 							<td>
-								<input type="date" id="birthday" required />
+								<input type="date" id="birthday" />
 							</td>
 						</tr>
 						<tr>
@@ -79,12 +83,7 @@ class App extends React.Component {
 								<label for="giftIdea">Gift Idea: </label>
 							</td>
 							<td>
-								<input
-									type="text"
-									id="giftIdea"
-									placeholder="Gift Idea"
-									required
-								/>
+								<input type="text" id="giftIdea" placeholder="Gift Idea" />
 							</td>
 						</tr>
 					</table>
@@ -92,6 +91,22 @@ class App extends React.Component {
 						Submit
 					</button>
 				</form>
+				<h3>Instructions:</h3>
+				<ul>
+					<li>
+						<strong>To add a birthday: </strong>Fill out the form and click the
+						submit button.
+					</li>
+					<li>
+						<strong>To delete a birthday: </strong>Click the delete button for
+						the birthday you want to delete.
+					</li>
+					<li>
+						<strong>To modify a birthday: </strong>Fill out the form including
+						any edits, <em>but do not click the submit button.</em> Instead
+						click the modify button for the birthday you wish to modify.
+					</li>
+				</ul>
 				<h2>Your List of Saved Birthdays</h2>
 				<div className="resultsContainer">
 					<table className="results">
@@ -102,6 +117,7 @@ class App extends React.Component {
 							<th>Days Until Next Birthday</th>
 							<th>Gift Idea</th>
 							<th style={{ backgroundColor: "black" }}></th>
+							<th style={{ backgroundColor: "black" }}></th>
 						</tr>
 						{this.state.birthdays.map((birthday, i) => (
 							<Birthday
@@ -111,6 +127,8 @@ class App extends React.Component {
 								daysUntil={birthday.daysUntil}
 								giftIdea={birthday.giftIdea}
 								submitTime={birthday.submitTime}
+								deleteBirthday={this.deleteBirthday}
+								editBirthday={this.editBirthday}
 							/>
 						))}
 					</table>
@@ -119,16 +137,54 @@ class App extends React.Component {
 		);
 	}
 
-	addBirthday(event) {
-		event.preventDefault();
+	addBirthday(e) {
+		e.preventDefault();
 		let form = document.querySelector("form");
 		if (checkFrmValid()) {
-			let submission = getForm();
+			let body = JSON.stringify(getForm());
 			form.reset();
-			fetch("/submit", {
+			fetch("/addBirthday", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(submission),
+				body,
+			})
+				.then((response) => response.json())
+				.then((json) => {
+					this.setState({ birthdays: json });
+					document.querySelector("table.results").scrollIntoView();
+				});
+		} else {
+			alert(
+				"All fields are required. Please fill out all fields before clicking submit."
+			);
+		}
+	}
+
+	deleteBirthday(UID) {
+		let body = JSON.stringify({ submitTime: UID });
+		fetch("/deleteBirthday", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body,
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				this.setState({ birthdays: json });
+			});
+	}
+
+	editBirthday(UID) {
+		let form = document.querySelector("form");
+		if (checkFrmValid()) {
+			let modification = getForm();
+			form.reset();
+			let oldUID = { oldUID: `${UID}` };
+			let bodyObjects = [oldUID, modification];
+			let body = JSON.stringify(bodyObjects);
+			fetch("/editBirthday", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body,
 			})
 				.then((response) => response.json())
 				.then((json) => {
@@ -140,8 +196,6 @@ class App extends React.Component {
 			);
 		}
 	}
-
-	deleteBirthday(event) {}
 }
 
 function convertToObj(a, b) {
