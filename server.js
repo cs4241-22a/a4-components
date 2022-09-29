@@ -1,22 +1,7 @@
 const express = require("express"),
 	app = express();
 
-let appdata = [
-	{
-		firstName: "Test",
-		lastName: "User",
-		birthday: "2000-05-16",
-		giftIdea: "Fancy Hat",
-		submitTime: "1664468063250",
-	},
-	{
-		firstName: "Test2",
-		lastName: "User2Furious",
-		birthday: "1980-06-15",
-		giftIdea: "Fancier Hat",
-		submitTime: "1664468063251",
-	},
-];
+let appdata = [];
 
 function reqLogger(req, res, next) {
 	console.log(req.url);

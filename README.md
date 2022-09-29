@@ -1,32 +1,5 @@
-# Assignment 4 - Components
-
-Due: October 4th, by 11:59 AM.
-
-For this assignment you will re-implement the client side portion of _either_ A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
-
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)
-
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
-
-## Deliverables
-
-Do the following to complete this assignment:
-
-1. Implement your project with the above requirements.
-2. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-3. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-4. Fork this repository and modify the README to the specifications below. Be sure to add _all_ project files.
-5. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
-
-## Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
-
-## Your Web Application Title
+## React.js Birthday Tracker
 
 https://a4-bensakac-wpi.glitch.me/
 
-This project is a complete redo of my assignment for A2. Nothing is changed except for the use of the React framework. I also couldn't figure out how to
-
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+This project is a complete redo of my assignment for A2. Nothing is changed except for the use of the React framework. At first, using React was definetly a hindrance because I was using it for the first time, whereas with A2 I already had some experience with vanilla JS. Once I got an understanding of how the React components and classes worked, it made developing the interaction much easier.
