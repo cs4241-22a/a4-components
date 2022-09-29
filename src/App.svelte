@@ -69,15 +69,25 @@
         body,
         headers: { 'Content-Type': 'application/json' }
     })
-    .then(function (response) {
-        return response.text();
-    })
-    .then(function (text) {
-        document.getElementById("moviedne").innerHTML = text;
-    })
+  }
+
+  const getMovieDeleteState = function() {
+    const state = fetch('/moviedeletestate',
+        {
+          method: 'GET'
+        })
+        .then(function (response) {
+          return response.text()
+        })
+        .then(function (text) {
+          return text;
+        });
+
+    return state;
   }
 
   let getResultsPromise = getResults();
+  let getDeleteStatePromise = getMovieDeleteState();
 </script>
 
 	<h1>Movie Ranker</h1>
@@ -98,14 +108,16 @@
         </div>
         <button id="additionbutton" on:click={addMovie}>submit</button>
       </form>
-      <form id="deleteform" class="movieform">
+      <form id="deleteform" class="movieform" on:submit={deleteMovie}>
         <header id="deletemovieheader">Delete Movie</header>
         <div class="moviefield">
           <label for="movietitletodelete">Title:</label>
           <input type='text' id='movietitletodelete' placeholder="Enter Movie Title">
         </div>
-        <button id="deletionbutton" on:click={deleteMovie}>delete</button>
-        <p id="moviedne" style="color: red;"></p>
+        <button type="submit" id="deletionbutton">delete</button>
+        {#await getDeleteStatePromise then text}
+          <p id="moviedne" style="color: red;">{text}</p>
+        {/await}
       </form>
     </div>
     <h2>Movies:</h2>
