@@ -23,13 +23,15 @@ app.post( '/add', ( req,res ) => {
 })
 
 app.post( '/remove', ( req,res ) => {
+  debugger
   const idx = workouts.findIndex( v => v.exercise === req.body.exercise )
-  workouts.pop(idx)
-  res.json( workouts )
+  if(idx >= 0) {
+    workouts.splice(idx, 1)
+    res.json( workouts )
+  }
 })
 
 app.post( '/update', function( req,res ) {
-  debugger
   const body = ({exercise: req.body.exercise, sets: req.body.sets, reps: req.body.reps, weight: req.body.weight})
   workouts[ req.body.index ] = body
   

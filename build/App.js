@@ -119,18 +119,19 @@ class App extends React.Component {
     });
   }
   add(evt) {
-    debugger;
     const exercise = document.getElementById("exercise");
     const sets = document.getElementById("sets");
     const reps = document.getElementById("reps");
     const weight = document.getElementById("weight");
-    fetch("/add", {
-      method: "POST",
-      body: JSON.stringify({exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value}),
-      headers: {"Content-Type": "application/json"}
-    }).then((response) => response.json()).then((json) => {
-      this.setState({workouts: json});
-    });
+    if (exercise.value !== "" && sets.value !== "" && reps.value !== "" && weight.value !== "") {
+      fetch("/add", {
+        method: "POST",
+        body: JSON.stringify({exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value}),
+        headers: {"Content-Type": "application/json"}
+      }).then((response) => response.json()).then((json) => {
+        this.setState({workouts: json});
+      });
+    }
   }
   remove(evt) {
     const exercise = document.getElementById("exerciseRemove");
@@ -143,19 +144,20 @@ class App extends React.Component {
     });
   }
   update(evt) {
-    debugger;
     const index = document.getElementById("index");
     const exercise = document.getElementById("newExercise");
     const sets = document.getElementById("newSets");
     const reps = document.getElementById("newReps");
     const weight = document.getElementById("newWeight");
-    fetch("/update", {
-      method: "POST",
-      body: JSON.stringify({index: index.value - 1, exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value}),
-      headers: {"Content-Type": "application/json"}
-    }).then((response) => response.json()).then((json) => {
-      this.setState({workouts: json});
-    });
+    if (index.value !== "" && exercise.value !== "" && sets.value !== "" && reps.value !== "" && weight.value !== "") {
+      fetch("/update", {
+        method: "POST",
+        body: JSON.stringify({index: index.value - 1, exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value}),
+        headers: {"Content-Type": "application/json"}
+      }).then((response) => response.json()).then((json) => {
+        this.setState({workouts: json});
+      });
+    }
   }
 }
 export default App;

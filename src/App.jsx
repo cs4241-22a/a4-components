@@ -91,16 +91,18 @@ class App extends React.Component {
     const reps = document.getElementById("reps")
     const weight = document.getElementById("weight")
 
-    fetch( '/add', { 
-      method:'POST',
-      body: JSON.stringify({ exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then( response => response.json() )
-    .then( json => {
-        // changing state triggers reactive behaviors
-        this.setState({ workouts:json }) 
-    })
+    if(exercise.value !== '' && sets.value !== '' && reps.value !== '' && weight.value !== '') {
+      fetch( '/add', { 
+        method:'POST',
+        body: JSON.stringify({ exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then( response => response.json() )
+      .then( json => {
+          // changing state triggers reactive behaviors
+          this.setState({ workouts:json }) 
+      })
+    }
   }
 
   remove( evt ) {
@@ -125,16 +127,18 @@ class App extends React.Component {
     const reps = document.getElementById("newReps")
     const weight = document.getElementById("newWeight")
 
-    fetch( '/update', { 
-      method:'POST',
-      body: JSON.stringify({ index: index.value - 1, exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then( response => response.json() )
-    .then( json => {
-        // changing state triggers reactive behaviors
-        this.setState({ workouts:json }) 
-    })
+    if(index.value !== '' && exercise.value !== '' && sets.value !== '' && reps.value !== '' && weight.value !== '') {
+      fetch( '/update', { 
+        method:'POST',
+        body: JSON.stringify({ index: index.value - 1, exercise: exercise.value, sets: sets.value, reps: reps.value, weight: weight.value }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then( response => response.json() )
+      .then( json => {
+          // changing state triggers reactive behaviors
+          this.setState({ workouts:json }) 
+      })
+    }
   }
 }
 
