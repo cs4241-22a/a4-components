@@ -10,14 +10,14 @@ Welcome to my WebWare Assignment 4. This assignment focuses on the same function
 Added Components
 ---
 
-<b> On the Login Page...<b>
+<b> On the Login Page...<b> <br>
 1. I've added a `Fun Button` that reacts when clicked. This was my first React component using a `.jsx`, so I kept it simple. This new technology improved the development experience because it allowed me to understand how React works before adding more React components.
 
 
 2. Also on the login page, I managed to successfully render the login form when the user clicks `Click here to enter information...`. This was an improvement to my development experience because I believe it allows the user to consider if they're signing in, or creating a new account below. Once they know for sure, the form is easily accessible to them.
 
 
-<b> On the Data/Table Page... <b>
+<b> On the Data/Table Page... <b><br>
 1. I've added a React component that renders a different color. Upon clicking the title `My Homework Assignments...click me`, it will change the text color between blue and red, all without reloading the page. This new technology improved the development experience because I learned how to switch between color states in the render function.
 
 
