@@ -1,30 +1,15 @@
-# a4-patrick-salisbury
+## Simple Hike Planner (With React)
 
-Empty project.
+a4-patrick-salisbury.glitch.me
 
-## How to run on localhost
+For this project, I reworked a2 to implement react. This involved rewriting the a2 server into an express server, 
+changing the html to display the react app, and writing the react app itself to show the data currently on the server
+and support the add, update, and clear routes. 
 
-First install dependencies:
-
-```sh
-npm install
-```
-
-To run in dev mode mode:
-
-```sh
-npm start
-```
-
-Then go to http://localhost:8080
-
-To create a production build:
-
-```sh
-npm run build
-```
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
+Overall, I found react very helpful, and it definitely simplified the client-server communication by saving me from 
+having to manually send requests to the server to update the hike table. One of the most helpful things it did was allow
+for an abstraction of the data stored on the server. Instead of manually pinging for new data, I thought of react as 
+essentially allowing you to access the data directly like it was stored locally instead of somewhere else. This helps
+make the application feel more unified as well instead of feeling like you have two components communicating through a 
+link.
 
