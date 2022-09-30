@@ -2,7 +2,7 @@ Assignment 4 - Components with React
 ===
 
 <b>Jacob Chlebowski </b>- jachlebowski@wpi.edu <br>
-Glitch &rarr;   <br>
+Heroku &rarr; https://a4-jacob-chlebowski.herokuapp.com/  <br>
 
 
 Welcome to my WebWare Assignment 4. This assignment focuses on the same functionality as Assignment 3, but with [React](https://reactjs.org/). React allowed me to use components for the data display as well as updating the page.
