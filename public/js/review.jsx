@@ -25,7 +25,7 @@ class Review extends React.Component {
       }
 
       handleSubmit(event) {
-        alert('A review was submitted: ' + this.state.value);
+        // alert('A review was submitted: ' + this.state.value);
         this.setState({submitted:true})
         event.preventDefault();
       }
