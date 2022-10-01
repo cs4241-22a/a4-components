@@ -47,8 +47,6 @@ export default function Form(props) {
         }).then(function (response) {
             props.onSubmit()
         });
-
-
     }
 
     return (
