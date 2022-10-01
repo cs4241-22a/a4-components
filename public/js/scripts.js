@@ -45,6 +45,8 @@ const submit = function( e ) {
 
 
 
+
+
   const remove = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -195,7 +197,7 @@ const submit = function( e ) {
       })
     })
 
-    //const button = document.querySelector( 'button' )
+    // const button = document.querySelector( 'button' )
     const add_button = document.getElementById('add_button')
     const remove_button = document.getElementById('remove_button')
     const modify_button = document.getElementById('modify_button')
