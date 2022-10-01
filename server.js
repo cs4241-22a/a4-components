@@ -97,7 +97,9 @@ app.get(
     "/data",
     connectEnsureLogin.ensureLoggedIn(),
     async (request, response) => {
+        console.log(request.user)
         const user = await User.findById(request.user._id);
+        console.log(user)
         response.json(user.purchases);
         response.end();
     }
@@ -108,6 +110,7 @@ app.post(
     connectEnsureLogin.ensureLoggedIn(),
     async (request, response) => {
         const body = request.body;
+        console.log(body)
         const user = await User.findById(request.user._id);
         user.purchases.push({
             item_name: body.item_name,
@@ -125,6 +128,7 @@ app.post(
     connectEnsureLogin.ensureLoggedIn(),
     async (request, response) => {
         const body = request.body;
+        console.log(body)
         const user = await User.findById(request.user._id);
         const purchase = user.purchases.find(
             (listing) => listing._id.toString() === body.id
