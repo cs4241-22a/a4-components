@@ -1,0 +1,30 @@
+{
+  "name": "empty-project",
+  "version": "1.0.0",
+  "description": "Assignment 4 - Components\r ===",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "node server.js",
+    "build": "snowpack build"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "snowpack": "^3.8.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/may-s-d/a4-may-dong.git"
+  },
+  "bugs": {
+    "url": "https://github.com/may-s-d/a4-may-dong/issues"
+  },
+  "homepage": "https://github.com/may-s-d/a4-may-dong#readme"
+}
