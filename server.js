@@ -156,5 +156,4 @@ app.get("/logout", function (req, res, next) {
 
 app.use(connectEnsureLogin.ensureLoggedIn(), express.static("dist"));
 
-
 https.createServer(sslOptions, app).listen(process.env.port);
