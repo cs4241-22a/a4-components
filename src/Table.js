@@ -3,8 +3,8 @@ import {Table, TableCell, TableContainer, TableHead, TableRow, Paper, TableBody,
 import Form from "./Form";
 
 export default function MyTable(props) {
+    console.log(props.purchases)
     return (
-        <Grid item xs={3}>
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
@@ -31,7 +31,6 @@ export default function MyTable(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </Grid>
     )
 }
 
