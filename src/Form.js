@@ -89,6 +89,7 @@ export default function Form(props) {
             id={"item_cost"}
             label={"Item Cost"}
             value={itemCost}
+            type="number"
             onChange={(event) => handleChange(event, setItemCost)}
           ></TextField>
         </div>
@@ -100,6 +101,7 @@ export default function Form(props) {
             label={"Item Quantity"}
             value={itemQuantity}
             onChange={(event) => handleChange(event, setItemQuantity)}
+            type="number"
           ></TextField>
           <TextField
             id={"payment_method"}
