@@ -3,7 +3,7 @@ Assignment 4 - Components
 
 ## Anarchy Schedule Maker MK2
 
-your hosting link e.g. [http://a4-charlieroberts.glitch.me](https://a4-greg-klimov.glitch.me/)
+your hosting link e.g. https://a4-greg-klimov.glitch.me/
 
 Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
 
