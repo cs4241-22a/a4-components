@@ -27,16 +27,25 @@
         'use strict';
 
         function getCookie(cname) {
+            let authArr = []
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let ca = decodedCookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
+            for (let str of ca) {
+                str.toString()
+                const newStr = str.trim()
+                if (name == newStr.substring(0, 5)) {
+                    authArr.push(newStr.substring(5))
                 }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
+            }
+
+            let logName = ""
+            let windowUrl = window.location.href.toString().split('/')
+            logName = windowUrl.pop()
+
+            for (let arrName of authArr) {
+                if (arrName == logName) {
+                    return arrName
                 }
             }
             return "";
@@ -46,7 +55,6 @@
         const AddTodo = (props) => {
             const addTodo = async e => {
                 e.preventDefault()
-                console.log("HEllo")
 
                 const newTodoData = {
                     "title": todoForm.elements['inputTitle'].value,
@@ -62,7 +70,6 @@
                         body: JSON.stringify(newTodoData)
                     })
                     const responseJSON = await response.json()
-                    console.log(responseJSON)
 
                     if (responseJSON.status == 'SUCCESS') {
                         props.setStatus({ status: responseJSON.status, msg: responseJSON.message })
@@ -240,10 +247,9 @@
                 }
             }
 
-            let windowUrl = window.location.href.toString().split('/')
-            logName = windowUrl.pop()
 
-            if (username.name == "" || username.name == undefined || logName != username.name) {
+
+            if (username.name == "" || username.name == undefined) {
                 return (
                     <div >
                         <h3>User Authentication Failed. Try logging in again</h3>

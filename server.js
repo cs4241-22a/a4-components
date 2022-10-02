@@ -30,7 +30,7 @@ app.use('/user', UserRouter)
 
 app.use('/todo', UserDataRouter)
 
-app.get('/profile/:id', lazydebug, (req, res) => {
+app.get('/profile/:id', (req, res) => {
     res.render('profile', { username: req.params.id })
 })
 
@@ -42,7 +42,7 @@ const db = mongoose.connection
 db.on('error', (error) => { console.error(error) })
 db.once('open', () => {
     console.log("Connected to database");
-    app.listen(process.env.PORT || 3000, () => console.log(`Server Started on Port ${PORT}`));
+    app.listen(process.env.PORT || 3000, () => console.log(`Server Started on Port ${process.env.PORT || 3000}`));
 })
 
 
