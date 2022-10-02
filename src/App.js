@@ -1,7 +1,7 @@
 import React, { setState } from "react";
 import MyTable from "./Table";
 import Form from "./Form";
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 
 class App extends React.Component {
   constructor(props) {
@@ -18,13 +18,18 @@ class App extends React.Component {
       <div>
         <Grid
           container
-          spacing={0}
+          spacing={1}
           direction={"column"}
           alignItems={"center"}
           justifyContent={"center"}
         >
           <Grid item xs={3}>
             <Form onSubmit={this.updatePurchases.bind(this)} />
+          </Grid>
+          <Grid item xs={3}>
+            <Button variant="contained" href="/logout">
+              Log Out
+            </Button>
           </Grid>
           <Grid item xs={3}>
             <MyTable
@@ -57,8 +62,8 @@ class App extends React.Component {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(() => updateMethod())
+    }).then(() => updateMethod());
   }
 }
 
-export default App
+export default App;
