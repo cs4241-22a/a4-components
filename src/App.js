@@ -1,43 +1,64 @@
-import React, {useState} from "react";
+import React, { setState } from "react";
 import MyTable from "./Table";
 import Form from "./Form";
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 
-export default function App(props) {
-    const [purchases, setPurchases] = useState([
-        {
-            item_name: "Coke",
-            item_quantity: 5,
-            item_cost: 3.2,
-            payment_method: "cash",
-        },
-    ]);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { purchases: [] };
+  }
 
+  componentDidMount() {
+    this.updatePurchases();
+  }
+
+  render() {
     return (
-        <div>
-            <Grid
-                container
-                spacing={0}
-                direction={"column"}
-                alignItems={"center"}
-                justifyContent={"center"}
-            >
-                <Grid item xs={3}>
-                    <Form onSubmit={updatePurchases}/>
-                </Grid>
-                <Grid item xs={3}>
-                    <MyTable purchases={purchases}/>
-                </Grid>
-            </Grid>
-        </div>
+      <div>
+        <Grid
+          container
+          spacing={0}
+          direction={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Grid item xs={3}>
+            <Form onSubmit={this.updatePurchases.bind(this)} />
+          </Grid>
+          <Grid item xs={3}>
+            <MyTable
+              purchases={this.state.purchases}
+              onDecrease={this.decreaseItem}
+              updateTable={this.updatePurchases.bind(this)}
+            />
+          </Grid>
+        </Grid>
+      </div>
     );
+  }
 
-    function updatePurchases() {
-        fetch("/data")
-            .then(r => r.json())
-            .then((data) => {
-                console.log(purchases)
-                setPurchases(data)
-            })
-    }
+  updatePurchases() {
+    fetch("/data")
+      .then((r) => r.json())
+      .then((data) => {
+        this.setState({ purchases: data });
+      });
+  }
+
+  decreaseItem(itemID, updateMethod) {
+    const json = {
+      id: itemID,
+    };
+    const body = JSON.stringify(json);
+    fetch("/decrease", {
+      method: "POST",
+      body,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => updateMethod())
+  }
 }
+
+export default App

@@ -10,14 +10,6 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 const fs = require('fs')
 
-const sslOptions = {
-    cert: fs.readFileSync(
-        "/etc/letsencrypt/live/files.craftsteamg.com/fullchain.pem"
-    ),
-    key: fs.readFileSync(
-        "/etc/letsencrypt/live/files.craftsteamg.com/privkey.pem"
-    ),
-};
 
 app.use(require("cookie-parser")());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,7 +18,7 @@ app.use(
     expressSession({
         secret: process.env.SESSION_SECRET,
         cookie: {
-            secure: true,
+            secure: false,
         },
         resave: false,
         saveUninitialized: false,
@@ -58,7 +50,7 @@ passport.use(
         {
             clientID: process.env.github_id,
             clientSecret: process.env.github_secret,
-            callbackURL: "https://files.craftsteamg.com:4000/auth/github/callback",
+            callbackURL: "http://mc.craftsteamg.com:4000/auth/github/callback",
         },
         async function (accessToken, refreshToken, profile, cb) {
             const username = profile.username;
@@ -158,5 +150,5 @@ app.get("/logout", function (req, res, next) {
 });
 
 app.use(connectEnsureLogin.ensureLoggedIn(), express.static("dist"));
-
-https.createServer(sslOptions, app).listen(process.env.port);
+app.listen(process.env.port)
+//https.createServer(sslOptions, app).listen(process.env.port);
