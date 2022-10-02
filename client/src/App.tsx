@@ -42,14 +42,13 @@ const deleteGame = useCallback(
 
   //useEffect on page load to fetch data from API
   useEffect(() => {
-    fetch("http://localhost:3001/games")
+    fetch("https://baseball-react.axbolduc.com/games")
       .then((res) => res.json())
       .then((data) => {
         setCurrentGames(data);
       })
       .catch((err) => {
         //Mock data if API is not available
-
         setCurrentGames([
           {
             _id: "6320ccfd46aa4e358e64a3f3",

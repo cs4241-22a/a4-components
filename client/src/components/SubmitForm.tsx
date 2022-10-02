@@ -13,7 +13,7 @@ const SubmitForm = (props: Props) => {
     const [atBats, setAtBats] = React.useState("");
 
     const submitGame = (date: string, hits: string, atBats: string) => {
-        fetch("http://localhost:3001/games", {
+        fetch("https://baseball-react.axbolduc.com/games", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

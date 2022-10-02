@@ -22,7 +22,7 @@ const ModifyForm = (props: Props) => {
   );
 
   const deleteGameRequest = () => {
-    fetch(`http://localhost:3001/games`, {
+    fetch(`https://baseball-react.axbolduc.com/games`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const ModifyForm = (props: Props) => {
 
   const modifyGameRequest = () => {
     if (id && date && hits && atBats) {
-      fetch(`http://localhost:3001/games`, {
+      fetch(`https://baseball-react.axbolduc.com/games`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
