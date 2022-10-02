@@ -6,8 +6,7 @@ const mongoose = require('mongoose')
 const connectDB = require('./config/dbConn')
 const UserRouter = require('./api/User')
 const UserDataRouter = require('./api/UserData')
-const lazyDebug = require('./middleware/lazydebug')
-const PORT = process.env.PORT || 3000
+const lazydebug = require('./middleware/lazydebug')
 
 //use ejs
 app.set('view engine', 'ejs')
@@ -31,7 +30,7 @@ app.use('/user', UserRouter)
 
 app.use('/todo', UserDataRouter)
 
-app.get('/profile/:id', (req, res) => {
+app.get('/profile/:id', lazydebug, (req, res) => {
     res.render('profile', { username: req.params.id })
 })
 
@@ -43,7 +42,7 @@ const db = mongoose.connection
 db.on('error', (error) => { console.error(error) })
 db.once('open', () => {
     console.log("Connected to database");
-    app.listen(PORT, () => console.log(`Server Started on Port ${PORT}`));
+    app.listen(process.env.PORT || 3000, () => console.log(`Server Started on Port ${PORT}`));
 })
 
 
