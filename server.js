@@ -1,8 +1,31 @@
 const express  = require( 'express' ),
     app      = express()
 
-const todos = [
-    { name:'buy groceries', completed:false }
+const todos =  [
+    {
+        activity: "Sleep",
+        date: "2022-09-07",
+        startTime: "19:15",
+        endTime: "19:15",
+        description: "test",
+        duration: "0 Hour  0 Minutes",
+    },
+    {
+        activity: "Food",
+        date: "2022-09-07",
+        startTime: "20:15",
+        endTime: "21:15",
+        description: "test",
+        duration: "1 Hour  0 Minutes",
+    },
+    {
+        activity: "Work",
+        date: "2022-09-07",
+        startTime: "07:00",
+        endTime: "19:50",
+        description: "test",
+        duration: "12 Hour  50 Minutes",
+    }
 ]
 
 app.use( express.json() )
