@@ -1,18 +1,22 @@
 import React from "./_snowpack/pkg/react.js";
 class Todo extends React.Component {
   render() {
-    return /* @__PURE__ */ React.createElement("li", null, " ", this.props.name, " :", /* @__PURE__ */ React.createElement("input", {
+    return /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement("input", {
+      class: "checkbox pure-u-2-24",
       type: "checkbox",
       defaultChecked: this.props.completed,
       onChange: (e) => this.change(e)
-    }), /* @__PURE__ */ React.createElement("button", {
-      onClick: (e) => this.remove(e)
+    }), /* @__PURE__ */ React.createElement("div", {
+      class: "pure-u-18-24"
+    }, /* @__PURE__ */ React.createElement("p", null, this.props.name)), /* @__PURE__ */ React.createElement("button", {
+      class: "delete-button pure-u-4-24",
+      onClick: (e) => this.remove()
     }, "d"));
   }
   change(e) {
     this.props.toggle(this.props.name, e.target.checked);
   }
-  remove(e) {
+  remove() {
     this.props.delete(this.props.name);
   }
 }
@@ -30,17 +34,27 @@ class App extends React.Component {
   render() {
     return /* @__PURE__ */ React.createElement("div", {
       className: "App"
+    }, /* @__PURE__ */ React.createElement("header", null, /* @__PURE__ */ React.createElement("h1", null, "todo")), /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement("label", {
+      for: "todoitem",
+      class: "pure-u-20-24"
     }, /* @__PURE__ */ React.createElement("input", {
-      type: "text"
-    }), /* @__PURE__ */ React.createElement("button", {
-      onClick: (e) => this.add(e)
-    }, "add"), /* @__PURE__ */ React.createElement("ul", null, this.state.todos.map((todo, i) => /* @__PURE__ */ React.createElement(Todo, {
+      id: "todoitem",
+      type: "text",
+      maxlength: "100"
+    })), /* @__PURE__ */ React.createElement("button", {
+      id: "todoitembutton",
+      class: "pure-u-4-24 pure-button pure-button-primary",
+      onClick: (e) => this.add(),
+      type: "submit"
+    }, "add"), /* @__PURE__ */ React.createElement("ul", {
+      id: "todoitems"
+    }, this.state.todos.map((todo, i) => /* @__PURE__ */ React.createElement(Todo, {
       key: i,
       name: todo.name,
       completed: todo.completed,
       toggle: this.toggle,
       delete: this.delete
-    }))));
+    })))));
   }
   toggle(name, completed) {
     fetch("/change", {
@@ -49,7 +63,7 @@ class App extends React.Component {
       headers: {"Content-Type": "application/json"}
     });
   }
-  add(evt) {
+  add() {
     const value = document.querySelector("input").value;
     fetch("/add", {
       method: "POST",

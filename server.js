@@ -1,10 +1,7 @@
 const express  = require("express"),
       app      = express()
 
-const todos = [
-  { name:"buy groceries", completed:false }
-]
-
+const todos = []
 
 app.use(express.json())
 app.use(express.static("build"))

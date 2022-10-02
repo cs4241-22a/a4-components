@@ -6,9 +6,12 @@ import React from "react";
 class Todo extends React.Component {
   // our .render() method creates a block of HTML using the .jsx format
   render() {
-    return <li> { this.props.name } : 
-      <input type="checkbox" defaultChecked={ this.props.completed } onChange={ e => this.change(e) }/>
-      <button onClick={ e => this.remove(e) }>d</button>
+    return <li> 
+      <input class="checkbox pure-u-2-24"
+        type="checkbox" defaultChecked={ this.props.completed } onChange={ e => this.change(e) }/>
+      <div class="pure-u-18-24"><p>{ this.props.name }</p></div>
+      <button class="delete-button pure-u-4-24" 
+        onClick={ e => this.remove() }>d</button>
     </li>
   }
   // call this method when the checkbox for this component is clicked
@@ -16,7 +19,7 @@ class Todo extends React.Component {
     this.props.toggle(this.props.name, e.target.checked)
   }
 
-  remove(e) {
+  remove() {
     this.props.delete(this.props.name);
   }
 }
@@ -43,15 +46,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <input type="text" /><button onClick={ e => this.add(e) }>add</button>
-        <ul>
-          { this.state.todos.map((todo, i) => 
-          <Todo key={i} 
-            name={todo.name} 
-            completed={todo.completed} 
-            toggle={ this.toggle } 
-            delete={ this.delete }/> ) }
-       </ul> 
+        <header>
+          <h1>todo</h1>
+        </header>
+        <main>
+          <label for="todoitem" class="pure-u-20-24">
+              <input id="todoitem" type="text" maxlength="100" />
+          </label>
+          <button id="todoitembutton" class="pure-u-4-24 pure-button pure-button-primary" 
+              onClick={ e => this.add() } type="submit">add</button>
+          <ul id="todoitems">
+            { this.state.todos.map((todo, i) => 
+            <Todo key={i} 
+              name={todo.name} 
+              completed={todo.completed} 
+              toggle={ this.toggle } 
+              delete={ this.delete }/> ) }
+          </ul>
+       </main> 
       </div>
     )
   }
@@ -66,10 +78,10 @@ class App extends React.Component {
   }
   
   // add a new todo list item
-  add(evt) {
+  add() {
     const value = document.querySelector("input").value
 
-    fetch( "/add", { 
+    fetch("/add", { 
       method:"POST",
       body: JSON.stringify({ name: value, completed: false }),
       headers: { "Content-Type": "application/json" }
