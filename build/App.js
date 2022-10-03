@@ -99,40 +99,20 @@ class Table extends React.Component {
     super(props);
   }
   render() {
-    console.log("Rendering table");
-    console.log(this.props.shows);
-    return /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("tbody", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", null, "TV Show"), /* @__PURE__ */ React.createElement("th", null, "Seasons"), /* @__PURE__ */ React.createElement("th", null, "Episodes Per Season"), /* @__PURE__ */ React.createElement("th", null, "Duration of an Episode (mins)"), /* @__PURE__ */ React.createElement("th", null, "Time Needed to Binge-Watch Full Show"), /* @__PURE__ */ React.createElement("th", null)), this.props.shows.map((item) => /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", null, item.show), /* @__PURE__ */ React.createElement("td", null, item.seasons), /* @__PURE__ */ React.createElement("td", null, item.episodes), /* @__PURE__ */ React.createElement("td", null, item.duration), /* @__PURE__ */ React.createElement("td", null, item.totalTime), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("button", null, "Remove Entry"))))));
-  }
-  componentWillReceiveProps(props) {
-    console.log("New props:");
-    console.log(props);
+    return /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("tbody", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", null, "TV Show"), /* @__PURE__ */ React.createElement("th", null, "Seasons"), /* @__PURE__ */ React.createElement("th", null, "Episodes Per Season"), /* @__PURE__ */ React.createElement("th", null, "Duration of an Episode (mins)"), /* @__PURE__ */ React.createElement("th", null, "Time Needed to Binge-Watch Full Show"), /* @__PURE__ */ React.createElement("th", null)), this.props.shows.map((item) => /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", null, item.show), /* @__PURE__ */ React.createElement("td", null, item.seasons), /* @__PURE__ */ React.createElement("td", null, item.eps), /* @__PURE__ */ React.createElement("td", null, item.duration), /* @__PURE__ */ React.createElement("td", null, item.totalTime), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("button", {
+      onClick: () => this.props.remove(item.key)
+    }, "Remove Entry"))))));
   }
 }
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      shows: [
-        {
-          show: "Dummy Show",
-          seasons: 5,
-          eps: 13,
-          duration: 45,
-          key: "iAmAUniqueId"
-        },
-        {
-          show: "Dummy Show",
-          seasons: 7,
-          eps: 24,
-          duration: 60,
-          key: "iAmAnotherUniqueId"
-        }
-      ]
+      shows: []
     };
     this.load();
   }
   add = (show, seasons, eps, duration) => {
-    console.log("Adding");
     const json = {
       show,
       seasons,
@@ -141,7 +121,6 @@ class App extends React.Component {
       key: uuidv4()
     };
     const body = JSON.stringify(json);
-    console.log(body);
     fetch("/add", {
       headers: {
         "Content-Type": "application/json"
@@ -152,11 +131,7 @@ class App extends React.Component {
       let res = response.json();
       const checkPromise = () => {
         res.then((result) => {
-          console.log(result);
-          console.log("Type of result " + typeof result);
           this.setState({shows: result});
-          console.log("State has been set to:");
-          console.log(this.state.shows);
         }).catch((err) => {
           console.error("Error: " + err);
         });
@@ -165,7 +140,7 @@ class App extends React.Component {
     });
   };
   remove = (entryId) => {
-    let json = null;
+    let json = {};
     for (let i = 0; i < this.state.shows.length; i++) {
       if (this.state.shows[i].key === entryId) {
         json = this.state.shows[i];
@@ -178,21 +153,17 @@ class App extends React.Component {
       },
       method: "POST",
       body
-    }).then(function(response) {
+    }).then((response) => {
       let res = response.json();
       const checkPromise = () => {
         res.then((result) => {
-          console.log(result);
           this.setState({shows: result});
-          console.log("State has been set to:");
-          console.log(this.state.shows);
         }).catch((err) => {
           console.error("Error: " + err);
         });
       };
       checkPromise();
     });
-    return false;
   };
   render() {
     return /* @__PURE__ */ React.createElement("div", {

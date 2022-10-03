@@ -1,23 +1,7 @@
 const express = require('express'),
     app = express();
 
-let appdata = [
-    {
-        show: "Merlin",
-        seasons: 5,
-        eps: 13,
-        duration: 45,
-        totalTime: 48.75,
-        key: 'iAmAUniqueId',
-    },
-    {
-        show: "Once Upon a Time",
-        seasons: 7,
-        eps: 24,
-        duration: 60,
-        totalTime: 168,
-        key: 'iAmAnotherUniqueId',
-    }];
+let appdata = [];
 
 app.use(express.json());
 app.use(express.static('build'));
@@ -41,6 +25,7 @@ app.post('/add', (req, res) => {
 
 app.post('/remove', async (req, res) => {
     let tempArr = [];
+    console.log("Removing on server");
     for (let i = 0; i < appdata.length; i++) {
         if (appdata[i].key !== req.body.key) {
             tempArr.push(appdata[i]);

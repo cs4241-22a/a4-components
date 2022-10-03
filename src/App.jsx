@@ -2,9 +2,6 @@ import React from 'react';
 import "./index.css";
 import uuidv4 from 'uuidv4';
 
-// this is going to be our Table component
-// and instead of rendering a list item, it will include the JSON data in its props and just format that out onto the screen
-
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -88,8 +85,6 @@ class Table extends React.Component {
     }
 
     render() {
-        console.log("Rendering table");
-        console.log(this.props.shows);
         return (<table>
             <tbody>
                 <tr>
@@ -104,19 +99,14 @@ class Table extends React.Component {
                     <tr>
                         <td>{item.show}</td>
                         <td>{item.seasons}</td>
-                        <td>{item.episodes}</td>
+                        <td>{item.eps}</td>
                         <td>{item.duration}</td>
                         <td>{item.totalTime}</td>
-                        <td><button>Remove Entry</button></td>
+                        <td><button onClick={() => this.props.remove(item.key)}>Remove Entry</button></td>
                     </tr>
                 ))}
             </tbody>
         </table>);
-    }
-
-    componentWillReceiveProps(props) {
-        console.log("New props:");
-        console.log(props);
     }
 }
 
@@ -126,27 +116,12 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            shows: [
-                {
-                    show: "Dummy Show",
-                    seasons: 5,
-                    eps: 13,
-                    duration: 45,
-                    key: 'iAmAUniqueId',
-                },
-                {
-                    show: "Dummy Show",
-                    seasons: 7,
-                    eps: 24,
-                    duration: 60,
-                    key: 'iAmAnotherUniqueId',
-                }]
+            shows: []
         };
         this.load();
     }
 
     add = (show, seasons, eps, duration) => {
-        console.log("Adding");
         const json = {
             show: show,
             seasons: seasons,
@@ -155,8 +130,6 @@ class App extends React.Component {
             key: uuidv4(),
         };
         const body = JSON.stringify(json);
-        console.log(body);
-
         fetch("/add", {
             headers: {
                 'Content-Type': 'application/json'
@@ -167,11 +140,7 @@ class App extends React.Component {
             let res = response.json();
             const checkPromise = () => {
                 res.then((result) => {
-                    console.log(result);
-                    console.log("Type of result " + typeof(result));
-                    this.setState({shows: result});
-                    console.log("State has been set to:");
-                    console.log(this.state.shows);
+                    this.setState({ shows: result });
                 }).catch((err) => {
                     console.error("Error: " + err);
                 });
@@ -181,7 +150,7 @@ class App extends React.Component {
     }
 
     remove = (entryId) => {
-        let json = null;
+        let json = {};
         for (let i = 0; i < this.state.shows.length; i++) {
             if (this.state.shows[i].key === entryId) {
                 json = this.state.shows[i];
@@ -195,21 +164,17 @@ class App extends React.Component {
             },
             method: "POST",
             body,
-        }).then(function (response) {
+        }).then((response) => {
             let res = response.json();
             const checkPromise = () => {
                 res.then((result) => {
-                    console.log(result);
-                    this.setState({shows: result});
-                    console.log("State has been set to:");
-                    console.log(this.state.shows);
+                    this.setState({ shows: result });
                 }).catch((err) => {
                     console.error("Error: " + err);
                 });
             };
             checkPromise();
         });
-        return false;
     }
 
     render() {
