@@ -60,15 +60,16 @@ app.post( '/change', function( req,res ) {
 
 
   
-const loginScripts = [{ script: '/js/clientLogin.js' }];
-app.get('/', (req, res) => {
-    console.log("Get the home page!")
-    res.sendFile('src/public/login.html' , { root : __dirname});
-})
+// const loginScripts = [{ script: '/js/clientLogin.js' }];
 
-app.get('/mainPage', (req, res) => {
-    res.sendFile('src/mainPage.js' , { root : __dirname});
-})
+// app.get('/', (req, res) => {
+//     console.log("Get the home page!")
+//     res.sendFile('src/public/login.html' , { root : __dirname});
+// })
+
+// app.get('/mainPage', (req, res) => {
+//     res.sendFile('src/mainPage.js' , { root : __dirname});
+// })
 
 
 app.use((req, res, next) => {
