@@ -30,4 +30,4 @@ app.post( '/change', function( req,res ) {
     res.json(todos)
 })
 
-app.listen( 8080 )
+app.listen( process.env.PORT || 8080 )
