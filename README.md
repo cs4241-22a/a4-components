@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Assignment 4 - Components
 ===
 
@@ -61,3 +62,5 @@ npm run build
 ## Credits
 
 Made with [createapp.dev](https://createapp.dev/)
+
+>>>>>>> 2a714d4 (init commit)
