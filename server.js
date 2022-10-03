@@ -21,4 +21,4 @@ app.post( '/add', ( req,res ) => {
   res.json( names )
 })
 
-server.listen( process.env.PORT || port )
+app.listen( process.env.PORT || port )
