@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 export default function MyTable(props) {
+  
   function decrease(id) {
     props.onDecrease(id, props.updateTable);
   }
