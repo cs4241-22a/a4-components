@@ -1,8 +1,7 @@
 const ScoreEntry = require("../../models/ScoreEntry");
 
 const getScores = async (req, res, next) => {
-  const { username: githubUsername } = req.user;
-  const allScores = await ScoreEntry.find({ githubUsername });
+  const allScores = await ScoreEntry.find();
   res.send(allScores);
 };
 
