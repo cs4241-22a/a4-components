@@ -1,8 +1,10 @@
 
 ## Trip Planner made with React
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
+http://a4-benjamin-gilchrist.glitch.me
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+this assignment was to completely redo assignment 2 with react.
+added react greatly sped up development, including complicated features such as modify.
+this was able to be quickly added due to the reactivity and reusability of various methods. 
+the majority of htis assignment was written in jsx to be compiled with react and snowpack.
+modify button was added to assignment 2 as an additional feature.
