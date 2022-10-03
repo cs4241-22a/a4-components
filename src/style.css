@@ -1,0 +1,45 @@
+body {
+  background-color: #AC2B37;
+}
+
+table {
+  width: 100%;
+}
+
+table, th, td {
+  border: solid #000;
+  border-width: 1px;
+}
+
+td {
+  text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    background-color: #A9B0B7;
+  }
+  
+.flex-container > div {
+  background-color:#f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.Labels{
+  width:30%;
+  float:left;
+}
+
+.Inputs{
+  width: 60%;
+  float:right;
+}
+
+button {
+  margin-top: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+}
