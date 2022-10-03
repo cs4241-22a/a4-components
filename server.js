@@ -25,8 +25,7 @@ app.post( '/add', ( req,res ) => {
 
 app.post( '/delete', ( req,res ) => {
   todos.forEach( (item, i) => {
-    if (item.item == req.body.item && item.date == req.body.date
-      && item.priority == req.body.priority && item.dueDate == req.body.dueDate) {
+    if (i === req.body.id) {
       todos.splice(i, 1)
     }
   })

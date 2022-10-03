@@ -18,7 +18,7 @@ class Todo extends React.Component {
   }
 
   delete(e) {
-    this.props.onclick( this.props.item, this.props.date, this.props.priority, this.props.dueDate )
+    this.props.onclick( this.props.id )
   }
 }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
     fetch( '/add', { 
       method:'POST',
-      body: JSON.stringify({ item:item, date:date, priority:priority }),
+      body: JSON.stringify({ item:item, date:date, priority:priority}),
       headers: { 'Content-Type': 'application/json' }
     })
     .then( response => response.json() )
@@ -62,10 +62,10 @@ class App extends React.Component {
     })
   }
 
-  delete = ( item, date, priority, dueDate ) => {
+  delete = ( id ) => {
     fetch( '/delete', {
       method:'POST',
-      body: JSON.stringify({ item:item, date:date, priority:priority, dueDate:dueDate }),
+      body: JSON.stringify({ id:id }),
       headers: { 'Content-Type': 'application/json' }
     }) 
     .then( response => response.json() )
@@ -106,7 +106,7 @@ class App extends React.Component {
           </thead>
           <tbody>
           { this.state.todos.map( (todo,i) =>                  
-          <Todo key={i} item={todo.item} date={todo.date} priority={todo.priority} dueDate={todo.dueDate} onclick={ this.delete } /> ) }
+          <Todo key={i} id={i} item={todo.item} date={todo.date} priority={todo.priority} dueDate={todo.dueDate} onclick={ this.delete } /> ) }
           </tbody>
         </table>
       </div>
