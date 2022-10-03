@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/Othniel9/a4-components/issues"
   },
-  "homepage": "https://github.com/Othniel9/a4-components#readme"
+  "engines":{
+    "node":"18.x"
+  }
+  
 }
