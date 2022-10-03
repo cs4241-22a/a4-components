@@ -8,7 +8,7 @@ For this assignment you will re-implement the client side portion of *either* A2
 
 ## Activity Logger (React)
 
-Hosting link: http://a4-charlieroberts.glitch.me
+Hosting link: https://a4-nicholas-li.herokuapp.com/
 
 
 - I changed A2 to include React components. 
