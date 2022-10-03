@@ -9,9 +9,11 @@ class Todo extends React.Component {
     }), /* @__PURE__ */ React.createElement("div", {
       class: "pure-u-18-24"
     }, /* @__PURE__ */ React.createElement("p", null, this.props.name)), /* @__PURE__ */ React.createElement("button", {
-      class: "delete-button pure-u-4-24",
+      class: "delete-button pure-button pure-button-primary pure-button-red pure-u-4-24",
       onClick: (e) => this.remove()
-    }, "d"));
+    }, /* @__PURE__ */ React.createElement("i", {
+      class: "fa"
+    }, "")));
   }
   change(e) {
     this.props.toggle(this.props.name, e.target.checked);
@@ -44,7 +46,10 @@ class App extends React.Component {
     })), /* @__PURE__ */ React.createElement("button", {
       id: "todoitembutton",
       class: "pure-u-4-24 pure-button pure-button-primary",
-      onClick: (e) => this.add(),
+      onClick: (e) => {
+        this.add();
+        document.getElementById("todoitem").value = "";
+      },
       type: "submit"
     }, "add"), /* @__PURE__ */ React.createElement("ul", {
       id: "todoitems"
@@ -79,8 +84,6 @@ class App extends React.Component {
       body: JSON.stringify({name}),
       headers: {"Content-Type": "application/json"}
     }).then((response) => response.json()).then((json) => {
-      console.log(this);
-      console.log(json);
       this.setState({todos: json});
     });
   };

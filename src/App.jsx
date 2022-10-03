@@ -10,8 +10,8 @@ class Todo extends React.Component {
       <input class="checkbox pure-u-2-24"
         type="checkbox" defaultChecked={ this.props.completed } onChange={ e => this.change(e) }/>
       <div class="pure-u-18-24"><p>{ this.props.name }</p></div>
-      <button class="delete-button pure-u-4-24" 
-        onClick={ e => this.remove() }>d</button>
+      <button class="delete-button pure-button pure-button-primary pure-button-red pure-u-4-24" 
+        onClick={ e => this.remove() }><i class="fa">&#xf014;</i></button>
     </li>
   }
   // call this method when the checkbox for this component is clicked
@@ -54,7 +54,10 @@ class App extends React.Component {
               <input id="todoitem" type="text" maxlength="100" />
           </label>
           <button id="todoitembutton" class="pure-u-4-24 pure-button pure-button-primary" 
-              onClick={ e => this.add() } type="submit">add</button>
+              onClick= { e => {
+                this.add()
+                document.getElementById('todoitem').value = ''
+               } } type="submit">add</button>
           <ul id="todoitems">
             { this.state.todos.map((todo, i) => 
             <Todo key={i} 
@@ -86,10 +89,10 @@ class App extends React.Component {
       body: JSON.stringify({ name: value, completed: false }),
       headers: { "Content-Type": "application/json" }
     })
-    .then( response => response.json() )
-    .then( json => {
+    .then(response => response.json())
+    .then(json => {
         // changing state triggers reactive behaviors
-        this.setState({ todos: json }) 
+        this.setState({ todos: json })
     })
   }
 
@@ -101,8 +104,6 @@ class App extends React.Component {
     })
     .then(response => response.json() )
     .then(json => {
-      console.log(this);
-      console.log(json)
         this.setState({ todos: json }) 
     })
   }

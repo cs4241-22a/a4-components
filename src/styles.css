@@ -8,6 +8,10 @@
   background-color: #0066cc;
 }
 
+.pure-button-red {
+  background-color: #cc0000;
+}
+
 ul {
   list-style: none;
   list-style-position: inside;
@@ -33,13 +37,9 @@ header h1 {
 }
 
 p {
-  width: 90%;
   margin: 0;
   padding: 0 0.5em;
   height: 100%;
-  position: absolute; 
-  top: 0;
-  vertical-align:top;
 }
 
 main {
@@ -66,9 +66,4 @@ li {
   margin-bottom: 10px;
   line-height: 1.6em;
   padding: 0;
-}
-
-.pure-u-18-24 {
-  position: relative;
-  height: 100%;
 }
