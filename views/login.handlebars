@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 " />
+    <meta name="description" content="Login page for the website. Allows users to log in and will redirect them to the main page if their username and password is found in the database." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  </head>
+  <body>
+    {{{msg}}}
+    <p>WARNING: Putting in a new username will create a new account with the corresponding password entered.</p>
+    <h1>Login</h1>
+
+    <div id ="whoosh_container"></div>
+    <div id ="click_container"></div>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <script type="text/babel" src="./js/whoosh.jsx"></script>
+    <script type="text/babel" src="./js/click.jsx"></script>
+  </body>
+</html>
