@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "bootstrap": "./bootstrap.js",
+    "bootstrap/dist/css/bootstrap.min.css": "./bootstrap/dist/css/bootstrap.min.css",
+    "react": "./react.js",
+    "react-date-picker": "./react-date-picker.js",
+    "react-dom": "./react-dom.js"
+  }
+}
