@@ -1,5 +1,6 @@
 const express  = require( 'express' ),
-      app      = express()
+      app      = express(),
+      port     = 3000
 
 const names = [
   { name:'sean', numChars:4, timestamp: Date.now() }
@@ -20,4 +21,4 @@ app.post( '/add', ( req,res ) => {
   res.json( names )
 })
 
-app.listen( 8080 )
+server.listen( process.env.PORT || port )

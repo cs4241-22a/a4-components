@@ -28,7 +28,7 @@ const App = (props) => {
 
     return (
       <>
-        <div classNameName = "grid-container">
+        <div className = "grid-container">
           <div className = "box1">
             <h1  id = "textSection">
               Assignment 4 By Sean McMillan
@@ -43,12 +43,12 @@ const App = (props) => {
           </div>
 
           <div className = "box3">
-            <body id = "nonTextSection">
+            <div id = "nonTextSection">
               <form action="">
                 <input type='text' id='yourname' defaultValue="your name here" />
                 <button type="button" id="submitButton" onClick={click}>submit</button>
               </form>
-            </body>
+            </div>
           </div>
 
           <div className = "box4">

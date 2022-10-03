@@ -20,7 +20,7 @@ const App = (props) => {
     });
   };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
-    classNameName: "grid-container"
+    className: "grid-container"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "box1"
   }, /* @__PURE__ */ React.createElement("h1", {
@@ -31,7 +31,7 @@ const App = (props) => {
     id: "textSection"
   }, "Read the REAME.md to read about everything I did in this project! To add a row to the list, simply type your name into the box below.")), /* @__PURE__ */ React.createElement("div", {
     className: "box3"
-  }, /* @__PURE__ */ React.createElement("body", {
+  }, /* @__PURE__ */ React.createElement("div", {
     id: "nonTextSection"
   }, /* @__PURE__ */ React.createElement("form", {
     action: ""
