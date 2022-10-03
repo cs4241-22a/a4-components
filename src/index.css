@@ -1,0 +1,156 @@
+body {
+	font-family: "Arvo";
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	background-color: #FFAD42;
+	text-align: center;
+}
+
+
+
+.header {
+	font-family: "Arvo";
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+
+.container {
+	max-width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 15px;
+	padding-left: 15px;
+	min-height: 100vh;
+}
+
+.names-list {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(250px, 1fr)
+	);
+}
+
+.name.new {
+	font-family: "Arvo";
+	background-color: #f7eb63;
+}
+
+textarea {
+	font-family: "Arvo";
+	border: none;
+	resize: none;
+	background-color: #ffd430;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+.save {
+	background-color: #fef68a;
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+}
+
+.save:hover {
+	background-color: #fef68a;
+	cursor: pointer;
+}
+
+.name {
+	background-color: #f7eb63;
+	border-radius: 10px;
+	padding: 1rem;
+	min-height: 170px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	white-space: pre-wrap;
+}
+
+.name-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.delete-icon {
+	cursor: pointer;
+}
+
+ p{text-align: center;
+	font-weight: bold;
+    border: 10px solid #E87C31;
+    padding: 10px;
+    background-origin: content-box;
+    background-color: #FFC980;
+    border-radius: 25px;
+    display: inline-block;
+	margin-bottom: 10px;}
+
+form {
+ display: inline-block;
+ padding: 10px;}
+
+h1{ color: #FF7042;
+    text-align: center;
+    border: 10px solid #E87C31;
+    padding: 10px;
+    background-origin: content-box;
+    background-color: #FFC980;
+    border-radius: 25px;
+    display: inline-block;
+	margin-bottom:10px;
+}
+
+h2{
+color:#FF7042;
+background-color: #FFBE66;
+padding: 10px;
+border-radius: 25px;
+text-align: center;
+font-weight:bold;
+display: inline-block;}
+
+h3{ color:#FF7042;
+background-color: #FFBE66;
+padding: 10px;
+border-radius: 25px;
+text-align: center;
+font-weight:bold;
+margin-bottom:10px;
+display: inline-block;
+}
+
+.response-container{padding: 5px;
+		border: 10px solid #E87C31;
+		border-radius: 25px;
+		background-color: #FFBE66;
+		margin-bottom: 10px;}
+		
+.account-container{margin-bottom: 10px;}
+		
+.button-container{ color:#FF7042;
+background-color: #FFBE66;
+padding: 10px;
+border-radius: 25px;
+text-align: center;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.Alfie_Image {
+    width:245px;
+    float: center;
+    height:245px;
+    background-color: #E87C31;
+    border: 10px solid #E87C31;
+    background-origin: content-box;
+    border-radius: 25px;
+}
