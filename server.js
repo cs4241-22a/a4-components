@@ -1,22 +1,41 @@
 const express = require('express'),
     app = express();
 
-const todos = [
-    { name: 'buy groceries', completed: false }
-];
+let appdata = [
+    {
+        show: "Merlin",
+        seasons: 5,
+        eps: 13,
+        duration: 45,
+        uuid: 'iAmAUniqueId',
+    },
+    {
+        show: "Once Upon a Time",
+        seasons: 57,
+        eps: 24,
+        duration: 60,
+        uuid: 'iAmAnotherUniqueId',
+    }];
 
 app.use(express.json());
-
-// this will most likely be 'build' or 'public'
 app.use(express.static('build'));
 
-app.get('/read', (req, res) => res.json(todos));
+app.get('/read', (req, res) => res.json(appdata));
 
 app.post('/add', (req, res) => {
-    console.log("Added");
-    todos.push(req.body);
-    res.json(todos);
+    const mins = req.body.seasons * req.body.eps * req.body.duration;
+    let tempJson = {
+        show: req.body.show,
+        seasons: req.body.seasons,
+        eps: req.body.eps,
+        duration: req.body.duration,
+        totalTime: parseInt(mins / 60),
+        key: req.body.key,
+    }
+    appdata.push(tempJson);
+    res.json(appdata).send();
 });
+
 
 app.post('/change', function (req, res) {
     console.log("changed");
@@ -24,6 +43,19 @@ app.post('/change', function (req, res) {
     todos[idx].completed = req.body.completed;
 
     res.sendStatus(200);
-})
+});
+
+
+app.post('/remove', async (req, res) => {
+    let tempArr = [];
+    for (let i = 0; i < appdata.length; i++) {
+        if (appdata[i].key !== req.body.key) {
+            tempArr.push(appdata[i]);
+        }
+    }
+    appdata = tempArr;
+    res.json(appdata).send();
+});
+
 
 app.listen(8080);
