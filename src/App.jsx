@@ -1,5 +1,6 @@
 import React from 'react';
 import "./index.css";
+import uuidv4 from 'uuidv4';
 
 // this is going to be our Table component
 // and instead of rendering a list item, it will include the JSON data in its props and just format that out onto the screen
@@ -11,22 +12,21 @@ class Form extends React.Component {
     }
 
     render() {
-        console.log("Rendering Form");
         return (<form onSubmit={this.handleSubmit}>
             <h1>TV Show Tracker</h1>
 
             <fieldset>
                 <span className="formLabel">TV show name</span>
-                <input type="text" key="show" value={this.state.show} onChange={this.showHandler} /><br />
+                <input type="text" key="show" id="show" value={this.state.show} onChange={this.showHandler} /><br />
 
                 <span className="formLabel">Number of seasons</span>
-                <input type="number" key="seasons" min="1" value={this.state.seasons} onChange={this.seasonsHandler} /><br />
+                <input type="number" key="seasons" id="seasons" min="1" value={this.state.seasons} onChange={this.seasonsHandler} /><br />
 
                 <span className="formLabel">Episodes per season</span>
-                <input type="number" key="episodes" min="1" value={this.state.eps} onChange={this.epHandler} /><br />
+                <input type="number" key="episodes" id="episodes" min="1" value={this.state.eps} onChange={this.epHandler} /><br />
 
                 <span className="formLabel">Duration of an episode (minutes)</span>
-                <input type="number" key="duration" min="1" value={this.state.duration} onChange={this.durationHandler} /><br />
+                <input type="number" key="duration" id="duration" min="1" value={this.state.duration} onChange={this.durationHandler} /><br />
 
                 <br /><span style={{ color: "red" }}>{this.state.errors}</span><br />
                 <button id="submit" type="submit" key="submit">Submit</button>
@@ -34,25 +34,45 @@ class Form extends React.Component {
         </form>);
     }
 
-    showHandler(event) {
-        this.setState({ ...prevState, show: event.target.value });
+    showHandler = (event) => {
+        this.setState(state => ({
+            show: event.target.value,
+            seasons: state.seasons,
+            eps: state.eps,
+            duration: state.duration
+        }));
     }
 
-    seasonsHandler(event) {
-        this.setState({ ...prevState, seasons: event.target.value });
+    seasonsHandler = (event) => {
+        this.setState(state => ({
+            show: state.show,
+            seasons: event.target.value,
+            eps: state.eps,
+            duration: state.duration
+        }));
     }
 
-    epHandler(event) {
-        this.setState({ ...prevState, eps: event.target.value });
+    epHandler = (event) => {
+        this.setState(state => ({
+            show: state.show,
+            seasons: state.seasons,
+            eps: event.target.value,
+            duration: state.duration
+        }));
     }
 
-    durationHandler(event) {
-        this.setState({ ...prevState, duration: event.target.value });
+    durationHandler = (event) => {
+        this.setState(state => ({
+            show: state.show,
+            seasons: state.seasons,
+            eps: state.eps,
+            duration: event.target.value
+        }));
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
-        if (document.querySelector('show').value == "" || document.querySelector('seasons').value == "" || document.querySelector('eps').value == "" || document.querySelector('duration').value == "") {
+        if (this.state.show == "" || this.state.seasons == "" || this.state.eps == "" || this.state.duration == "") {
             setErrors("Form fields cannot be null");
         } else {
             this.props.add(this.state.show, this.state.seasons, this.state.eps, this.state.duration);
@@ -65,11 +85,11 @@ class Form extends React.Component {
 class Table extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     render() {
-        console.log("Rendering Table");
+        console.log("Rendering table");
+        console.log(this.props.shows);
         return (<table>
             <tbody>
                 <tr>
@@ -93,13 +113,17 @@ class Table extends React.Component {
             </tbody>
         </table>);
     }
+
+    componentWillReceiveProps(props) {
+        console.log("New props:");
+        console.log(props);
+    }
 }
 
 
 class App extends React.Component {
 
     constructor(props) {
-        console.log("App constructing");
         super(props);
         this.state = {
             shows: [
@@ -108,40 +132,46 @@ class App extends React.Component {
                     seasons: 5,
                     eps: 13,
                     duration: 45,
-                    uuid: 'iAmAUniqueId',
+                    key: 'iAmAUniqueId',
                 },
                 {
                     show: "Dummy Show",
                     seasons: 7,
                     eps: 24,
                     duration: 60,
-                    uuid: 'iAmAnotherUniqueId',
+                    key: 'iAmAnotherUniqueId',
                 }]
         };
         this.load();
     }
 
-    add(evt) {
+    add = (show, seasons, eps, duration) => {
+        console.log("Adding");
         const json = {
-            show: document.querySelector('show').value,
-            seasons: document.querySelector('seasons').value,
-            eps: document.querySelector('eps').value,
-            duration: document.querySelector('duration').value,
+            show: show,
+            seasons: seasons,
+            eps: eps,
+            duration: duration,
             key: uuidv4(),
         };
         const body = JSON.stringify(json);
+        console.log(body);
 
-        fetch("http://localhost:9000/add", {
+        fetch("/add", {
             headers: {
                 'Content-Type': 'application/json'
             },
             method: "POST",
             body,
-        }).then(function (response) {
+        }).then((response) => {
             let res = response.json();
             const checkPromise = () => {
                 res.then((result) => {
                     console.log(result);
+                    console.log("Type of result " + typeof(result));
+                    this.setState({shows: result});
+                    console.log("State has been set to:");
+                    console.log(this.state.shows);
                 }).catch((err) => {
                     console.error("Error: " + err);
                 });
@@ -150,16 +180,16 @@ class App extends React.Component {
         });
     }
 
-    remove(entryId) {
+    remove = (entryId) => {
         let json = null;
-        for (let i = 0; i < showList.length; i++) {
-            if (showList[i].key === entryId) {
-                json = showList[i];
+        for (let i = 0; i < this.state.shows.length; i++) {
+            if (this.state.shows[i].key === entryId) {
+                json = this.state.shows[i];
             }
         }
         const body = JSON.stringify(json);
 
-        fetch("http://localhost:9000/remove", {
+        fetch("/remove", {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -170,6 +200,9 @@ class App extends React.Component {
             const checkPromise = () => {
                 res.then((result) => {
                     console.log(result);
+                    this.setState({shows: result});
+                    console.log("State has been set to:");
+                    console.log(this.state.shows);
                 }).catch((err) => {
                     console.error("Error: " + err);
                 });
@@ -180,7 +213,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("Rendering App");
         return (
             <div className="App">
                 <Form add={this.add} />

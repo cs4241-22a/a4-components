@@ -7,14 +7,16 @@ let appdata = [
         seasons: 5,
         eps: 13,
         duration: 45,
-        uuid: 'iAmAUniqueId',
+        totalTime: 48.75,
+        key: 'iAmAUniqueId',
     },
     {
         show: "Once Upon a Time",
-        seasons: 57,
+        seasons: 7,
         eps: 24,
         duration: 60,
-        uuid: 'iAmAnotherUniqueId',
+        totalTime: 168,
+        key: 'iAmAnotherUniqueId',
     }];
 
 app.use(express.json());
@@ -33,18 +35,9 @@ app.post('/add', (req, res) => {
         key: req.body.key,
     }
     appdata.push(tempJson);
+    console.log(appdata);
     res.json(appdata).send();
 });
-
-
-app.post('/change', function (req, res) {
-    console.log("changed");
-    const idx = todos.findIndex(v => v.name === req.body.name);
-    todos[idx].completed = req.body.completed;
-
-    res.sendStatus(200);
-});
-
 
 app.post('/remove', async (req, res) => {
     let tempArr = [];
