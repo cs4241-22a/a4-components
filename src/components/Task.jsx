@@ -1,0 +1,76 @@
+import React from "react";
+
+function Task({
+  set,
+  task: {
+    primary_key,
+    title,
+    description,
+    creation_date,
+    deadline_date,
+    priority,
+    type,
+  },
+}) {
+  async function deleteTask() {
+    const response = await fetch("/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: `${primary_key}`,
+      }),
+    });
+    const json = await response.json();
+
+    set(json);
+  }
+
+  return (
+    <div
+      className="card rounded shadow w-100 mb-3"
+      style={{ backgroundColor: "#343a40" }}
+    >
+      <div className="card-body">
+        <div className="d-flex justify-content-between align-items-end">
+          <p id="title-task" className="card-title fw-bold h6">
+            {title}
+          </p>
+          <div>
+            <button
+              type="button"
+              className="btn bi bi-x-lg"
+              aria-label="Close"
+              style={{ color: "white", border: "none" }}
+              onClick={deleteTask}
+            ></button>
+          </div>
+        </div>
+        <p className="card-subtitle my-2 h6">
+          <span
+            id="deadline-task"
+            className="badge badge-lg bg-light text-black me-1"
+          >
+            Due on {deadline_date}
+          </span>
+          <span id="type-task" className="badge bg-primary me-1">
+            {type}
+          </span>
+          <span id="priority-task" className="badge bg-danger">
+            {priority} Urgency
+          </span>
+        </p>
+        <p id="description-task" className="card-text my-3">
+          {description}
+        </p>
+        <hr />
+        <div id="deadline-task" className="card-text">
+          Created on {creation_date}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Task;
