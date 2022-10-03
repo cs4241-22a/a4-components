@@ -1,5 +1,5 @@
 import React from "./_snowpack/pkg/react.js";
-class Todo extends React.Component {
+class Log extends React.Component {
   render() {
     console.log(this.props.id);
     return /* @__PURE__ */ React.createElement("tr", {
@@ -16,7 +16,7 @@ class Todo extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {todos: []};
+    this.state = {logs: []};
     this.load();
   }
   load() {
@@ -24,10 +24,10 @@ class App extends React.Component {
       method: "GET",
       "no-cors": true
     }).then((response) => response.json()).then((json) => {
-      this.setState({todos: json});
+      this.setState({logs: json});
     });
   }
-  toggle(evt, activity, date, startTime, endTime, description, duration) {
+  delete(evt, activity, date, startTime, endTime, description, duration) {
     const json = {
       activity,
       date,
@@ -36,13 +36,13 @@ class App extends React.Component {
       description,
       duration
     };
-    fetch("/change", {
+    fetch("/delete", {
       method: "POST",
       body: JSON.stringify(json),
       headers: {"Content-Type": "application/json"}
     }).then((response) => response.json()).then((json2) => {
       console.log(json2);
-      this.setState({todos: json2});
+      this.setState({logs: json2});
     });
   }
   add(evt) {
@@ -65,14 +65,14 @@ class App extends React.Component {
       headers: {"Content-Type": "application/json"}
     }).then((response) => response.json()).then((json2) => {
       console.log(json2);
-      this.setState({todos: json2});
+      this.setState({logs: json2});
     });
   }
   render() {
     let count = 0;
     return /* @__PURE__ */ React.createElement("div", {
       className: "App"
-    }, /* @__PURE__ */ React.createElement("label", {
+    }, /* @__PURE__ */ React.createElement("h1", null, "Activity Logger"), /* @__PURE__ */ React.createElement("form", null, /* @__PURE__ */ React.createElement("label", null, "Your very own event logger. This is meant to be the opposite of a calendar. Instead of schedule what you WANT to do, you would log in events that have already been done so you have an idea of what you have done throughout the day. Be sure to log all the events that you have done!"), /* @__PURE__ */ React.createElement("label", {
       className: "grid_item",
       htmlFor: "activity"
     }, "Type of Activity Done"), /* @__PURE__ */ React.createElement("select", {
@@ -116,10 +116,10 @@ class App extends React.Component {
       id: "description",
       name: "description",
       required: true
-    }, " "), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("button", {
+    }, " "), /* @__PURE__ */ React.createElement("button", {
       id: "formSubmit",
       onClick: (e) => this.add(e)
-    }, "Submit"), /* @__PURE__ */ React.createElement("table", {
+    }, "Submit")), /* @__PURE__ */ React.createElement("table", {
       id: "table"
     }, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", {
       className: "table_activity"
@@ -135,16 +135,16 @@ class App extends React.Component {
       className: "table_duration"
     }, "Duration"), /* @__PURE__ */ React.createElement("th", {
       className: "table_buttons"
-    }, "Delete")), this.state.todos.map((todo, i) => /* @__PURE__ */ React.createElement(Todo, {
+    }, "Delete")), this.state.logs.map((log, i) => /* @__PURE__ */ React.createElement(Log, {
       key: i,
-      activity: todo.activity,
-      date: todo.date,
-      startTime: todo.startTime,
-      endTime: todo.endTime,
-      description: todo.description,
-      duration: todo.duration,
+      activity: log.activity,
+      date: log.date,
+      startTime: log.startTime,
+      endTime: log.endTime,
+      description: log.description,
+      duration: log.duration,
       id: (count++).toString(),
-      onclick: (e) => this.toggle(e, todo.activity, todo.date, todo.startTime, todo.endTime, todo.description, todo.duration)
+      onclick: (e) => this.delete(e, log.activity, log.date, log.startTime, log.endTime, log.description, log.duration)
     }))));
   }
 }

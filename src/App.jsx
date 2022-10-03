@@ -1,13 +1,12 @@
 import React from 'react';
 
-// we could place this Todo component in a separate file, but it's
+// we could place this Log component in a separate file, but it's
 // small enough to alternatively just include it in our App.js file.
 
-class Todo extends React.Component {
+class Log extends React.Component {
     // our .render() method creates a block of HTML using the .jsx format
     render() {
         console.log(this.props.id);
-        // this.props.id
         return <tr id ={this.props.id} >
             <td>{this.props.activity}</td>
             <td>{this.props.date}</td>
@@ -30,7 +29,7 @@ class App extends React.Component {
     constructor( props ) {
         super( props )
         // initialize our state
-        this.state = { todos:[] }
+        this.state = { logs:[] }
         this.load()
     }
 
@@ -41,12 +40,12 @@ class App extends React.Component {
             'no-cors':true })
             .then( response => response.json() )
             .then( json => {
-                this.setState({ todos:json })
+                this.setState({ logs:json })
             })
     }
 
-    // when an Todo is toggled, send data to server
-    toggle( evt, activity, date, startTime, endTime, description, duration ) {
+    // when an Log is deleted, send data to server
+    delete( evt, activity, date, startTime, endTime, description, duration ) {
 
         const json = {
             activity:activity,
@@ -56,7 +55,7 @@ class App extends React.Component {
             description: description,
             duration: duration
         }
-        fetch( '/change', {
+        fetch( '/delete', {
             method:'POST',
             body: JSON.stringify(json),
             headers: { 'Content-Type': 'application/json' }
@@ -65,11 +64,11 @@ class App extends React.Component {
             .then( json => {
                 console.log(json);
                 // changing state triggers reactive behaviors
-                this.setState({ todos:json })
+                this.setState({ logs:json })
             })
     }
 
-// add a new todo list item
+// add a new log list item
     add( evt ) {
 
         const activity = document.querySelector('#activity').value;
@@ -96,7 +95,7 @@ class App extends React.Component {
             .then( json => {
                 console.log(json)
                 // changing state triggers reactive behaviors
-                this.setState({ todos:json })
+                this.setState({ logs:json })
             })
     }
 
@@ -106,6 +105,11 @@ class App extends React.Component {
 
         return (
             <div className="App">
+                <h1>Activity Logger</h1>
+                <form>
+                    <label>Your very own event logger. This is meant to be the opposite of a calendar. Instead of
+                        schedule what you WANT to do, you would log in events that have already been done so you have an idea of what you have done throughout the day.
+                        Be sure to log all the events that you have done!</label>
                 <label className="grid_item" htmlFor="activity">Type of Activity Done</label>
                 <select id="activity" name="Type of activity done">
                     <option value="Sleep">Sleep</option>
@@ -127,9 +131,9 @@ class App extends React.Component {
 
                 <label htmlFor="description">Description</label>
                 <textarea type="text" id="description" name="description" required> </textarea>
-                <br/>
-                <button id="formSubmit" onClick={ e => this.add( e )}>Submit</button>
 
+                <button id="formSubmit" onClick={ e => this.add( e )}>Submit</button>
+                </form>
                 <table id = "table">
                     <tr>
                         <th className="table_activity">Activity Done</th>
@@ -140,12 +144,12 @@ class App extends React.Component {
                         <th className="table_duration">Duration</th>
                         <th className="table_buttons">Delete</th>
                     </tr>
-                    {this.state.todos.map((todo, i) => <Todo key={i} activity={todo.activity} date={todo.date} startTime={ todo.startTime} endTime={todo.endTime} description={todo.description} duration={todo.duration} id = {(count++).toString()} onclick = { e => this.toggle(e, todo.activity, todo.date, todo.startTime, todo.endTime, todo.description, todo.duration)} />)}
+                    {this.state.logs.map((log, i) => <Log key={i} activity={log.activity} date={log.date} startTime={ log.startTime} endTime={log.endTime} description={log.description} duration={log.duration} id = {(count++).toString()} onclick = { e => this.delete(e, log.activity, log.date, log.startTime, log.endTime, log.description, log.duration)} />)}
 
                 </table>
 
             </div>
-        )
+    )
     }
 }
 
