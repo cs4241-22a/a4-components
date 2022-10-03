@@ -20,17 +20,17 @@ const App = (props) => {
     });
   };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
-    class: "grid-container"
+    classNameName: "grid-container"
   }, /* @__PURE__ */ React.createElement("div", {
-    class: "box1"
+    className: "box1"
   }, /* @__PURE__ */ React.createElement("h1", {
     id: "textSection"
   }, "Assignment 4 By Sean McMillan")), /* @__PURE__ */ React.createElement("div", {
-    class: "box2"
+    className: "box2"
   }, /* @__PURE__ */ React.createElement("p", {
     id: "textSection"
   }, "Read the REAME.md to read about everything I did in this project! To add a row to the list, simply type your name into the box below.")), /* @__PURE__ */ React.createElement("div", {
-    class: "box3"
+    className: "box3"
   }, /* @__PURE__ */ React.createElement("body", {
     id: "nonTextSection"
   }, /* @__PURE__ */ React.createElement("form", {
@@ -44,7 +44,7 @@ const App = (props) => {
     id: "submitButton",
     onClick: click
   }, "submit")))), /* @__PURE__ */ React.createElement("div", {
-    class: "box4"
+    className: "box4"
   }, /* @__PURE__ */ React.createElement(NewTable, {
     rows: entries
   }))));
