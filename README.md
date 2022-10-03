@@ -1,33 +1,25 @@
 Assignment 4 - Components
 ===
+Assignment 4 was a more effective version of the original "Name this Alfie" web board from A2. 
 
-Due: October 4th, by 11:59 AM.
+https://a4-sophiastrano.glitch.me/
 
-For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
+# The Alfie Nicknaming Site 
+### A Lesson in Scaling & Design Compatability
 
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
+I chose to revisit the original requirements from a2 to re-think my approach to a funny cat nicknaming page by using react and its libraries to create much more straightforward design and implementation. The experience gained from my struggle to properly implement my idea in a2 and complications despite strides made during a3 led me to re-design the Alfie board to focus on one funny image, with responses that could be more easily viewed, added, or removed. I found the abundant documentation surrounding React to be highly useful, and I was more easily able to add save and delete buttons in combination with JS functions to make new notes contained in divs appear and disappear. I found that React also made styling the page relatively fast and easy thanks to the pre-segmented nature of the header and app JS files allowing for intuitive object spacing with a few CSS additions mainly for color themeing. A brief example of how my previous and newly imrpvoed design differ is included below!
+## Previous Design
+![image](https://user-images.githubusercontent.com/64103447/193588099-1acf07e5-c2d0-41cd-9fd3-856989aec5b7.png)
 
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
+While the page above maintains a similar color scheme, it is busy and potentially overcomplicates the baseline objectives of a2 & a3 by having there be a variety of images with different potential names. This more cluttered display and longer list of images leads to a multi-page format, making it more difficult for users to see their funny answers, obscuring my original purpose. 
 
-Deliverables
----
+## Improved Design
 
-Do the following to complete this assignment:
+![image](https://user-images.githubusercontent.com/64103447/193587619-f617cbe7-391d-4bcd-abf9-b98e72320b65.png)
 
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
+The improved design is more simplisitic and clean in its design, with an easy to view and use image board that allows users to add and delete funny answers without a hassle, completing the objectives of a2 without obfuscation. 
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
+Overall, using React improved my design experience and I would gravitate toward doing so again! 
 
-## Your Web Application Title
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
-
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+(https://a4-sophiastrano.glitch.me/)
