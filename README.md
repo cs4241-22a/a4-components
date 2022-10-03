@@ -5,29 +5,23 @@ Due: October 4th, by 11:59 AM.
 
 For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
 
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
 
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
+## Activity Logger (React)
 
-Deliverables
----
+Hosting link: http://a4-charlieroberts.glitch.me
 
-Do the following to complete this assignment:
 
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
+- I changed A2 to include React components. 
+- I did change the server to use Express instead of how it was for A2.
+- I did also add the CSS framework because I liked how it looked from A3.
+- I changed the client side code of my Activity Logger. The overall functionality is the same. The user would input an activity and when the submit button is pressed, it will add to the results. It allows the deletion of an activity.
+- It still uses the derived field, duration that is calculated based on the starting time and ending time.
+- It now uses React instead of normal HTML, CSS, and JavaScript. 
+- I am using React App component to add and hold everything: the form and the table upon startup. I am also using a Log component which is returning a row in the table with the information. 
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
+Overall, it took me a little bit to get used to and learning React. However, I feel like that using React make my code more compact and concise. 
+There is not like hardcoding to add, delete, or edit HTML components, and it seems to include both the HTML and JS files together in a JSX file. 
+I feel that it is alot more scalable where if I was doing a large project, it would be a lot easier than normal HTML, JS implemetation.
 
-## Your Web Application Title
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
