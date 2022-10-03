@@ -28,21 +28,21 @@ const App = (props) => {
 
     return (
       <>
-        <div class = "grid-container">
-          <div class = "box1">
+        <div classNameName = "grid-container">
+          <div className = "box1">
             <h1  id = "textSection">
               Assignment 4 By Sean McMillan
             </h1>
           </div>
 
-          <div class = "box2">
+          <div className = "box2">
             <p id = "textSection">
               Read the REAME.md to read about everything I did in this project!
               To add a row to the list, simply type your name into the box below.
             </p>
           </div>
 
-          <div class = "box3">
+          <div className = "box3">
             <body id = "nonTextSection">
               <form action="">
                 <input type='text' id='yourname' defaultValue="your name here" />
@@ -51,7 +51,7 @@ const App = (props) => {
             </body>
           </div>
 
-          <div class = "box4">
+          <div className = "box4">
             <NewTable rows={entries} />
           </div>
         </div>

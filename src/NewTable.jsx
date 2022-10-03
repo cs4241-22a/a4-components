@@ -4,7 +4,7 @@ const NewTable = (props) => {
     console.log(props);
 
     return (
-        <table class = "box4" id = "table">
+        <table className = "box4" id = "table">
             <tr>
                 <th>Name</th>
                 <th>Num Chars</th>
