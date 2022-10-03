@@ -6,37 +6,23 @@ import React from 'react';
 class Todo extends React.Component {
     // our .render() method creates a block of HTML using the .jsx format
     render() {
-        console.log(this.props);
-        // {this.props.name}:
-        //<table id="table" className="c-table">
-        return<tr>
+        console.log(this.props.id);
+        // this.props.id
+        return <tr id ={this.props.id} >
             <td>{this.props.activity}</td>
             <td>{this.props.date}</td>
             <td>{this.props.startTime}</td>
             <td>{this.props.endTime}</td>
             <td>{this.props.description}</td>
             <td>{this.props.duration}</td>
-            <td><button type = "button" >Delete</button></td>
-            </tr>
-                {/*<tr>*/}
-                {/*    <th className="table_activity">Activity Done</th>*/}
-                {/*    <th className="table_date">Date</th>*/}
-                {/*    <th className="table_start">Time Started</th>*/}
-                {/*    <th className="table_end">Time Ended</th>*/}
-                {/*    <th className="table_description">Description</th>*/}
-                {/*    <th className="table_duration">Duration</th>*/}
-                {/*    <th className="table_buttons">Delete/Edit</th>*/}
-                {/*</tr>*/}
-            //</table>
+            <td><button type="button" onClick={ e => this.delete((e))}>Delete</button></td>
+        </tr>
 
 
-            {/*<input type="checkbox" defaultChecked={this.props.completed} onChange={ e => this.change(e) }/>*/}
-         {/*<li>{this.props.name} : </li>*/}
     }
-    // call this method when the checkbox for this component is clicked
-    // change(e) {
-    //     this.props.onclick( this.props.name, e.target.checked )
-    // }
+    delete(e) {
+        this.props.onclick(this.props.activity, this.props.date, this.props.startTime, this.props.endTime, this.props.description, this.props.duration);
+    }
 }
 
 // main component
@@ -50,7 +36,9 @@ class App extends React.Component {
 
     // load in our data from the server
     load() {
-        fetch( '/read', { method:'get', 'no-cors':true })
+        fetch( '/read', {
+            method:'GET',
+            'no-cors':true })
             .then( response => response.json() )
             .then( json => {
                 this.setState({ todos:json })
@@ -58,22 +46,35 @@ class App extends React.Component {
     }
 
     // when an Todo is toggled, send data to server
-    toggle( name, completed ) {
+    toggle( evt, activity, date, startTime, endTime, description, duration ) {
+
+        const json = {
+            activity:activity,
+            date: date,
+            startTime: startTime,
+            endTime: endTime,
+            description: description,
+            duration: duration
+        }
         fetch( '/change', {
             method:'POST',
-            body: JSON.stringify({ name, completed }),
+            body: JSON.stringify(json),
             headers: { 'Content-Type': 'application/json' }
         })
+            .then( response => response.json() )
+            .then( json => {
+                console.log(json);
+                // changing state triggers reactive behaviors
+                this.setState({ todos:json })
+            })
     }
 
 // add a new todo list item
     add( evt ) {
+
         const activity = document.querySelector('#activity').value;
-        console.log(activity);
         const date = document.querySelector('#date').value;
-        console.log(date);
         const startTime = document.querySelector('#startTime').value;
-        console.log(startTime);
         const endTime = document.querySelector('#endTime').value;
         const description = document.querySelector('#description').value;
 
@@ -82,7 +83,8 @@ class App extends React.Component {
             date: date,
             startTime: startTime,
             endTime: endTime,
-            description: description
+            description: description,
+            duration: time_duration(startTime.toString(), endTime.toString())
         }
 
         fetch( '/add', {
@@ -92,6 +94,7 @@ class App extends React.Component {
         })
             .then( response => response.json() )
             .then( json => {
+                console.log(json)
                 // changing state triggers reactive behaviors
                 this.setState({ todos:json })
             })
@@ -99,6 +102,8 @@ class App extends React.Component {
 
     // render component HTML using JSX
     render() {
+        let count = 0;
+
         return (
             <div className="App">
                 <label className="grid_item" htmlFor="activity">Type of Activity Done</label>
@@ -125,9 +130,7 @@ class App extends React.Component {
                 <br/>
                 <button id="formSubmit" onClick={ e => this.add( e )}>Submit</button>
 
-                {/*<input type='text' /><button onClick={ e => this.add( e )}>add</button>*/}
-
-                <table>
+                <table id = "table">
                     <tr>
                         <th className="table_activity">Activity Done</th>
                         <th className="table_date">Date</th>
@@ -135,15 +138,63 @@ class App extends React.Component {
                         <th className="table_end">Time Ended</th>
                         <th className="table_description">Description</th>
                         <th className="table_duration">Duration</th>
-                        <th className="table_buttons">Delete/Edit</th>
+                        <th className="table_buttons">Delete</th>
                     </tr>
-                        {this.state.todos.map((todo, i) => <Todo key={i} activity={todo.activity} date={todo.date} startTime={ todo.startTime} endTime={todo.endTime} description={todo.description} duration={todo.duration}/>)}
+                    {this.state.todos.map((todo, i) => <Todo key={i} activity={todo.activity} date={todo.date} startTime={ todo.startTime} endTime={todo.endTime} description={todo.description} duration={todo.duration} id = {(count++).toString()} onclick = { e => this.toggle(e, todo.activity, todo.date, todo.startTime, todo.endTime, todo.description, todo.duration)} />)}
 
                 </table>
 
             </div>
         )
     }
+}
+
+// Function that calculates the duration of the event logged automatically
+function time_duration(start, end) {
+    // Parse the inputs into their hours and minutes
+    let start_hour = parseInt(start.split(":")[0]);
+    let start_min = parseInt(start.split(":")[1]);
+
+    let end_hour = parseInt(end.split(":")[0]);
+    let end_min = parseInt(end.split(":")[1]);
+
+    let dur_hour;
+    let dur_min;
+
+    // Find the hours and minutes of duration
+    if (end_hour > start_hour) {
+        if (end_min >= start_min) {
+            dur_min = end_min - start_min;
+            dur_hour = end_hour - start_hour;
+        } else {
+            dur_hour = end_hour - start_hour - 1;
+            dur_min = end_min + 60 - start_min;
+        }
+    } else if (end_hour == start_hour) {
+        if (end_min >= start_min) {
+            dur_min = end_min - start_min;
+            dur_hour = 0;
+        } else {
+            dur_hour = 23;
+            dur_min = end_min + 60 - start_min;
+        }
+    } else {
+        if (end_min >= start_min) {
+            dur_min = end_min - start_min;
+            dur_hour = end_hour + 24 - start_hour;
+        } else {
+            dur_hour = end_hour + 24 - start_hour - 1;
+            dur_min = end_min + 60 - start_min;
+        }
+
+    }
+    // Return
+    return (
+        dur_hour.toString() +
+        " Hours  " +
+        dur_min.toString() +
+        " Minutes"
+    ).toString();
 }
 
 

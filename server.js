@@ -31,20 +31,35 @@ const todos =  [
 app.use( express.json() )
 
 // this will most likely be 'build' or 'public'
-app.use( express.static( 'build' ) )
+app.use( express.static( 'build'))
 
 app.get( '/read', ( req, res ) => res.json( todos ) )
 
 app.post( '/add', ( req,res ) => {
     todos.push( req.body )
+    console.log(todos);
     res.json( todos )
 })
 
-app.post( '/change', function( req,res ) {
-    const idx = todos.findIndex( v => v.name === req.body.name )
-    todos[ idx ].completed = req.body.completed
+app.post('/delete', (req, res) => {
 
-    res.sendStatus( 200 )
+    let index = todos.findIndex(req.body);
+    todos.splice(index, index + 1);
+    console.log(todos);
+    res.json(todos);
+
 })
+
+app.post( '/change', function( req,res ) {
+    const index = todos.findIndex( v =>
+        v.activity === req.body.activity && v.date === req.body.date && v.startTime === req.body.startTime && v.endTime === req.body.endTime && v.description === req.body.description && v.duration === req.body.duration)
+
+    todos.splice(index, index + 1);
+    console.log(todos);
+    res.json(todos);
+    // res.sendStatus( 200 )
+})
+
+
 
 app.listen( 8080 )

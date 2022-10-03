@@ -1,32 +1,16 @@
 import React from "./_snowpack/pkg/react.js";
 class Todo extends React.Component {
   render() {
-    console.log(this.props);
-    return /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", null, this.props.activity), /* @__PURE__ */ React.createElement("td", null, this.props.date), /* @__PURE__ */ React.createElement("td", null, this.props.startTime), /* @__PURE__ */ React.createElement("td", null, this.props.endTime), /* @__PURE__ */ React.createElement("td", null, this.props.description), /* @__PURE__ */ React.createElement("td", null, this.props.duration), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("button", {
-      type: "button"
+    console.log(this.props.id);
+    return /* @__PURE__ */ React.createElement("tr", {
+      id: this.props.id
+    }, /* @__PURE__ */ React.createElement("td", null, this.props.activity), /* @__PURE__ */ React.createElement("td", null, this.props.date), /* @__PURE__ */ React.createElement("td", null, this.props.startTime), /* @__PURE__ */ React.createElement("td", null, this.props.endTime), /* @__PURE__ */ React.createElement("td", null, this.props.description), /* @__PURE__ */ React.createElement("td", null, this.props.duration), /* @__PURE__ */ React.createElement("td", null, /* @__PURE__ */ React.createElement("button", {
+      type: "button",
+      onClick: (e) => this.delete(e)
     }, "Delete")));
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
-    {
-    }
+  }
+  delete(e) {
+    this.props.onclick(this.props.activity, this.props.date, this.props.startTime, this.props.endTime, this.props.description, this.props.duration);
   }
 }
 class App extends React.Component {
@@ -36,24 +20,35 @@ class App extends React.Component {
     this.load();
   }
   load() {
-    fetch("/read", {method: "get", "no-cors": true}).then((response) => response.json()).then((json) => {
+    fetch("/read", {
+      method: "GET",
+      "no-cors": true
+    }).then((response) => response.json()).then((json) => {
       this.setState({todos: json});
     });
   }
-  toggle(name, completed) {
+  toggle(evt, activity, date, startTime, endTime, description, duration) {
+    const json = {
+      activity,
+      date,
+      startTime,
+      endTime,
+      description,
+      duration
+    };
     fetch("/change", {
       method: "POST",
-      body: JSON.stringify({name, completed}),
+      body: JSON.stringify(json),
       headers: {"Content-Type": "application/json"}
+    }).then((response) => response.json()).then((json2) => {
+      console.log(json2);
+      this.setState({todos: json2});
     });
   }
   add(evt) {
     const activity = document.querySelector("#activity").value;
-    console.log(activity);
     const date = document.querySelector("#date").value;
-    console.log(date);
     const startTime = document.querySelector("#startTime").value;
-    console.log(startTime);
     const endTime = document.querySelector("#endTime").value;
     const description = document.querySelector("#description").value;
     const json = {
@@ -61,17 +56,20 @@ class App extends React.Component {
       date,
       startTime,
       endTime,
-      description
+      description,
+      duration: time_duration(startTime.toString(), endTime.toString())
     };
     fetch("/add", {
       method: "POST",
       body: JSON.stringify(json),
       headers: {"Content-Type": "application/json"}
     }).then((response) => response.json()).then((json2) => {
+      console.log(json2);
       this.setState({todos: json2});
     });
   }
   render() {
+    let count = 0;
     return /* @__PURE__ */ React.createElement("div", {
       className: "App"
     }, /* @__PURE__ */ React.createElement("label", {
@@ -121,7 +119,9 @@ class App extends React.Component {
     }, " "), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("button", {
       id: "formSubmit",
       onClick: (e) => this.add(e)
-    }, "Submit"), /* @__PURE__ */ React.createElement("table", null, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", {
+    }, "Submit"), /* @__PURE__ */ React.createElement("table", {
+      id: "table"
+    }, /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("th", {
       className: "table_activity"
     }, "Activity Done"), /* @__PURE__ */ React.createElement("th", {
       className: "table_date"
@@ -135,15 +135,51 @@ class App extends React.Component {
       className: "table_duration"
     }, "Duration"), /* @__PURE__ */ React.createElement("th", {
       className: "table_buttons"
-    }, "Delete/Edit")), this.state.todos.map((todo, i) => /* @__PURE__ */ React.createElement(Todo, {
+    }, "Delete")), this.state.todos.map((todo, i) => /* @__PURE__ */ React.createElement(Todo, {
       key: i,
       activity: todo.activity,
       date: todo.date,
       startTime: todo.startTime,
       endTime: todo.endTime,
       description: todo.description,
-      duration: todo.duration
+      duration: todo.duration,
+      id: (count++).toString(),
+      onclick: (e) => this.toggle(e, todo.activity, todo.date, todo.startTime, todo.endTime, todo.description, todo.duration)
     }))));
   }
+}
+function time_duration(start, end) {
+  let start_hour = parseInt(start.split(":")[0]);
+  let start_min = parseInt(start.split(":")[1]);
+  let end_hour = parseInt(end.split(":")[0]);
+  let end_min = parseInt(end.split(":")[1]);
+  let dur_hour;
+  let dur_min;
+  if (end_hour > start_hour) {
+    if (end_min >= start_min) {
+      dur_min = end_min - start_min;
+      dur_hour = end_hour - start_hour;
+    } else {
+      dur_hour = end_hour - start_hour - 1;
+      dur_min = end_min + 60 - start_min;
+    }
+  } else if (end_hour == start_hour) {
+    if (end_min >= start_min) {
+      dur_min = end_min - start_min;
+      dur_hour = 0;
+    } else {
+      dur_hour = 23;
+      dur_min = end_min + 60 - start_min;
+    }
+  } else {
+    if (end_min >= start_min) {
+      dur_min = end_min - start_min;
+      dur_hour = end_hour + 24 - start_hour;
+    } else {
+      dur_hour = end_hour + 24 - start_hour - 1;
+      dur_min = end_min + 60 - start_min;
+    }
+  }
+  return (dur_hour.toString() + " Hours  " + dur_min.toString() + " Minutes").toString();
 }
 export default App;
