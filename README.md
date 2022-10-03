@@ -10,3 +10,5 @@ https://a4-othniel-bondah.herokuapp.com/?
 
 This is a Todo app where you can add, edit and delete todos using react-boostrap frameworks.
 P.S: This is an implementation upon A2
+
+The new technology improved the experience since it made js client code easier and faster.
