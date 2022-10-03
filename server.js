@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 const connectDB = require('./config/dbConn')
 const UserRouter = require('./api/User')
 const UserDataRouter = require('./api/UserData')
-const lazydebug = require('./middleware/lazydebug')
 
 //use ejs
 app.set('view engine', 'ejs')
