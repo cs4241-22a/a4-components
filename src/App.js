@@ -30,7 +30,7 @@ class App extends React.Component {
     this.load()
   }
 
-  // load in our data from the server
+  // load in data from server
   load() {
     fetch( '/read', { method:'get', 'no-cors':true })
       .then( response => response.json() )
@@ -39,7 +39,7 @@ class App extends React.Component {
       })
   }
   
-  // add a new todo list item
+  // add a todo table item
   add( evt ) {
     const item = document.querySelector('#item').value
     const date = document.querySelector('#date').value
@@ -58,7 +58,6 @@ class App extends React.Component {
     })
     .then( response => response.json() )
     .then( json => {
-        // changing state triggers reactive behaviors
         this.setState({ todos:json }) 
     })
   }
@@ -71,9 +70,15 @@ class App extends React.Component {
     }) 
     .then( response => response.json() )
     .then( json => {
-        // changing state triggers reactive behaviors
         this.setState({ todos:json }) 
     })
+  }
+
+  hidden() {
+    const tbl = document.getElementById('list_table')
+    if (this.state.todos.length == 0) {
+      return 'hidden'
+    }
   }
 
   render() {
@@ -89,7 +94,7 @@ class App extends React.Component {
           <input type="checkbox" id="priority" name="priority"></input>
           <button id="submit_button" onClick={ e => this.add(e)}>Submit</button>
         </form>
-        <table className="child" id="list_table">
+        <table className="child" id="list_table" hidden={this.hidden()}>
           <thead>
             <tr className="bold">
               <th>Item</th>

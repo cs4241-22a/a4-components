@@ -4,10 +4,9 @@ const express  = require( 'express' ),
 const todos = []
 
 app.use( express.json() )
-
-// this will most likely be 'build' or 'public'
 app.use( express.static( 'dist' ) )
 app.use( express.static( 'src' ) )
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/dist/index.html")
 })
@@ -21,7 +20,6 @@ app.post( '/add', ( req,res ) => {
     req.body.dueDate = '2 days'
   }
   todos.push( req.body )
-  console.log(req.body)
   res.json( todos )
 })
 
