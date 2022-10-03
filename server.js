@@ -18,7 +18,10 @@ app.use(bodyParser())
 // routes
 // signin
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('signin')
+})
+app.get('/signin', (req, res) => {
+    res.render('signin')
 })
 
 //signup

@@ -236,9 +236,12 @@
             return (
                 <button className="btn btn-primary" onClick={() => {
                     if (getCookie("auth") != "") {
-                        document.cookie = "auth=" + getCookie("auth") + ";expires=Thu, 01 Jan 1970 00:00:01 GMT"
+                        document.cookie = `auth=${getCookie('auth')};max-age=0;path=/;`
+                        document.cookie = `auth=${getCookie('auth')};max-age=0;path=/signin;`
+                        document.cookie = `auth=${getCookie('auth')};max-age=0;path='/signin';`
+                        document.cookie = `auth=${getCookie('auth')};max-age=0;path=['/signin'];`
                     }
-                    window.location.replace('/')
+                    window.location.replace('/signin')
                 }
                 }>logout</button>
             )
@@ -266,7 +269,7 @@
                 return (
                     <div >
                         <h3>User Authentication Failed. Try logging in again</h3>
-                        <button onClick={() => { window.location.replace('/') }}>To Login</button>
+                        <button onClick={() => { window.location.replace('/signin') }}>To Login</button>
                     </div>
                 )
 

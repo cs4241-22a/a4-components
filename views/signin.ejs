@@ -70,7 +70,7 @@
                 time += 3600 * 1000;
                 now.setTime(time);
 
-                document.cookie = 'auth=' + jsonResponse.username + '; expires=' + now.toUTCString()
+                document.cookie = `auth=${jsonResponse.username};max-age=3600`;
                 window.location.replace(`/profile/${jsonResponse.username}`)
             } else {
                 console.log("failure")
