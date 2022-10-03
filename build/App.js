@@ -48,7 +48,12 @@ function App(props) {
       body: JSON.stringify({id, completed}),
       headers: {"Content-Type": "application/json"}
     }).then(() => {
-      window.location.reload(false);
+      changeTodos(() => {
+        const i = todos.findIndex((v) => v.id === req.body.id);
+        var copyTodos = [...todos];
+        copyTodos.splice(i, 1);
+        return copyTodos;
+      });
     });
   };
   const add = (evt) => {

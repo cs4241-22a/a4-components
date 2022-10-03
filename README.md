@@ -1,66 +1,21 @@
-<<<<<<< HEAD
+
 Assignment 4 - Components
 ===
+https://a4-michael-oconnor.glitch.me
 
-Due: October 4th, by 11:59 AM.
 
-For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
-
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
-
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
+## From To Do to TO DONE
 
 your hosting link e.g. http://a4-charlieroberts.glitch.me
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
+The project is a continuation of a simple To DO list app from project 2 adapted to use React and Bootstrap. 
 
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
+React had a pretty steep learning curve to it (like most new libraries). It took quite a while to get the basics working. Additionally, debugging front-end code is always a pain. 
+However, the increased access to logical operations and more advanced structures was fantastic! Given several more weeks of practice, using React would be a great experience for front end compared to plain HTML or Handlebars
+
 =======
-# webware-a4
-
-Empty project.
-
-## How to run on localhost
-
-First install dependencies:
-
-```sh
-npm install
-```
-
-To run in dev mode mode:
-
-```sh
-npm start
-```
-
-Then go to http://localhost:8080
-
-To create a production build:
-
-```sh
-npm run build
-```
 
 ## Credits
 
 Made with [createapp.dev](https://createapp.dev/)
-
->>>>>>> 2a714d4 (init commit)
