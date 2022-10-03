@@ -7,7 +7,7 @@ heroku link:
 Login and create a Todo list. Todo page is now written with react components, using stuff like the map function, props, useState & useEffect hooks.
 
 middleware used:
-lazydebug, a middleware function I wrote that console logs whereever you call it
+lazydebug, a middleware function I wrote that console logs whereever you call it. (I got rid of it b/c the console logs were getting annoying. It is on my a3 project. )
 argon2, for hashing passwords
 mongoose, for connecting with the mongoDB server easier
 expressRouter, for more routing options

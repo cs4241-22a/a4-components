@@ -230,6 +230,19 @@
             );
         }
 
+        // LogoutBtn Component
+        const LogoutBtn = () => {
+
+            return (
+                <button className="btn btn-primary" onClick={() => {
+                    if (getCookie("auth") != "") {
+                        document.cookie = "auth=" + getCookie("auth") + ";expires=Thu, 01 Jan 1970 00:00:01 GMT"
+                    }
+                    window.location.replace('/')
+                }
+                }>logout</button>
+            )
+        }
 
         const App = () => {
             const [username, setUsername] = React.useState({ name: getCookie("auth") })
@@ -260,7 +273,7 @@
             } else {
                 return (
                     <div className="container">
-                        <h1>Welcome to {username.name}'s TODO List!</h1>
+                        <h1>Welcome to {username.name}'s TODO List! <LogoutBtn /></h1>
                         <p>{status.msg}</p>
                         <AddTodo username={username.name} setStatus={setStatus} />
                         {displayEditDesc()}
