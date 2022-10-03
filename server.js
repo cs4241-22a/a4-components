@@ -30,8 +30,6 @@ app.use(express.json());
 
 app.use(express.static("build"));
 
-app.use("/css", express.static("/src/styles"));
-
 app.use("/data", (req, res) => {
   res.end(JSON.stringify(task));
 });
