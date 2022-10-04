@@ -1,10 +1,12 @@
 {
-  "name": "cs4241-a3",
+  "name": "cs4241-a4",
   "version": "1.0.0",
-  "description": "Assignment 3 - Persistence: Two-tier Web Application with Database, Express server, and CSS template\r ===",
+  "description": "Assignment 4 - Components\r ===",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm dist/bundle.js",
+    "start": "snowpack dev",
+    "build": "snowpack build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,12 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "helmet": "^6.0.0",
-    "mongodb": "^4.10.0"
-  }
+    "mongodb": "^4.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "snowpack": "^3.8.8"
+  },
+  "keywords": []
 }

@@ -5,7 +5,7 @@ const mongodb = require('mongodb')
 const app = express()
 require('dotenv').config()
 
-app.use(express.static('public'))
+app.use(express.static('build'))
 app.use(express.urlencoded({ extended:true }) )
 app.use(express.json())
 
@@ -68,7 +68,7 @@ app.use( function( req,res,next) {
     if( req.session.login === true )
         next()
     else
-        res.sendFile( __dirname + '/public/index.html' )
+        res.sendFile( __dirname + '/build/index.html' )
 })
 
 app.post( '/submit', (req, res) => {
