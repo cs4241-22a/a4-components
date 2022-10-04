@@ -69,18 +69,7 @@
         <b style="font-size:x-large ;">Welcome, {{{playerName}}} !</b>
         <br><a href="/logout">Log Out</a>
     </h3>
-    <table style="width:100%">
-        <tr>
-            <th>Username</th>
-            <th>Win</th>
-            <th>Loss</th>
-        </tr>
-        <tr>
-            <td>{{{playerName}}}</td>
-            <td>{{{playerWin}}}</td>
-            <td>{{{playerLoss}}}</td>
-        </tr>
-    </table>
+    <div id="user_information_container"></div>
     <p><strong>Action --- Edit current username</strong></p>
     <div>
         {{#if error}}
@@ -140,6 +129,17 @@
             <button class="reload"></button>
         </section>
     </div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Load our React component. -->
+    <script type="text/babel" src="infoTable.js"></script>
+
+    <!-- Game script -->
     <script src="scripts.js"></script>
 </body>
 

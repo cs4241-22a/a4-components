@@ -12,6 +12,7 @@ var currentLogin = "";
 var playerWin = 0;
 var playerLoss = 0;
 dotenv.config();
+var user_info = [{username: currentLogin, win: playerWin, loss:playerLoss}]
 
 // use mongoose to connect to database
 const connectDB = async () => {
@@ -47,8 +48,7 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-const User = mongoose.model('a4', UserSchema);
-
+const User = mongoose.model('users', UserSchema);
 
 // Middleware
 app.engine('hbs', hbs({ extname: '.hbs' }));
@@ -121,6 +121,8 @@ app.get('/', isLoggedIn, (req, res) => {
     playerLoss: playerLoss
   }
   res.render("index", response);
+  //res.render("index", {layout: false});
+
 });
 
 app.get('/login', isLoggedOut, (req, res) => {
@@ -139,6 +141,15 @@ app.get('/register', isLoggedOut, (req, res) => {
   }
 
   res.render('register', response);
+});
+
+app.get('/userInfo', isLoggedIn, (req, res) => {
+  console.log("Request received!");
+  user_info[0].username = currentLogin
+  user_info[0].win = playerWin
+  user_info[0].loss = playerLoss
+  res.writeHead( 200, { 'Content-Type': 'application/json' })
+  res.end( JSON.stringify( user_info ) )
 });
 
 app.post('/login', passport.authenticate('local', {
