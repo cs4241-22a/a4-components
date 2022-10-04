@@ -22,7 +22,7 @@ class App extends React.Component {
 
   updateRecordsState() {
     axios
-      .get("/api/scores")
+      .get("api/scores")
       .then((res) => this.setState({ records: res.data }))
       .catch((error) => this.setState({ error }));
   }
