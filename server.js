@@ -1,5 +1,8 @@
 const express  = require( 'express' ),
-cookie = require('cookie-session'),
+// cookie = require('cookie-session'),
+session = require('express-session'),
+cookieParser = require('cookie-parser'),
+cors  = require('cors')
       app      = express()
 
 const todos = [
@@ -11,11 +14,23 @@ app.use( express.json() )
 app.use( express.static( 'build' ) ) // this will most likely be 'build' or 'public'
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cors())
+// app.use(cookie({
+//     name: 'session',
+//     keys: ['keysplease', 'speediskey'],
+//     secure:false
+//   }))
 
-app.use(cookie({
-    name: 'session',
-    keys: ['keysplease', 'speediskey']
+  app.use(cookieParser());
+  app.use(session({
+    secret: 'supersecretstring12345!',
+    saveUninitialized: true,
+    resave: true,
+    // store: new MongoStore({ mongooseConnection: db 
+    // })
   }))
+
+
 
 //######################## Database ###########################
 
@@ -43,6 +58,13 @@ client.connect()
 
 //######################## Paths ###########################
 
+
+let _username = ""
+
+// app.use((req, res, next) => {
+//   req.session.username = id;
+//     req.session.save();
+// })
 
 app.get( '/read', ( req, res ) => res.json( todos ) )
 
@@ -84,14 +106,14 @@ app.use((req, res, next) => {
 
 
 app.post('/register', express.json(), (req, res) => {
-
+  console.log(`INside register: fullname: ${req.body.username} user: ${req.body.username} pass: ${req.body.password}`)
     collection
       .find({ username: req.body.username })
       .toArray()
       .then(result => {
         if (result.length >= 1) {
-          console.log(result)
-          response.json({ login: false });
+          console.log(`FAILED to register user, likely alreadt exists`);
+          res.json({ login: false });
         } else {
           //user does not exist, create
           let newUser = {
@@ -104,6 +126,10 @@ app.post('/register', express.json(), (req, res) => {
           collection.insertOne(newUser);
        
           req.session.username = req.body.username;
+          _username = req.body.username
+          req.session.save();
+          console.log(`REGISTER: body username:  ${req.body.username}          session username ${  req.session.username }`);
+
           req.session.login = true;
           res.json({ login: true, username: req.body.username, });
         }
@@ -118,77 +144,84 @@ app.post('/register', express.json(), (req, res) => {
   app.get('/tasks', (req, res) => { //gets all todoes
     if (collection !== null) {
       // get array and pass to res.json
-      console.log("sesison username: " + req.session.username)
-      collection.find({username: req.session.username}).toArray().then(result => res.json(result))
+     
+      console.log(" /TASKS: Sesssion  username: " + req.session.username)
+      
+      console.log("_username: " + _username)
+      collection.find({username: _username, password: {$exists:false}} ).toArray().then(result => res.json(result))
     }
   })
   
-  app.post("/logout", express.json(), (request, response) => {
-    if (request.session.login == true) {
-      request.session.username = "";
-      request.session.login = false;
-  
-      response.json({ logout: true });
+  app.post("/logout", express.json(), (req, res) => {
+    if (req.session.login == true) {
+      req.session.username = "";
+      req.session.login = false;
+      _username = ""
+      res.json({ logout: true });
     } else {
-      response.json({ logout: false })
+      res.json({ logout: false })
     }
   });
   
   
   
-  app.post("/login", express.json(), (request, response) => {
+  app.post("/login", express.json(), (req, res) => {
    
     collection
-      .find({ username: request.body.username, password: request.body.password })
+      .find({ username: req.body.username, password: req.body.password })
       .toArray()
       .then(result => {
         if (result.length >= 1) {
   
-          request.session.username = request.body.username;
-          request.session.login = true;
-          console.log("valid login");
-          console.log(request.session.username);
-          response.json({ login: true });
+          req.session.username = req.body.username;
+          
+          req.session.login = true;
+          req.session.save();
+          _username = req.body.username
+          console.log(` /LOGIN: body username:  ${req.body.username}          session username ${  req.session.username }`);
+        
+          res.json({ login: true });
   
         } else {
   
-          console.log(`invalid login for: ${request.body.username, request.body.password}` )
-          response.json({ login: false });
+          console.log(`invalid login for: ${req.body.username, req.body.password}` )
+          res.json({ login: false });
         }
       });
   });
   
   
-  app.post("/addTask", express.json(), (request, response) => {
+  app.post("/addTask", express.json(), (req, res) => {
   
-    console.log("Due date: " + request.body.dueDate)
+    console.log("Due date: " + req.body.dueDate)
   
-      request.body.daysLeft = getDaysLeft (request.body.dueDate )
+      req.body.daysLeft = getDaysLeft (req.body.dueDate )
   
-      request.body.username = request.session.username
-      collection.insertOne(request.body).then(result => collection.findOne(result.insertedId)).then( findResult => response.json( findResult))
+      req.body.username = _username
+      collection.insertOne(req.body).then(result => collection.findOne(result.insertedId)).then( findResult => res.json( findResult))
       console.log("ADD TASK")
      
   });
   
+
   
-  app.post("/clearAll", express.json(), (request, response) => {
+  app.post("/clearAll", express.json(), (req, res) => {
    
-    console.log("Clear All: " + request.session.username)
+    console.log("Clear All: " + req.session.username)
     
      collection
-     .deleteMany({ username: request.session.username, password:{$exists:false}}) //dont delete username password combos , password:{$exists:false}
-     .then( result => response.json( result ) )
+     .deleteMany({ username: _username, password:{$exists:false}}) //dont delete username password combos , password:{$exists:false}
+     .then( result => res.json( result ) )
       
   });
   
-  app.post("/deleteTask", express.json(), (request, response) => {
+  app.post("/deleteTask", express.json(), (req, res) => {
    
-    console.log("Delete Task Id;" +  request.body.id )
-    console.log(request.body)
+    console.log("Delete Task Id;" +  req.body.id )
+    console.log(req.body)
       collection
-          .deleteOne({ _id:mongodb.ObjectId( request.body.id ) })
-          .then( result => response.json( result ) )
+          .deleteOne({ _id:mongodb.ObjectId( req.body.id ) })
+          .then( result => res.json( result ) )
    
   });
   
@@ -211,4 +244,4 @@ app.post('/register', express.json(), (req, res) => {
   }
 
 
-app.listen( 8080 )
+app.listen( 8081 )
