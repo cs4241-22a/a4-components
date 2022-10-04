@@ -3120,7 +3120,7 @@ var App = /*#__PURE__*/ function(_React$Component2) {
                     className: "Todo"
                 }, /*#__PURE__*/ _react["default"].createElement("header", {
                     className: "Todo-header"
-                }, /*#__PURE__*/ _react["default"].createElement("title", null, "CS4241 Assignment 2")), /*#__PURE__*/ _react["default"].createElement("h1", null, "Todo List"), /*#__PURE__*/ _react["default"].createElement("form", {
+                }, /*#__PURE__*/ _react["default"].createElement("title", null, "CS4241 Assignment 4")), /*#__PURE__*/ _react["default"].createElement("h1", null, "Todo List"), /*#__PURE__*/ _react["default"].createElement("form", {
                     id: "inputItem",
                     "class": "formItems"
                 }, /*#__PURE__*/ _react["default"].createElement("input", {

@@ -2908,7 +2908,7 @@ function _interopRequireDefault(obj) {
         "default": obj
     };
 }
-var mountNode = document.getElementById("Todo");
+var mountNode = document.getElementById("todoList");
 _reactDom["default"].render(/*#__PURE__*/ _react["default"].createElement(_App["default"], {
     name: "Jane"
 }), mountNode);
@@ -2918,7 +2918,7 @@ _reactDom["default"].render(/*#__PURE__*/ _react["default"].createElement(_App["
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-dom":"j6uA9","./App":"e9Zfo","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"21dqq":[function(require,module,exports) {
+},{"react":"21dqq","react-dom":"j6uA9","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./App":"e9Zfo"}],"21dqq":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react.development.js");
 
@@ -26217,316 +26217,7 @@ module.exports = require("./cjs/scheduler.development.js");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"e9Zfo":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$2430 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$2430.prelude(module);
-
-try {
-"use strict";
-function _typeof(obj) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-        return typeof obj;
-    } : function(obj) {
-        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
-}
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports["default"] = void 0;
-var _react = _interopRequireDefault(require("react"));
-var _logo = _interopRequireDefault(require("./logo.svg"));
-require("./App.css");
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        "default": obj
-    };
-}
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
-}
-function _defineProperties(target, props) {
-    for(var i = 0; i < props.length; i++){
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-    }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-        writable: false
-    });
-    return Constructor;
-}
-function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-            value: subClass,
-            writable: true,
-            configurable: true
-        }
-    });
-    Object.defineProperty(subClass, "prototype", {
-        writable: false
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-}
-function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-        o.__proto__ = p;
-        return o;
-    };
-    return _setPrototypeOf(o, p);
-}
-function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-        var Super = _getPrototypeOf(Derived), result;
-        if (hasNativeReflectConstruct) {
-            var NewTarget = _getPrototypeOf(this).constructor;
-            result = Reflect.construct(Super, arguments, NewTarget);
-        } else result = Super.apply(this, arguments);
-        return _possibleConstructorReturn(this, result);
-    };
-}
-function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
-    else if (call !== void 0) throw new TypeError("Derived constructors may only return object or undefined");
-    return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return self;
-}
-function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-    try {
-        Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {}));
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-        return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-}
-var Todo = /*#__PURE__*/ function(_React$Component) {
-    _inherits(Todo, _React$Component);
-    var _super = _createSuper(Todo);
-    function Todo() {
-        _classCallCheck(this, Todo);
-        return _super.apply(this, arguments);
-    }
-    _createClass(Todo, [
-        {
-            key: "render",
-            value: function render() {
-                return /*#__PURE__*/ _react["default"].createElement("tr", null, /*#__PURE__*/ _react["default"].createElement("th", null, this.state.task), /*#__PURE__*/ _react["default"].createElement("th", null, this.state.dueDate), /*#__PURE__*/ _react["default"].createElement("th", null, this.state.priority), /*#__PURE__*/ _react["default"].createElement("th", null, this.state.mostUrgent));
-            }
-        }
-    ]);
-    return Todo;
-}(_react["default"].Component);
-_c = Todo;
-var App = /*#__PURE__*/ function(_React$Component2) {
-    _inherits(App, _React$Component2);
-    var _super2 = _createSuper(App);
-    function App(newTask) {
-        var _this;
-        _classCallCheck(this, App);
-        _this = _super2.call(this, newTask);
-        _this.state = {
-            todos: []
-        };
-        _this.load();
-        return _this;
-    }
-    _createClass(App, [
-        {
-            key: "update",
-            value: function update(newItem) {
-                var _this2 = this;
-                var task = document.getElementById("listItem");
-                var due = document.getElementById("dueDate");
-                var priority = document.getElementById("priority");
-                fetch("/submit", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        task: task,
-                        dueDate: due,
-                        priority: priority,
-                        mostUrgent: 0
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }).then(function(response) {
-                    return response.json();
-                }).then(function(json) {
-                    // changing state triggers reactive behaviors
-                    console.log({
-                        todos: json
-                    });
-                    _this2.setState({
-                        todos: json
-                    });
-                });
-            /*const entry = document.getElementById("todoList")
-      entry.innerHTML = "<tr><th>" + "Task" + "</th><th>" 
-      + "Due Date" + "</th><th>"
-      + "Priority" + "</th><th>" 
-      + "Most Urgent" + "</th></tr>"
-        let id = 0
-        console.log("newItem")
-      console.log(newItem)
-      newItem.forEach((element, index) => {
-          let newEntry = document.createElement("tr")
-        newEntry.setAttribute("id", id)
-        newEntry.setAttribute("value", false)
-          let newEntryItem = document.createElement("td")
-        newEntryItem.innerHTML = element.listItem
-          let newEntryDate = document.createElement("td")
-        newEntryDate.innerHTML = element.dueDate
-          let newEntryPriority = document.createElement("td")
-        newEntryPriority.innerHTML = element.priority
-          let newEntryUrgent = document.createElement("td")
-        newEntryUrgent.innerHTML = element.urgent
-       
-        newEntry.appendChild(newEntryItem)
-        newEntry.appendChild(newEntryDate)
-        newEntry.appendChild(newEntryPriority)
-        newEntry.appendChild(newEntryUrgent)
-          console.log(newEntry)
-        //entry.appendChild(newEntry)
-        Todo.render(newEntry)
-          id += 1
-      })
-      
-      
-      console.log(entry.innerHTML)*/ }
-        },
-        {
-            key: "load",
-            value: function load() {
-                var _this3 = this;
-                fetch("/read", {
-                    method: "post",
-                    "no-cors": true
-                }).then(function(response) {
-                    return response.json();
-                }).then(function(json) {
-                    //console.log({todos:json})
-                    //this.update({todos:json})
-                    _this3.setState({
-                        todos: json
-                    });
-                });
-            }
-        },
-        {
-            key: "render",
-            value: function render() {
-                var _this4 = this;
-                return /*#__PURE__*/ _react["default"].createElement("div", {
-                    className: "Todo"
-                }, /*#__PURE__*/ _react["default"].createElement("header", {
-                    className: "Todo-header"
-                }, /*#__PURE__*/ _react["default"].createElement("title", null, "CS4241 Assignment 2")), /*#__PURE__*/ _react["default"].createElement("h1", null, "Todo List"), /*#__PURE__*/ _react["default"].createElement("form", {
-                    id: "inputItem",
-                    "class": "formItems"
-                }, /*#__PURE__*/ _react["default"].createElement("input", {
-                    type: "text",
-                    id: "listItem",
-                    placeholder: "Add todo here"
-                }), /*#__PURE__*/ _react["default"].createElement("input", {
-                    type: "text",
-                    id: "dueDate",
-                    placeholder: "Enter a 4 digit number e.g. 0908"
-                }), /*#__PURE__*/ _react["default"].createElement("input", {
-                    type: "text",
-                    id: "priority",
-                    placeholder: "High, medium or low"
-                }), /*#__PURE__*/ _react["default"].createElement("button", {
-                    onClick: function onClick(e) {
-                        return _this4.update(e);
-                    }
-                }, "Submit")), /*#__PURE__*/ _react["default"].createElement("button", {
-                    id: "delButton"
-                }, "Remove"), /*#__PURE__*/ _react["default"].createElement("table", {
-                    id: "todoList",
-                    "class": "todoTable"
-                }, /*#__PURE__*/ _react["default"].createElement("tr", null, /*#__PURE__*/ _react["default"].createElement("th", null, "Task"), /*#__PURE__*/ _react["default"].createElement("th", null, "Due Date"), /*#__PURE__*/ _react["default"].createElement("th", null, "Priority"), /*#__PURE__*/ _react["default"].createElement("th", null, "Most Urgent")), /*#__PURE__*/ _react["default"].createElement("tr", null, "this.state.todos.map( (todo,i) => ", /*#__PURE__*/ _react["default"].createElement(Todo, {
-                    task: todo.task,
-                    dueDate: todo.dueDate,
-                    priority: todo.priority,
-                    mostUrgent: todo.mostUrgent
-                }), ")")));
-            }
-        }
-    ]);
-    return App;
-}(_react["default"].Component);
-var _default = App;
-exports["default"] = _default;
-var _c;
-$RefreshReg$(_c, "Todo");
-
-  $parcel$ReactRefreshHelpers$2430.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react":"21dqq","./logo.svg":"bfY5i","./App.css":"6n0o6","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bfY5i":[function(require,module,exports) {
-module.exports = require("./helpers/bundle-url").getBundleURL("byUka") + "logo.5f13d5c5.svg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return "/";
-}
-function getBaseURL(url) {
-    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error("Origin not found");
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"6n0o6":[function() {},{}],"km3Ru":[function(require,module,exports) {
+},{}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -26646,6 +26337,668 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequirea7c0")
+},{"react-refresh/runtime":"786KC"}],"e9Zfo":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$2430 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$2430.prelude(module);
+
+try {
+"use strict";
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
+        return typeof obj;
+    } : function(obj) {
+        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+}
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports["default"] = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _logo = _interopRequireDefault(require("./logo.svg"));
+require("./App.css");
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        "default": obj
+    };
+}
+function _regeneratorRuntime() {
+    "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ 
+    _regeneratorRuntime = function _regeneratorRuntime() {
+        return exports1;
+    };
+    var exports1 = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+    function define(obj, key, value) {
+        return Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }), obj[key];
+    }
+    try {
+        define({}, "");
+    } catch (err) {
+        define = function define(obj, key, value) {
+            return obj[key] = value;
+        };
+    }
+    function wrap(innerFn, outerFn, self, tryLocsList) {
+        var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []);
+        return generator._invoke = function(innerFn, self, context) {
+            var state = "suspendedStart";
+            return function(method, arg) {
+                if ("executing" === state) throw new Error("Generator is already running");
+                if ("completed" === state) {
+                    if ("throw" === method) throw arg;
+                    return doneResult();
+                }
+                for(context.method = method, context.arg = arg;;){
+                    var delegate = context.delegate;
+                    if (delegate) {
+                        var delegateResult = maybeInvokeDelegate(delegate, context);
+                        if (delegateResult) {
+                            if (delegateResult === ContinueSentinel) continue;
+                            return delegateResult;
+                        }
+                    }
+                    if ("next" === context.method) context.sent = context._sent = context.arg;
+                    else if ("throw" === context.method) {
+                        if ("suspendedStart" === state) throw state = "completed", context.arg;
+                        context.dispatchException(context.arg);
+                    } else "return" === context.method && context.abrupt("return", context.arg);
+                    state = "executing";
+                    var record = tryCatch(innerFn, self, context);
+                    if ("normal" === record.type) {
+                        if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
+                        return {
+                            value: record.arg,
+                            done: context.done
+                        };
+                    }
+                    "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
+                }
+            };
+        }(innerFn, self, context), generator;
+    }
+    function tryCatch(fn, obj, arg) {
+        try {
+            return {
+                type: "normal",
+                arg: fn.call(obj, arg)
+            };
+        } catch (err) {
+            return {
+                type: "throw",
+                arg: err
+            };
+        }
+    }
+    exports1.wrap = wrap;
+    var ContinueSentinel = {};
+    function Generator() {}
+    function GeneratorFunction() {}
+    function GeneratorFunctionPrototype() {}
+    var IteratorPrototype = {};
+    define(IteratorPrototype, iteratorSymbol, function() {
+        return this;
+    });
+    var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+    NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
+    var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+    function defineIteratorMethods(prototype) {
+        [
+            "next",
+            "throw",
+            "return"
+        ].forEach(function(method) {
+            define(prototype, method, function(arg) {
+                return this._invoke(method, arg);
+            });
+        });
+    }
+    function AsyncIterator(generator, PromiseImpl) {
+        function invoke(method, arg, resolve, reject) {
+            var record = tryCatch(generator[method], generator, arg);
+            if ("throw" !== record.type) {
+                var result = record.arg, value = result.value;
+                return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function(value) {
+                    invoke("next", value, resolve, reject);
+                }, function(err) {
+                    invoke("throw", err, resolve, reject);
+                }) : PromiseImpl.resolve(value).then(function(unwrapped) {
+                    result.value = unwrapped, resolve(result);
+                }, function(error) {
+                    return invoke("throw", error, resolve, reject);
+                });
+            }
+            reject(record.arg);
+        }
+        var previousPromise;
+        this._invoke = function(method, arg) {
+            function callInvokeWithMethodAndArg() {
+                return new PromiseImpl(function(resolve, reject) {
+                    invoke(method, arg, resolve, reject);
+                });
+            }
+            return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        };
+    }
+    function maybeInvokeDelegate(delegate, context) {
+        var method = delegate.iterator[context.method];
+        if (undefined === method) {
+            if (context.delegate = null, "throw" === context.method) {
+                if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel;
+                context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method");
+            }
+            return ContinueSentinel;
+        }
+        var record = tryCatch(method, delegate.iterator, context.arg);
+        if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
+        var info = record.arg;
+        return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
+    }
+    function pushTryEntry(locs) {
+        var entry = {
+            tryLoc: locs[0]
+        };
+        1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
+    }
+    function resetTryEntry(entry) {
+        var record = entry.completion || {};
+        record.type = "normal", delete record.arg, entry.completion = record;
+    }
+    function Context(tryLocsList) {
+        this.tryEntries = [
+            {
+                tryLoc: "root"
+            }
+        ], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+    }
+    function values(iterable) {
+        if (iterable) {
+            var iteratorMethod = iterable[iteratorSymbol];
+            if (iteratorMethod) return iteratorMethod.call(iterable);
+            if ("function" == typeof iterable.next) return iterable;
+            if (!isNaN(iterable.length)) {
+                var i = -1, next = function next() {
+                    for(; ++i < iterable.length;){
+                        if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
+                    }
+                    return next.value = undefined, next.done = !0, next;
+                };
+                return next.next = next;
+            }
+        }
+        return {
+            next: doneResult
+        };
+    }
+    function doneResult() {
+        return {
+            value: undefined,
+            done: !0
+        };
+    }
+    return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports1.isGeneratorFunction = function(genFun) {
+        var ctor = "function" == typeof genFun && genFun.constructor;
+        return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
+    }, exports1.mark = function(genFun) {
+        return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+    }, exports1.awrap = function(arg) {
+        return {
+            __await: arg
+        };
+    }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function() {
+        return this;
+    }), exports1.AsyncIterator = AsyncIterator, exports1.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+        void 0 === PromiseImpl && (PromiseImpl = Promise);
+        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+        return exports1.isGeneratorFunction(outerFn) ? iter : iter.next().then(function(result) {
+            return result.done ? result.value : iter.next();
+        });
+    }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function() {
+        return this;
+    }), define(Gp, "toString", function() {
+        return "[object Generator]";
+    }), exports1.keys = function(object) {
+        var keys = [];
+        for(var key in object)keys.push(key);
+        return keys.reverse(), function next() {
+            for(; keys.length;){
+                var key = keys.pop();
+                if (key in object) return next.value = key, next.done = !1, next;
+            }
+            return next.done = !0, next;
+        };
+    }, exports1.values = values, Context.prototype = {
+        constructor: Context,
+        reset: function reset(skipTempReset) {
+            if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for(var name in this)"t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+        },
+        stop: function stop() {
+            this.done = !0;
+            var rootRecord = this.tryEntries[0].completion;
+            if ("throw" === rootRecord.type) throw rootRecord.arg;
+            return this.rval;
+        },
+        dispatchException: function dispatchException(exception) {
+            if (this.done) throw exception;
+            var context = this;
+            function handle(loc, caught) {
+                return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
+            }
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i], record = entry.completion;
+                if ("root" === entry.tryLoc) return handle("end");
+                if (entry.tryLoc <= this.prev) {
+                    var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc");
+                    if (hasCatch && hasFinally) {
+                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+                        if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+                    } else if (hasCatch) {
+                        if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+                    } else {
+                        if (!hasFinally) throw new Error("try statement without catch or finally");
+                        if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+                    }
+                }
+            }
+        },
+        abrupt: function abrupt(type, arg) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+                    var finallyEntry = entry;
+                    break;
+                }
+            }
+            finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
+            var record = finallyEntry ? finallyEntry.completion : {};
+            return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
+        },
+        complete: function complete(record, afterLoc) {
+            if ("throw" === record.type) throw record.arg;
+            return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
+        },
+        finish: function finish(finallyLoc) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
+            }
+        },
+        "catch": function _catch(tryLoc) {
+            for(var i = this.tryEntries.length - 1; i >= 0; --i){
+                var entry = this.tryEntries[i];
+                if (entry.tryLoc === tryLoc) {
+                    var record = entry.completion;
+                    if ("throw" === record.type) {
+                        var thrown = record.arg;
+                        resetTryEntry(entry);
+                    }
+                    return thrown;
+                }
+            }
+            throw new Error("illegal catch attempt");
+        },
+        delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+            return this.delegate = {
+                iterator: values(iterable),
+                resultName: resultName,
+                nextLoc: nextLoc
+            }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
+        }
+    }, exports1;
+}
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+        var info = gen[key](arg);
+        var value = info.value;
+    } catch (error) {
+        reject(error);
+        return;
+    }
+    if (info.done) resolve(value);
+    else Promise.resolve(value).then(_next, _throw);
+}
+function _asyncToGenerator(fn) {
+    return function() {
+        var self = this, args = arguments;
+        return new Promise(function(resolve, reject) {
+            var gen = fn.apply(self, args);
+            function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+            }
+            function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+            }
+            _next(undefined);
+        });
+    };
+}
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+}
+function _defineProperties(target, props) {
+    for(var i = 0; i < props.length; i++){
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+    }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+        writable: false
+    });
+    return Constructor;
+}
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) throw new TypeError("Super expression must either be null or a function");
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+        constructor: {
+            value: subClass,
+            writable: true,
+            configurable: true
+        }
+    });
+    Object.defineProperty(subClass, "prototype", {
+        writable: false
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+}
+function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+        o.__proto__ = p;
+        return o;
+    };
+    return _setPrototypeOf(o, p);
+}
+function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    return function _createSuperInternal() {
+        var Super = _getPrototypeOf(Derived), result;
+        if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+        } else result = Super.apply(this, arguments);
+        return _possibleConstructorReturn(this, result);
+    };
+}
+function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) return call;
+    else if (call !== void 0) throw new TypeError("Derived constructors may only return object or undefined");
+    return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+    if (self === void 0) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return self;
+}
+function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+        Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {}));
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+        return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+}
+var Todo = /*#__PURE__*/ function(_React$Component) {
+    _inherits(Todo, _React$Component);
+    var _super = _createSuper(Todo);
+    function Todo() {
+        _classCallCheck(this, Todo);
+        return _super.apply(this, arguments);
+    }
+    _createClass(Todo, [
+        {
+            key: "render",
+            value: function render() {
+                return /*#__PURE__*/ _react["default"].createElement("tr", null, /*#__PURE__*/ _react["default"].createElement("th", null, this.props.task), /*#__PURE__*/ _react["default"].createElement("th", null, this.props.dueDate), /*#__PURE__*/ _react["default"].createElement("th", null, this.props.priority), /*#__PURE__*/ _react["default"].createElement("th", null, this.props.mostUrgent));
+            }
+        }
+    ]);
+    return Todo;
+}(_react["default"].Component);
+_c = Todo;
+var App = /*#__PURE__*/ function(_React$Component2) {
+    _inherits(App, _React$Component2);
+    var _super2 = _createSuper(App);
+    function App(newTask) {
+        var _this;
+        _classCallCheck(this, App);
+        _this = _super2.call(this, newTask);
+        _this.state = {
+            todos: []
+        };
+        _this.load();
+        return _this;
+    }
+    _createClass(App, [
+        {
+            key: "update",
+            value: function update(newItem) {
+                var _this2 = this;
+                console.log("update");
+                var task = document.getElementById("listItem").value;
+                var due = document.getElementById("dueDate").value;
+                var priority = document.getElementById("priority").value;
+                console.log(task);
+                var json = {
+                    todos: [
+                        {
+                            task: task,
+                            dueDate: due,
+                            priority: priority,
+                            mostUrgent: 0
+                        }
+                    ]
+                };
+                fetch("/submit", {
+                    method: "POST",
+                    body: JSON.stringify(json),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(/*#__PURE__*/ function() {
+                    var _ref = _asyncToGenerator(/*#__PURE__*/ _regeneratorRuntime().mark(function _callee(response) {
+                        var newData;
+                        return _regeneratorRuntime().wrap(function _callee$(_context) {
+                            while(true)switch(_context.prev = _context.next){
+                                case 0:
+                                    console.log("the function response");
+                                    _context.next = 3;
+                                    return response.json();
+                                case 3:
+                                    newData = _context.sent;
+                                    //wait until response
+                                    //update(newData)
+                                    console.log(newData);
+                                case 5:
+                                case "end":
+                                    return _context.stop();
+                            }
+                        }, _callee);
+                    }));
+                    return function(_x) {
+                        return _ref.apply(this, arguments);
+                    };
+                }()) //then( response => response.json() )
+                .then(function(json) {
+                    // changing state triggers reactive behaviors
+                    console.log({
+                        todos: json
+                    });
+                    _this2.setState({
+                        todos: json
+                    });
+                });
+            /*const entry = document.getElementById("todoList")
+      entry.innerHTML = "<tr><th>" + "Task" + "</th><th>" 
+      + "Due Date" + "</th><th>"
+      + "Priority" + "</th><th>" 
+      + "Most Urgent" + "</th></tr>"
+        let id = 0
+        console.log("newItem")
+      console.log(newItem)
+      newItem.forEach((element, index) => {
+          let newEntry = document.createElement("tr")
+        newEntry.setAttribute("id", id)
+        newEntry.setAttribute("value", false)
+          let newEntryItem = document.createElement("td")
+        newEntryItem.innerHTML = element.listItem
+          let newEntryDate = document.createElement("td")
+        newEntryDate.innerHTML = element.dueDate
+          let newEntryPriority = document.createElement("td")
+        newEntryPriority.innerHTML = element.priority
+          let newEntryUrgent = document.createElement("td")
+        newEntryUrgent.innerHTML = element.urgent
+       
+        newEntry.appendChild(newEntryItem)
+        newEntry.appendChild(newEntryDate)
+        newEntry.appendChild(newEntryPriority)
+        newEntry.appendChild(newEntryUrgent)
+          console.log(newEntry)
+        //entry.appendChild(newEntry)
+        Todo.render(newEntry)
+          id += 1
+      })
+      
+      
+      console.log(entry.innerHTML)*/ }
+        },
+        {
+            key: "load",
+            value: function load() {
+                var _this3 = this;
+                fetch("/read", {
+                    method: "get",
+                    "no-cors": true
+                })/*.then(async function (response){
+         console.log("the function response")
+         let newData = await response.json() //wait until response
+         //update(newData)
+         console.log(newData)
+      })*/ .then(function(response) {
+                    return response.json();
+                }).then(function(json) {
+                    console.log(json); //this.update({todos:json})
+                    _this3.setState({
+                        todos: json
+                    });
+                });
+            }
+        },
+        {
+            key: "taskMap",
+            value: function taskMap(task, dueDate, priority, mostUrgent) {
+                return /*#__PURE__*/ _react["default"].createElement("tr", null, /*#__PURE__*/ _react["default"].createElement("th", null, "task"), /*#__PURE__*/ _react["default"].createElement("th", null, "dueDate"), /*#__PURE__*/ _react["default"].createElement("th", null, "priority"), /*#__PURE__*/ _react["default"].createElement("th", null, "mostUrgent"));
+            }
+        },
+        {
+            key: "render",
+            value: function render() {
+                var _this4 = this;
+                return /*#__PURE__*/ _react["default"].createElement("div", {
+                    className: "App"
+                }, /*#__PURE__*/ _react["default"].createElement("form", {
+                    id: "inputItem",
+                    className: "formItems"
+                }, /*#__PURE__*/ _react["default"].createElement("input", {
+                    type: "text",
+                    id: "listItem",
+                    placeholder: "Add todo here"
+                }), /*#__PURE__*/ _react["default"].createElement("input", {
+                    type: "text",
+                    id: "dueDate",
+                    placeholder: "Enter a 4 digit number e.g. 0908"
+                }), /*#__PURE__*/ _react["default"].createElement("input", {
+                    type: "text",
+                    id: "priority",
+                    placeholder: "High, medium or low"
+                }), /*#__PURE__*/ _react["default"].createElement("button", {
+                    onClick: function onClick(e) {
+                        return _this4.update(e);
+                    }
+                }, "Submit")), /*#__PURE__*/ _react["default"].createElement("button", {
+                    id: "delButton"
+                }, "Remove"), /*#__PURE__*/ _react["default"].createElement("table", {
+                    id: "todoList",
+                    className: "todoTable"
+                }, /*#__PURE__*/ _react["default"].createElement("tbody", null, /*#__PURE__*/ _react["default"].createElement("tr", null, /*#__PURE__*/ _react["default"].createElement("th", null, "Task"), /*#__PURE__*/ _react["default"].createElement("th", null, "Due Date"), /*#__PURE__*/ _react["default"].createElement("th", null, "Priority"), /*#__PURE__*/ _react["default"].createElement("th", null, "Most Urgent")), this.state.todos.map(function(todo, i) {
+                    return /*#__PURE__*/ _react["default"].createElement(Todo, {
+                        task: todo.task,
+                        dueDate: todo.dueDate,
+                        priority: todo.priority,
+                        mostUrgent: todo.mostUrgent
+                    });
+                }))));
+            }
+        }
+    ]);
+    return App;
+}(_react["default"].Component);
+var _default = App;
+exports["default"] = _default;
+var _c;
+$RefreshReg$(_c, "Todo");
+
+  $parcel$ReactRefreshHelpers$2430.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","./logo.svg":"bfY5i","./App.css":"6n0o6","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bfY5i":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("byUka") + "logo.5f13d5c5.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"6n0o6":[function() {},{}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequirea7c0")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

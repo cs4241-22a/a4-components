@@ -13,15 +13,15 @@ app.use( express.static( 'build' ) )
 app.get( '/read', ( req, res ) => res.json( todos ) )
 
 app.post( '/submit', ( req,res ) => {
+  console.log(req.body)
   todos.push( req.body )
   res.json( todos )
 })
-
-app.post( '/change', function( req,res ) {
+/*app.post( '/change', function( req,res ) {
   const idx = todos.findIndex( v => v.name === req.body.name )
   todos[ idx ].completed = req.body.completed
   
   res.sendStatus( 200 )
-})
+})*/
 
 app.listen( 8080 )

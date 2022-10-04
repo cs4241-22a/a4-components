@@ -4,33 +4,42 @@ import './App.css';
 
 class Todo extends React.Component{
     render(){
-        return <tr>
+        return (<tr>
                     <th>{this.props.task}</th>
                     <th>{this.props.dueDate}</th>
                     <th>{this.props.priority}</th>
                     <th>{this.props.mostUrgent}</th>
-               </tr>
+               </tr>)
     }
 }
 
-class App extends React.Component{
-    constructor(newTask){
-         super(newTask);
+class App extends React.Component {
+    
+    constructor(newTask) {
+         super(newTask)
          this.state = { todos:[] }
          this.load()
     }
 
     update(newItem){
       console.log("update")
-      const task = document.getElementById("listItem")
-      const due = document.getElementById("dueDate")
-      const priority = document.getElementById("priority")
+      const task = document.getElementById("listItem").value
+      const due = document.getElementById("dueDate").value
+      const priority = document.getElementById("priority").value
+      console.log(task)
+      let json = { todos:[{task:task, dueDate:due, priority:priority, mostUrgent:0}]}
       fetch( '/submit', { 
           method:'POST',
-          body: JSON.stringify({ task:task, dueDate:due, priority:priority, mostUrgent:0}),
+          body: JSON.stringify(json),
           headers: { 'Content-Type': 'application/json' }
         })
-        .then( response => response.json() )
+        .then(async function (response){
+           console.log("the function response")
+           let newData = await response.json() //wait until response
+           //update(newData)
+           console.log(newData)
+        })
+        //then( response => response.json() )
         .then( json => {
            // changing state triggers reactive behaviors
            console.log({todos:json})
@@ -82,41 +91,80 @@ class App extends React.Component{
     }
 
     load(){
-        fetch( '/read', { method:'post', 'no-cors':true })
+        fetch( '/read', { method:'get', 'no-cors':true })
+            /*.then(async function (response){
+               console.log("the function response")
+               let newData = await response.json() //wait until response
+               //update(newData)
+               console.log(newData)
+            })*/
           .then( response => response.json() )
           .then( json => {
-            //console.log({todos:json})
+            console.log(json)
             //this.update({todos:json})
             this.setState({ todos:json }) 
           })
     }
 
+    taskMap(task, dueDate, priority, mostUrgent){
+        return(
+            <tr>
+                    <th>task</th>
+                    <th>dueDate</th>
+                    <th>priority</th>
+                    <th>mostUrgent</th>
+            </tr>
+        )
+    }
+
+    /*remove(){
+
+    let listItem = document.querySelector( '#listItem' )
+    let dueDate  = document.querySelector( '#dueDate' )
+    let priority = document.querySelector( '#priority' )
+    let del = document.querySelector('#delButton')
+    let json = { listItem: listItem.value,
+                 dueDate: dueDate.value,
+                 priority: priority.value,
+                 feedback: "",
+                 del: true
+                }
+    body = JSON.stringify( json )
+
+    fetch( '/submit', {
+      method:'POST',
+      body 
+    })
+    .then(async function (response){
+       console.log("the function response")
+       console.log(response)
+       let newData = await response.json() //wait until response
+       update(newData)
+       console.log(newData)
+    })
+    return false
+  }*/
+
     render() {
       return (
-        <div className="Todo">
-          <header className="Todo-header">
-            <title>CS4241 Assignment 2</title>
-          </header>
-            <h1>
-                Todo List
-            </h1>
-            <form id="inputItem" class="formItems">
+        <div className="App">
+            <form id="inputItem" className="formItems">
                 <input type="text" id="listItem" placeholder="Add todo here"/>
                 <input type="text" id="dueDate" placeholder="Enter a 4 digit number e.g. 0908" />
                 <input type="text" id="priority" placeholder="High, medium or low" />
                 <button onClick={ e => this.update( e )}>Submit</button>
             </form>
             <button id="delButton">Remove</button>
-            <table id="todoList" class="todoTable">
+            <table id="todoList" className="todoTable">
+                <tbody>
                 <tr>
                     <th>Task</th>
                     <th>Due Date</th>
                     <th>Priority</th>
                     <th>Most Urgent</th>
                 </tr>
-                <tr>
-                    this.state.todos.map( (todo,i) => <Todo task={todo.task} dueDate={todo.dueDate} priority={todo.priority} mostUrgent={todo.mostUrgent} />)
-                </tr>
+                     { this.state.todos.map( (todo,i) => <Todo task={todo.task} dueDate={todo.dueDate} priority={todo.priority} mostUrgent={todo.mostUrgent} />)}
+                </tbody>
             </table>
         </div>
       );
