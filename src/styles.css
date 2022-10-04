@@ -1,0 +1,72 @@
+body {
+  background-color: #d9bdc5;
+  color: #231b1b;
+  font-family: "PT Sans Caption", sans-serif;
+}
+h1,
+h2,
+h4 {
+  text-align: center;
+}
+h2 {
+  padding: 5px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 30% repeat(4, 1fr) 30%;
+  grid-column-gap: 5px;
+}
+.box {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.box li {
+  list-style: none;
+  list-style-position: inside;
+  padding: 0px;
+  margin: 0px;
+}
+.column-label {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+.add-form,
+.delete-form {
+  display: flex;
+  justify-content: center;
+}
+input {
+  background-color: #e3e3e3;
+}
+.button-container {
+  display: flex; 
+  justify-content: center;
+}
+button {
+  background-color: #e3e3e3;
+}
+.btn-center {
+  text-align: center;
+}
+li {
+  list-style-type: none;  
+  padding-left: 0;
+}
+  
+#name-col {
+   grid-column-start: 2;
+   grid-column-end: 3;
+}
+#qty-col {
+   grid-column-start: 3;
+   grid-column-end: 4;
+}
+#units-col {
+   grid-column-start: 4;
+   grid-column-end: 5;
+}
+#brand-col {
+   grid-column-start: 5;
+   grid-column-end: 6;
+}
