@@ -1,9 +1,7 @@
 Assignment 4 - Components
 
-## Your Web Application Title
+## QuickList
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
+Glitch link: https://a4-abigail-hyde.glitch.me
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
-
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+I implemented A2 using React. The main thing I changed was switching from using flex display to grid for the grocery list display. In A2, I created each column as its own list, so I used flex display. But with React, I had an item component for each row, so I changed the list to display with grid formatting. I think it was easier to implement A2 with React because it made sense to have an Item component for each row. I had hardly any bugs related to React itself while working on this project. 

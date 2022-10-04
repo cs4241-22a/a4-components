@@ -12,13 +12,9 @@ h2 {
   padding: 5px;
 }
 .container {
-  /* display: flex;
-  justify-content: center; */
   display: grid;
-  grid-template-columns: 1fr repeat(4, 100px) 1fr;
-  /* grid-template-rows: repeat(5, 1fr); */
+  grid-template-columns: 30% repeat(4, 1fr) 30%;
   grid-column-gap: 5px;
-  grid-row-gap: 5px; 
 }
 .box {
   padding-left: 15px;
@@ -43,19 +39,34 @@ h2 {
 input {
   background-color: #e3e3e3;
 }
+.button-container {
+  display: flex; 
+  justify-content: center;
+}
 button {
   background-color: #e3e3e3;
-}
-#name-col {
-  grid-column: 1;
 }
 .btn-center {
   text-align: center;
 }
-/* ul {
-  text-align: justify-all;
-} */
 li {
   list-style-type: none;  
   padding-left: 0;
+}
+  
+#name-col {
+   grid-column-start: 2;
+   grid-column-end: 3;
+}
+#qty-col {
+   grid-column-start: 3;
+   grid-column-end: 4;
+}
+#units-col {
+   grid-column-start: 4;
+   grid-column-end: 5;
+}
+#brand-col {
+   grid-column-start: 5;
+   grid-column-end: 6;
 }
