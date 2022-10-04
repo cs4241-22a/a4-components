@@ -1,0 +1,64 @@
+{
+  "name": "a4-components",
+  "description": "My project is a simple todo list. There are three input fields, the task(String), due date(4 digit number of month followed by day), \r and priority(high, medium or low). To make a new entry, fill out all three fields and hit submit. An entry appears in the table below,\r which shows all the results. Urgent, the fourth derived field in the table, is labeled with 1 if the priority is high and the date \r is the soonest. Otherwise it is labeled 0. To remove the top entry, press the remove button on top of the table.\r I used flexbox as my CSS positioning technique. In the body, I use flex-direction: column and align-items: center to align\r the form entry, remove button and todo list vertically in the center. I also use it to format the table so that the entries\r are stacked on top of each other and spaced evenly.\r I had element selectors for body and button, id selectors for the table #todoList, and class selectors for the form of class\r formItems. For fonts, I used Roboto from Google Fonts.",
+  "author": "",
+  "extends": "@parcel/config-default",
+  "main": "server.new.js",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build": "webpack --config webpack.config.js",
+    "build-prod": "webpack --mode production"
+  },
+  "dependencies": {
+    "@snowpack/plugin-sass": "^1.4.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "babel": "^6.23.0",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21",
+    "mime": "^2.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "run": "^1.4.0",
+    "schema-utils": "^4.0.0"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-react": "^7.18.6",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "parcel": "^2.7.0",
+    "parcel-bundler": "^1.3.1",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "querystring-es3": "^0.2.1",
+    "snowpack": "^3.8.8",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdu1/a4-components.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kdu1/a4-components/issues"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "homepage": "https://github.com/kdu1/a4-components#readme"
+}
