@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9bee4f6d.css",
+    "main.js": "/static/js/main.f4846179.js",
+    "static/media/goldPeaks.svg": "/static/media/goldPeaks.db9486b04295e8f50cfb.svg",
+    "index.html": "/index.html",
+    "main.9bee4f6d.css.map": "/static/css/main.9bee4f6d.css.map",
+    "main.f4846179.js.map": "/static/js/main.f4846179.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9bee4f6d.css",
+    "static/js/main.f4846179.js"
+  ]
+}
