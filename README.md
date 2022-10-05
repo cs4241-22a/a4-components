@@ -4,7 +4,7 @@ Grocery List
 Liliana Foucault
 https://a4-liliana-foucault.glitch.me/
 
-This webpage allows a user to manage a list of groceries. A user can add, remove completed, and remove all items. 
+This webpage allows a user to manage a list of groceries. A user can add, remove completed, and remove all items. This webpage reflects the client side of A2 which does not include modifying the data entries. 
 
 This is a React app that uses an express server suported by snowpack.
 

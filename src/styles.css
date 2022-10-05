@@ -3,7 +3,6 @@
 }
 
 body {
-  background-color: #CCD6D2;
   padding: 0px 30px;
   margin: 0 auto;
 }
@@ -28,9 +27,8 @@ div#buttons {
 button {
   padding: 5px;
   margin-right: 10px;
-  color: white;
   border-radius: 10px;
-  background-color: #65928E;
+  background-color: #dfefef;
 }
 
 button:hover {
@@ -46,4 +44,5 @@ table, th, td, tr {
 
 table {
   width: 100%;
+  background-color: #dddddd;
 }
