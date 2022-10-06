@@ -1,0 +1,112 @@
+/*Style your own assignment! This is fun! */
+body {
+    /* background-image: url("../assets/filmstrip_cropped.jpg"); */
+    background-color:blanchedalmond;
+    background-size: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+header {
+    padding-bottom: 10px;
+}
+
+header, h2 {
+    font-size: 30px;
+}
+
+h1, h2, header,#addmovie {
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+}
+
+h3 {
+    font-weight: normal;
+}
+
+#formsection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.movieform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: solid;
+    padding: 20px;
+}
+.moviefield {
+    height: 50px;
+}
+#additionbutton {
+    max-width: 70px;
+    margin-bottom: 10px;
+}
+
+#rankkey {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colorbox {
+  height: 31px;
+  width: 31px;
+  margin-right: 10px;
+  color: white;
+}
+.red {
+    background-color: red;
+}
+.orange {
+    background-color: orange;
+}
+.yellow {
+    background-color: #ffe100;
+}
+.blue {
+    background-color: blue;
+}
+.green {
+    background-color: green;
+}
+
+#results {
+    display: grid;
+    grid-template: auto / 1fr 1fr 1fr;
+    margin-top: 20px;
+}
+.resultscell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 200px;
+    width: 220px;
+    border: 5px solid;
+}
+#movietitledisplay {
+    overflow-wrap: break-word;
+}
+#resultscell, #movietitledisplay {
+    max-width: 200px;
+}
+
+p {
+    margin-top: 0%;
+    margin-bottom: 0%;
+    line-height: 2;
+}
