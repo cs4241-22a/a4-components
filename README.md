@@ -1,33 +1,27 @@
-Assignment 4 - Components
+Assignment 4 - Components with React
 ===
 
-Due: October 4th, by 11:59 AM.
+<b>Jacob Chlebowski </b>- jachlebowski@wpi.edu <br>
+Heroku &rarr; https://a4-jacob-chlebowski.herokuapp.com/  <br>
 
-For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
 
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
+Welcome to my WebWare Assignment 4. This assignment focuses on the same functionality as Assignment 3, but with [React](https://reactjs.org/). React allowed me to use components for the data display as well as updating the page.
 
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
-
-Deliverables
+Added Components
 ---
 
-Do the following to complete this assignment:
+<b> On the Login Page:</b> <br>
+1. I've added a `Fun Button` that reacts when clicked. This was my first React component using a `.jsx`, so I kept it simple. This new technology improved the development experience because it allowed me to understand how React works before adding more React components.
 
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
+2. Also on the login page, I managed to successfully render the login form when the user clicks `Click here to enter information...`. This was an improvement to my development experience because I believe it allows the user to consider if they're signing in, or creating a new account below. Once they know for sure, the form is easily accessible to them.
 
-## Your Web Application Title
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
+<b> On the Data/Table Page:</b><br>
+1. I've added a React component that renders a different color. Upon clicking the title `My Homework Assignments...click me`, it will change the text color between blue and red, all without reloading the page. This new technology improved the development experience because I learned how to switch between color states in the render function.
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
 
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+2. When removing an assignment under the form `Remove Assignment`, the form now plants a text that states that confirms if the user has removed an assignment or not. This new technology hindered the development exerience becasue Assignment 3 originally automatically reloaded in a seemless transition when removing an assignment. Even though I used React here as part of the assingment in `table_remove.jsx`, it wasn't really necessary.
+
+
+3. I added a review component on the bottom of the page. This component allows the user to write in a review, and reacts by planting the user's review on the page. This new technology improved the development experience because it was a great way to learn about React in a more advanced way than I had originally intended. This was a completely new component, so I started the html section from scratch for this one, which was fun!

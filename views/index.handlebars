@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/login_style.css">
+   <meta charset="utf-8">
+    <meta name='viewport' content="width=device-width">
+    <meta name="description" content="loginPage">
+  <title>Sign in</title>
+</head>
+
+<body>
+  <div class="main">
+    <p class="sign" align="center">Sign in</p>
+  
+   <div id="login_form"></div>
+
+
+      <br>
+      <p class="forgot" align="center">default username: 'tester' , default password: 'tester123'</p>
+      
+      <p class="forgot" align="center">another username: 'username' , another password: 'password'</p>
+
+      <p class="forgot" align="center">CREATE NEW ACCOUNT BELOW</p>
+      
+            
+                
+    </div>
+    <div align="center" style="color:red">{{{msg}}}</div>
+
+    <br>
+    <div id="confetti"></div>
+   
+    <br>
+
+
+    <div class "other">
+      <p class="new_sign" align="center">New Account</p>
+
+    <form class="form1" action="/new_account" method="POST">
+      <input class="new_un " id="new_username" type="text" align="center" placeholder="new username" name="new_username">
+      <input class="new_pass" id="new_password" type="password" align="center" placeholder="new password" name="new_password">
+      <button type="submit" class="new_submit" align="center">Submit</button>
+      <br>
+    </form>
+
+    </div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    
+
+    <script type="text/babel" src="./js/login_form.jsx"></script>
+    <script type="text/babel" src="./js/confetti.jsx"></script>
+
+
+</body>
+
+</html>
