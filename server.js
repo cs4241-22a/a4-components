@@ -8,24 +8,21 @@ const appdata = [
   {'title': 'Sharknado', 'year': 2013, 'rank': 3, 'date_watched': 'MAR 02 2014', 'years_between': 1},
   {'title': 'The 36 Chambers of Shaolin', 'year': 1978, 'rank': 5, 'date_watched': 'DEC 16 1978', 'years_between': 0} 
 ]
-let movieDeleteState = "";
 
 app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/appdata', (req, res) => res.json(appdata));
-app.get('/moviedeletestate', (req, res) => res.send(movieDeleteState));
 
 app.post('/deletemovie', (req, res) => {
     const movieToDelete = appdata.findIndex((entry) => entry.title === req.body.title);
     if(movieToDelete !== -1)
     {
       appdata.splice(movieToDelete, 1);
-      movieDeleteState = "";
+      res.send("");
     } else {
-      movieDeleteState = "This movie does not already exist!";
+      res.send("This movie does not already exist!");
     }
-    res.sendStatus(200);
 });
 
 app.post('/addmovie', (req, res) => {

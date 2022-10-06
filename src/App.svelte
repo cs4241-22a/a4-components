@@ -46,7 +46,8 @@
   /**
   * Send json string to server with info of movie to add
   */
-  const addMovie = () => {
+  const addMovie = (e) => {
+    e.preventDefault();
     const inputTitle = document.getElementById('movietitletoadd'),
         inputYear = document.getElementById('movieyear'),
         inputRank = document.getElementById('movierank'),
@@ -58,9 +59,12 @@
         body,
         headers: { 'Content-Type': 'application/json' }
     })
+    getResultsPromise = getResults();
+    movieDeleteState = "";
   }
 
-  const deleteMovie = () => {
+  const deleteMovie = (e) => {
+    e.preventDefault();
     const json = { title: document.getElementById('movietitletodelete').value },
     body = JSON.stringify(json);
 
@@ -69,25 +73,16 @@
         body,
         headers: { 'Content-Type': 'application/json' }
     })
-  }
-
-  const getMovieDeleteState = function() {
-    const state = fetch('/moviedeletestate',
-        {
-          method: 'GET'
-        })
-        .then(function (response) {
-          return response.text()
-        })
-        .then(function (text) {
-          return text;
-        });
-
-    return state;
+    .then(response => response.text())
+    .then(text => {
+      movieDeleteState = text;
+    })
+    getResultsPromise = getResults();
   }
 
   let getResultsPromise = getResults();
-  let getDeleteStatePromise = getMovieDeleteState();
+  let movieDeleteState = "";
+
 </script>
 
 	<h1>Movie Ranker</h1>
@@ -115,9 +110,7 @@
           <input type='text' id='movietitletodelete' placeholder="Enter Movie Title">
         </div>
         <button type="submit" id="deletionbutton">delete</button>
-        {#await getDeleteStatePromise then text}
-          <p id="moviedne" style="color: red;">{text}</p>
-        {/await}
+        <p id="moviedne" style="color: red;">{movieDeleteState}</p>
       </form>
     </div>
     <h2>Movies:</h2>
