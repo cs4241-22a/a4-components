@@ -1,6 +1,8 @@
 ## Changes for A4 
 
+Did the new technology improve or hinder the development experience?
 
+Overall, using React helped organize certain elements of my website way more effectively. It made my code more readable and easier to manage variables. React also allowed me to better understand the values I was updating via the use of getter and setter methods similar to ones found in more object-oriented programming languages like Java. I changed my original user form which was made up of input fields and replaced it with a form tag as well as converted all my divs to react components.
 
 ## CS:GO User Intake Form
 
