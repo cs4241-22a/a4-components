@@ -1,33 +1,35 @@
-Assignment 4 - Components
-===
+## Changes for A4 
 
-Due: October 4th, by 11:59 AM.
+Did the new technology improve or hinder the development experience?
 
-For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
+Overall, using React helped organize certain elements of my website way more effectively. It made my code more readable and easier to manage variables. React also allowed me to better understand the values I was updating via the use of getter and setter methods similar to ones found in more object-oriented programming languages like Java. I changed my original user form which was made up of input fields and replaced it with a form tag as well as converted all my divs to react components.
 
-[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
-[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
+## CS:GO User Intake Form
 
-This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
+Link to website: https://webwarea4.herokuapp.com/
 
-Deliverables
----
+The goal of my application was to create an account based intake form for stundents looking to join an esports team. I made the form specifically for CS:GO player, but it could be modified to fit any game or platform with a few minor tweeks. When building my application I ran into many hurdles with express and getting data to go back and forth properly. I also had an extremely annoying bug where one of my javascript files managed to unexplainably break google light house, but the entire script works fine when put into a script tag instead. My authentication strategy was rather simple. I used a username and password system and would then redirect the user to home.html with there information if there username and passwords were correct. I used bootstrap as my CSS frame work and modified there style template to create a blended hue of red and blue for my background color. 
 
-Do the following to complete this assignment:
+The five Express middleware packages I used were 
 
-1. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
-4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
+Express body-parser used for parsing the body of html files as well as object from my data base
+Express static used express dot static to initialize my public and view directory for use with other Express packages.  
+Express get used express get to retrieve information from my database and to get directories for essential files for the site. 
+Express post to upload, add, and update information to my database as well as update the site based on values already stored in the database for a given user profile. 
+Express JSON used to allow for the parsing of JSON objects that were being sent back and forth from the database and the user input form. 
+Express Use to allow for the use and inplimentation of other express middleware packages 
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
 
-## Your Web Application Title
 
-your hosting link e.g. http://a4-charlieroberts.glitch.me
+## Technical Achievements
+- **Tech Achievement 1**: Instead of Glitch, I hosted my site on Heroku instead
+- **Tech Achievement 2**: Got 100% on all google light house tests 
 
-Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
+![image](https://user-images.githubusercontent.com/73297412/192719849-218abd23-cdd8-42ff-ab71-a61a9ea8934f.png)
 
-Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
+
+### Design/Evaluation Achievements
+- **Design Achievement 1**: I implimented the CRAP (contrast, repetition, alignment, and proximity) principles into my site:
+
+For contrast my site used a vibrant mixed hue background that blended complementary colors like blue and orange to create a unique but appealing visual look to my site. I used rounded white card components from bootstrap for my main content which popped well in contrast with the colorful background. I added black boarders to certain text boxes and cards to really put an emphasis on the important information on the screen. Using contrast I was able to make my cards and textboxes pop without it being to distracting from the overall aesthetic of the site. For Repetition I used the same theme throughout the pages on the site with main color palette being blue, orange, and white. I also used similar geometry for my buttons and cards surround the content of my page. The buttons were all blue with padding when you hovered over them, and the cards were all had rounded corners with a white background. My text box inputs all had similar white backgrounds with rounded corners but changed to a lighter blue when being interacted with. For alignment almost all the content on the sight had a focus on symmetry. In the case of the login and registration screen symmetry was used for the alignment of the text boxes and the buttons. I then aligned all these elements withing a card object which I could move to be centered on the page no matter the screen size of the device viewing the website. This automatic centering helps the cite remain consistent across devices with varying screen resolutions and aspect ratios. As for proximity I made sure that everything was evenly spaced out so that the gaps between elements would remain consistent through out the sites design. In particular I had to put in a quite a bit of effort adding padding or recentering button divs in order to make the spacing look good. I also had to use bootstraps cards and containers features to orient certain elements correctly. Overall, I am happy with the way the website turned out and think I incorporated these design rules well when building my website.  
+
