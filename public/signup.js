@@ -19,8 +19,8 @@ signupForm.addEventListener('submit', async e => {
        "password": document.getElementById("floatingPassword").value,
        "firstname": "",
        "lastname": "",
-       "discord id": "",
-       "rank ": "",
+       "discordID": "",
+       "rank": "",
        "steamID": ""
       }
       

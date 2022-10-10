@@ -1,146 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>User Profile</title> 
-    <style>
-        body {
-          background: #007bff;
-          background: linear-gradient(to right, #FF5733, #33AEFF);    
-        }
+<head>
+  <title>User Profile</title>
+  <style>
+    body {
+      background: #007bff;
+      background: linear-gradient(to right, #FF5733, #33AEFF);
+    }
 
-        .form-control:focus {
-            box-shadow: none;
-            border-color: #BA68C8
-        }
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #BA68C8
+    }
 
-        .profile-button {
-            background: rgb(99, 39, 120);
-            box-shadow: none;
-            border: none
-        }
+    .profile-button {
+      background: rgb(99, 39, 120);
+      box-shadow: none;
+      border: none
+    }
 
-        .profile-button:hover {
-            background: #682773
-        }
+    .profile-button:hover {
+      background: #682773
+    }
 
-        .profile-button:focus {
-            background: #682773;
-            box-shadow: none
-        }
+    .profile-button:focus {
+      background: #682773;
+      box-shadow: none
+    }
 
-        .profile-button:active {
-            background: #682773;
-            box-shadow: none
-        }
+    .profile-button:active {
+      background: #682773;
+      box-shadow: none
+    }
 
-        .back:hover {
-            color: #682773;
-            cursor: pointer
-        }
+    .back:hover {
+      color: #682773;
+      cursor: pointer
+    }
 
-        .labels {
-            font-size: 11px
-        }
+    .labels {
+      font-size: 11px
+    }
 
-        .add-experience:hover {
-            background: #BA68C8;
-            color: #fff;
-            cursor: pointer;
-            border: solid 1px #BA68C8
-        }
-    </style>
+    .add-experience:hover {
+      background: #BA68C8;
+      color: #fff;
+      cursor: pointer;
+      border: solid 1px #BA68C8
+    }
+  </style>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
       'use strict';
+
+      const ProfileInfo = (props) => {
+
+        if (Object.keys(props.data).length === 0) {
+          if (props.data.firstname == undefined || props.data.firstname == "" ) {
+          props.data.firstname = "YOU HAVE NOT SET A NAME YET :("
+          }
+          return (
+            <div className="col-md-3 border-right">
+              <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                  <img className="rounded-circle mt-5" width="150px" alt="Default Profile Picture"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
+                  <span className="font-weight-bold" id="fullname">Content not yet loaded</span>
+                </div>
+            </div>
+          )
+        } else {
+          return (
+            <div className="col-md-3 border-right">
+              <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                  <img className="rounded-circle mt-5" width="150px" alt="Default Profile Picture"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
+                  <span className="font-weight-bold" id="fullname">{props.data.firstname}</span>
+                  <span id="email" className="text-black-100">{props.data.email}</span>
+                </div>
+            </div>
+        )}
+      }
+
+      const UserForm = (props) => {
+
+        const [firstname, setFirstname] = React.useState("")
+        const [lastname, setLastname] = React.useState("")
+        const [discord, setDiscord] = React.useState("")
+        const [rank, setRank] = React.useState("")
+        const [steam, setSteam] = React.useState("")
+
+        const editUser = async (e) => {
+          e.preventDefault()
+
+          let JSONObject =
+            {"username": props.data.username,
+            "firstname": firstname,
+            "lastname": lastname,
+            "discordID": discord,
+            "rank": rank,
+            "steamID": steam
+            }
+
+          const response = await fetch('/update',  {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify(JSONObject)
+          })  
+          const responseJSON = await response.json()
+          window.location.replace(window.location.href)
+        }
+
+        React.useEffect(() => {
+          setFirstname(props.data.firstname)
+          setLastname(props.data.lastname)
+          setDiscord(props.data.discordID)
+          setRank(props.data.rank)
+          setSteam(props.data.steamID)
+        }, [props.data])
+
+        return (
+          <form onSubmit={(e) => {editUser(e) }}>
+            <div className="row mt-2">
+                        <div className="col-md-6">
+                            <label className="labels">Name</label>
+                            <input type="text" className="form-control" placeholder="First Name"
+                                value={firstname} onChange={(e) => {setFirstname(e.target.value)}} />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="labels">Lastname</label>
+                            <input type="text" className="form-control" value={lastname}
+                                placeholder="Last Name" onChange={(e) => { setLastname(e.target.value) }}/>
+                        </div>
+            </div>
+                    <div className="col-md-12">
+                        <label className="labels">Discord ID</label>
+                        <input  type="text" className="form-control" placeholder="Enter Your Discord ID"
+                            value={discord} onChange={(e) => {setDiscord(e.target.value)}}/>
+                    </div>
+                    <div className="col-md-12">
+                        <label className="labels">Rank</label>
+                        <input type="text" className="form-control" placeholder="Enter Your CS:GO Rank"
+                            value={rank} onChange={(e) => {setRank(e.target.value)}}/>
+                    </div>
+                    <div className="col-md-12">
+                        <label className="labels">Steam ID</label>
+                        <input type="text" className="form-control" placeholder="Enter Your Steam ID"
+                            value={steam} onChange={(e) => {setSteam(e.target.value)}}/>
+                    </div>
+                    <div className="mt-5 text-center">
+                        <button className="btn btn-primary profile-button">
+                            Save Profile
+                        </button>
+                    </div>
+            </form>
+        )
+      }
+
+      const FormHeader = () => {
+
+        return (
+          <div className="d-flex justify-content-between align-items-center mb-3">
+              <h4 className="text-right">Profile Settings</h4>
+          </div>
+        )
+      }
+      
       const App = () => {
-        return ( <div className="container">
-      <div className="container rounded bg-white mt-4 mb-5 " style = "border: 2px solid black">
-        <div className="row">
-          <div className="col-md-3 border-right">
-            <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-              <img
-                className="rounded-circle mt-5"
-                width="150px"
-                alt = "Default Profile Picture"
-                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-              ></img>
-              <span className="font-weight-bold" id = "fullname">Edogaru</span>
-              <span id="email" className="text-black-100">edogaru@mail.com.my</span>
+
+        const [data, setData] = React.useState({})
+
+        React.useEffect(() => { 
+            let str = window.location.href
+            str = str.substring(str.lastIndexOf("/")+1)
+            getData(str);
+        },[])
+        
+        async function getData(name){
+          const response = await fetch("/getData", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({username: name})
+          })  
+
+          const responseJSON = await response.json();
+          setData(responseJSON)
+        }
+
+        return ( 
+          <div className="container">
+            <div className="container rounded bg-white mt-4 mb-5 " style={{border: "2px solid black"}}>
+              <div className="row">
+                <ProfileInfo data={{email: data.username, firstname: data.firstname}} />
+            <div className="col-md-5 border-right">
+                <div className="p-3 py-5">
+                    < FormHeader />
+                    <UserForm data={data}/>
+                </div>
             </div>
-          </div>
-          <div className="col-md-5 border-right">
-            <div className="p-3 py-5">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="text-right">Profile Settings</h4>
               </div>
-                <div className="row mt-2">
-                  <div className="col-md-6">
-                    <label className="labels">Name</label>
-                    <input
-                      id = "firstname"
-                      type="text"
-                      className="form-control"
-                      placeholder="First Name"
-                      value=""
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label className="labels">Lastname</label>
-                    <input
-                      id = "lastname"
-                      type="text"
-                      className="form-control"
-                      value=""
-                      placeholder="Last Name"
-                    />
-                  </div>
-                </div>
-                <div className="col-md-12">
-                  <label className="labels">Discord ID</label>
-                  <input
-                    id = "discordID"
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Your Discord ID"
-                    value=""
-                  />
-                </div>
-                <div className="col-md-12">
-                  <label className="labels">Rank</label
-                  ><input
-                    id = "rank"
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Your CS:GO Rank"
-                    value=""
-                  />
-                </div>
-                <div className="col-md-12">
-                  <label className="labels">Steam ID</label
-                  ><input
-                    id = "steamID"
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Your Steam ID"
-                    value=""
-                  />
-                </div>
-                <div className="mt-5 text-center">
-                  <button className="btn btn-primary profile-button" type="button" id ="saveform">
-                    Save Profile
-                  </button>
-                </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>); 
+   ); 
       }
       const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(<App/>);
     </script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -160,72 +227,6 @@
            of salt that you'll keep coming back for."/>
   </head>
   <body>
-    <div id = "root">
-
-    </div>
-   
+    <div id = "root"></div>
   </body>
-  // //<script>
-  //   const saveForm = document.getElementById("saveform");
-  //   const email = document.getElementById("email");
-  //   const fullname = document.getElementById("fullname");
-  //   const firstname = document.getElementById("firstname");
-  //   const lastname = document.getElementById("lastname");
-  //   const discordID = document.getElementById("discordID")
-  //   const rank = document.getElementById("rank");
-  //   const steamID = document.getElementById("steamID");
-  //   let linkstr = " ";
-
-  //   window.onload = (event) => {
-  //     console.log('page is fully loaded');
-  //     email.innerHTML = "faceitlvl2@faceit.com";
-  //     linkstr = window.location.href;
-  //     linkstr = linkstr.substring(linkstr.lastIndexOf("/")+1);
-  //     getData(linkstr);
-  //   };
-
-  //   saveForm.addEventListener("click", async function(event) {
-
-  //     console.log(linkstr);
-  //     //event.preventDefault();
-
-  //     let JSONObject =
-  //           {"username": linkstr,
-  //           "password": "",
-  //           "firstname": document.getElementById("firstname").value,
-  //           "lastname": document.getElementById("lastname").value,
-  //           "discordID": document.getElementById("discordID").value,
-  //           "rank": document.getElementById("rank").value,
-  //           "steamID": document.getElementById("steamID").value
-  //           }
-
-      
-  //     const response = await fetch( '/update', {
-  //       method:  'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body:    JSON.stringify(JSONObject)
-  //     })
-  //     console.log("fetch");
-  //     location.reload();
-  //   })
-
-  //   async function getData(name){
-  //     const response = await fetch("/getData", {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({username: name})
-  //     })  
-      
-  //     const responseJSON = await response.json();
-  //     email.innerHTML = responseJSON.username;
-  //     fullname.innerHTML = responseJSON.firstname + " " + responseJSON.lastname;
-      
-  //     firstname.value = responseJSON.firstname;
-  //     lastname.value = responseJSON.lastname;
-  //     discordID.value = responseJSON.discordID;
-  //     rank.value = responseJSON.rank;
-  //     steamID.value = responseJSON.steamID; 
-  //     console.log(responseJSON);
-  //   }
-  // //</script>
 </html>
