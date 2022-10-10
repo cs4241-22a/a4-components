@@ -6,14 +6,15 @@ const express = require( 'express' ),
       mongodb = require( 'mongodb' ),
       dotenv = require('dotenv').config(),
       app = express(),
-      admin = express()
+      admin = express(),
+      path = require('path')
      
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static("views"));
 app.use( express.json() );
 
