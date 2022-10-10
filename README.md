@@ -1,6 +1,10 @@
+## Changes for A4 
+
+
+
 ## CS:GO User Intake Form
 
-Link to website: https://webwarea3.herokuapp.com/
+Link to website: https://webwarea4.herokuapp.com/
 
 The goal of my application was to create an account based intake form for stundents looking to join an esports team. I made the form specifically for CS:GO player, but it could be modified to fit any game or platform with a few minor tweeks. When building my application I ran into many hurdles with express and getting data to go back and forth properly. I also had an extremely annoying bug where one of my javascript files managed to unexplainably break google light house, but the entire script works fine when put into a script tag instead. My authentication strategy was rather simple. I used a username and password system and would then redirect the user to home.html with there information if there username and passwords were correct. I used bootstrap as my CSS frame work and modified there style template to create a blended hue of red and blue for my background color. 
 
