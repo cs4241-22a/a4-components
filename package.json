@@ -62,7 +62,7 @@
     "os": false
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "16.x"
   },
   "homepage": "https://github.com/kdu1/a4-components#readme"
 }
