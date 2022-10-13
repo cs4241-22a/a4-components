@@ -1,0 +1,16 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #212121;
+  color: #fff;
+  font-family: monospace, serif;
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: 23px;
+}
