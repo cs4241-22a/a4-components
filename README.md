@@ -1,31 +1,33 @@
-Assignment 3 - Persistence: Two-tier Web Application with Database, Express server, and CSS template
+Assignment 4 - Components
+===
 
-## Movielist V2
+Due: October 4th, by 11:59 AM.
 
-https://a3-edwardclifford.herokuapp.com/
+For this assignment you will re-implement the client side portion of *either* A2 or A3 using either React or Svelte components. If you choose A3 you only need to use components for the data display / updating; you can leave your login UI as is.
 
-The goal of this application is to create a persistent movie watch list for users. A user will be able to log in, view their list of movies, add to that list, and view details about that movie. 
+[Svelte Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_svelte.md)  
+[React Tutorial](https://github.com/cs4241-21a/cs4241-21a.github.io/blob/main/using_react.md)  
 
-The largest challenge I faced when implementing the backend was configuring express to recognize my requests and read the request body json objects. It wasn't until I figured out I needed to use middleware to parse the request that I was able to reveal the body contents. This was escpecially difficult because the problem was not apparent, and the body attribute was completely missing from the request object. No errors were thrown and I was unable to log where the body was being recieved or parsed.
+This project can be implemented on any hosting service (Glitch, DigitalOcean, Heroku etc.), however, you must include all files in your GitHub repo so that the course staff can view them.
 
-My authentication strategy is comparing a plaintext password to a stored plaintext password in the database on the server. If this comparison passes, the cookie session is set to logged in and the user is authenticated for that username. This was the most straightforward system to implement.
+Deliverables
+---
 
-I used pure.css for some lightweight styling of components. The app layout is very straightforward and only has 2 sections, list and add. I had already implemented a collapsible in a2, and chose to use that implementation instead of a collapsible provided by a css framework.
+Do the following to complete this assignment:
 
-Express middleware:
-  cookie-session: Allows user to sign in and fetch their movie list. The cookie tracks if a client is logged in and the user id of the logged in account.
-  urlencoded: Allows post and get requests to be handled in the URL (all api requests)
-  json: Allows client to send json encoded data in the body of the request (used when selecting a movie)
-  static: Serves the index.html to the user when they visit the site.
-  (custom) edit POST: Function handling list editing. Allows user to add, remove, or move movies in their list. The command and the affected movie is sent in the body of the request.
+1. Implement your project with the above requirements.
+3. Test your project to make sure that when someone goes to your main page on Glitch/Heroku/etc., it displays correctly.
+4. Ensure that your project has the proper naming scheme `a4-firstname-lastname` so we can find it.
+5. Fork this repository and modify the README to the specifications below. Be sure to add *all* project files.
+6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a4-firstname-lastname`.
 
-## Technical Achievements
-- **Tech Achievement 2**: Site is hosted on heroku. The advantage is automatic deployment of a github branch, so anytime I push to main, the app pulls down the change and redeploys. Only issue I had was configuring PORT to accept a congfig string instead of a declared value.
-- **Tech Acievement 3**: Site hits 100 in all lighthouse values. Performance right now hovers around 99-100, but it was consistently 100 before I added the accessibility labels required to lift accessibility to 100. The performance rating seems somewhat arbitrary and based on system performance.
+Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
+---
 
-![image](https://user-images.githubusercontent.com/36415841/195995371-a268c01c-9450-4516-b4ec-bc8dc287556e.png)
+## Your Web Application Title
 
-Also, following lighthouse suggestions to improve load time by 48ms actually slowed down the site more, so I struggle with this metric being 99 not 100. Maybe worth 4/5?
+your hosting link e.g. http://a4-charlieroberts.glitch.me
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative...
+Include a very brief summary of your project here and what you changed / added to assignment #3. Briefly (3–4 sentences) answer the following question: did the new technology improve or hinder the development experience?
+
+Unlike previous assignments, this assignment will be solely graded on whether or not you successfully complete it. Partial credit will be generously given.
