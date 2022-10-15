@@ -2,6 +2,8 @@ Assignment 3 - Persistence: Two-tier Web Application with Database, Express serv
 
 ## Movielist V2
 
+https://a3-edwardclifford.herokuapp.com/
+
 The goal of this application is to create a persistent movie watch list for users. A user will be able to log in, view their list of movies, add to that list, and view details about that movie. 
 
 The largest challenge I faced when implementing the backend was configuring express to recognize my requests and read the request body json objects. It wasn't until I figured out I needed to use middleware to parse the request that I was able to reveal the body contents. This was escpecially difficult because the problem was not apparent, and the body attribute was completely missing from the request object. No errors were thrown and I was unable to log where the body was being recieved or parsed.
