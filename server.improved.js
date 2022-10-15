@@ -1,143 +1,210 @@
 const fetch = (...args) =>
   import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const port = 3000;
+const dir  = 'public/';
+const path = require('path');
 
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const express = require('express');
+const app = express();
+const cookie = require("cookie-session");
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const mongodb = require("mongodb");
 
-const appdata = []
+let users = []
+const dbUser = 'movielist';
+const dbPass = 'cs4241a3';
 
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
-})
+const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.afow29j.mongodb.net/?retryWrites=true&w=majority`;
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverApi: ServerApiVersion.v1,
+});
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }
-  else if (request.url === '/list') {
-    sendList(response);
-  }
-  else{
-    sendFile( response, filename )
-  }
-}
+const refreshDB = () => {
+  return client
+    .connect()
+    .then(() => {
+      return client.db("movielist").collection("users");
+    })
+    .then((collection) => {
+      users = collection;
+      return users.find({}).toArray();
+    });
+};
+refreshDB().then((appdata) => {
+  console.log('Loaded db:');
+  console.log(appdata);
+});
 
-const handlePost = function( request, response ) {
-  let dataString = ''
-
-  request.on( 'data', function( data ) {
-      dataString += data 
+app.use(
+  cookie({
+    name: "session",
+    keys: [
+      "2iMAwLWcViIKX5kAXuted14Jejr5Nwd4",
+      "8ihbYfca2GFjh3eTvL1zpaWbgY0fZGWh",
+    ],
   })
+);
 
-  request.on( 'end', function() {
-    resp = JSON.parse(dataString)
-    console.log( JSON.parse( dataString ) )
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/', express.static(path.join(__dirname, dir)));
 
-    if (resp['type'] === 'search') {
-      console.log("Search...");
-      sendMovieQueryResp(resp['title'], response);
-    }
-    else if (resp['type'] === 'add') {
-      // Derive the imdb link using the imdbID field
-      let entry = resp['entry'];
-      entry['URL'] = `https://www.imdb.com/title/${entry['imdbID']}/`;
+app.post('/login', (req, res) => {
+  req.session.id = undefined;
+  req.session.logged = false;
+
+  let username = req.body.username;
+  let password = req.body.password;
+
+  refreshDB().then((appdata) => {
+    let user = appdata.find(user =>
+      user.name === username
+    );
+
+    if (user && password === user.password) {
+      req.session.id = user._id;
+      req.session.logged = true;
       
-      if (findTitle(entry) === -1) {
-        appdata.push(entry);
-      }
-      response.writeHeader(200);
-      response.end();
+      res.send({ valid: true });
+    } else {
+      res.send({ valid: false });
     }
-    else if (resp['type'] === 'rmv') {
-      let idx = findTitle(resp['entry']);
-      if (idx !== -1) {
-        appdata.splice(idx, 1);
-      }
-      response.writeHeader(200);
-      response.end();
-    }
-    else if (resp['type'] === 'movup') {
-      let idx = findTitle(resp['entry']);
-      if (idx > 0) {
-        temp = appdata[idx - 1];
-        appdata[idx - 1] = appdata[idx];
-        appdata[idx] = temp;
-      }
-      response.writeHeader(200);
-      response.end();
-    }
-    else if (resp['type'] === 'movdn') {
-      let idx = findTitle(resp['entry']);
-      if (idx < appdata.length - 1) {
-        temp = appdata[idx + 1];
-        appdata[idx + 1] = appdata[idx];
-        appdata[idx] = temp;
-      }
-      response.writeHeader(200);
-      response.end();
-    }
-
   })
-}
+});
 
-const sendList = function (response) {
-  response.writeHeader(200, {'Content-Type': 'application/json'});
-  response.end(JSON.stringify(appdata));
-}
+app.post('/register', (req, res) => {
+  req.session.id = undefined;
+  req.session.logged = false;
 
+  let username = req.body.username;
+  let password = req.body.password;
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+  refreshDB().then((appdata) => {
+    let user = appdata.find(user =>
+      user.name === username
+    );
 
-   fs.readFile( filename, function( err, content ) {
+    if (!user) {      
+      users.insertOne({
+        name: username,
+        password: password,
+        movielist: []
+      });
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+      refreshDB().then((appdata) => {
+        user = appdata.find(user =>
+          user.name === username
+        );
+        
+        req.session.id = user._id;
+        req.session.logged = true;
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+        res.send({ valid: true });
+      });
 
-     }else{
+    } else {
+      res.send({ valid: false });
+    }
+  })
+});
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
+app.post('/logout', (req, res) => {
+  req.session.id = undefined;
+  req.session.logged = false;
+});
 
-     }
-   })
-}
+app.get('/list', (req, res) => {
+  if (req.session.logged) {
+    refreshDB().then((appdata) => {
+      let user = appdata.find(user =>
+        user._id == req.session.id
+      );
+      
+      res.send({ list: JSON.stringify(user.movielist),
+                 user: user.name 
+                });
+    });
+  }
+});
 
-const sendMovieQueryResp = function (movieTitle, response) {
-  movieStr = movieTitle.trim().replace(/ /g, '+');
+app.post('/search', (req, res) => {
+  movieStr = req.body.title.trim().replace(/ /g, '+');
   fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=60b6c6a4&s=${movieStr}&plot=short&r=json`)
     .then((response) => response.json())
     .then((data) => {
-      const json = { type: "queryResp",
-               data: data},
-      body = JSON.stringify(json);
-      response.writeHeader(200, { 'Content-Type': 'application/json'});
-      response.end(body);
+      res.send(JSON.stringify({
+        type: "queryResp",
+               data: data
+      }));
       console.log("Sent response");
-      console.log(body);
     });
-}
+});
 
-const findTitle = function (obj) {
+app.post('/edit', (req, res) => {
+  if (req.session.logged) {
+    refreshDB().then((appdata) => {
+      let user = appdata.find(user =>
+        user._id == req.session.id
+      );
+      
+      const entry = req.body.entry;
+      const movielist = user.movielist;
+      const idx = findTitle(entry, movielist);
+
+      switch (req.body.type) {
+        case 'add':
+          entry['URL'] = `https://www.imdb.com/title/${entry['imdbID']}/`;
+              
+          if (idx === -1)
+            movielist.push(entry);
+          break;
+    
+        case 'rmv':
+          if (idx !== -1)
+            movielist.splice(idx, 1);
+          break;
+        
+        case 'movup':
+          if (idx > 0) {
+            temp = movielist[idx - 1];
+            movielist[idx - 1] = movielist[idx];
+            movielist[idx] = temp;
+          }
+          break;
+        
+        case 'movdn':
+          if (idx < movielist.length - 1) {
+            temp = movielist[idx + 1];
+            movielist[idx + 1] = movielist[idx];
+            movielist[idx] = temp;
+          }
+          break;
+        
+        default:
+          res.sendStatus(400);
+          return;
+        }
+
+        users.updateOne(
+          { _id: user._id },
+          { $set: {
+              movielist: movielist
+            },
+          }
+        );
+    
+        res.sendStatus(200);
+    });
+  }
+});
+
+const findTitle = function (obj, lst) {
   let idx = -1
-  for (i = 0; i < appdata.length; i++) {
-    if (obj["imdbID"] === appdata[i]["imdbID"]) {
+  for (i = 0; i < lst.length; i++) {
+    if (obj["imdbID"] === lst[i]["imdbID"]) {
       idx = i;
     }
   }
@@ -145,6 +212,11 @@ const findTitle = function (obj) {
   return idx;
 }
 
-
-server.listen( process.env.PORT || port )
+app.listen(port, (error) =>{
+  if(!error)
+      console.log("Server is Successfully Running,and App is listening on port "+ port);
+  else 
+      console.log("Error occurred, server can't start", error);
+  }
+);
 
