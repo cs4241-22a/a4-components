@@ -212,7 +212,7 @@ const findTitle = function (obj, lst) {
   return idx;
 }
 
-app.listen(port, (error) =>{
+app.listen(process.env.PORT || port, (error) =>{
   if(!error)
       console.log("Server is Successfully Running,and App is listening on port "+ port);
   else 
