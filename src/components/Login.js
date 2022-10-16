@@ -68,10 +68,20 @@ class Login extends Component{
         return(
             <div className="Login" style={{display: this.props.visible ? "" : "none"}}>
                 <div className="login-field">
-                    <TextField id="username" label="Username" value={this.state.username} onChange={this.handleChange} onKeyDown={this.handleKeypress}/>
+                    <TextField id="username" label="Username" value={this.state.username} sx={{
+                            input: {
+                                color: "#ffffff"
+                            }
+                        }}
+                        onChange={this.handleChange} onKeyDown={this.handleKeypress}/>
                 </div>
                 <div className="login-field">
-                    <TextField id="password" type="password" label="Password" value={this.state.password} onChange={this.handleChange} onKeyDown={this.handleKeypress}/>
+                    <TextField id="password" type="password" label="Password" value={this.state.password} sx={{
+                            input: {
+                                color: "#ffffff"
+                            }
+                        }}
+                        onChange={this.handleChange} onKeyDown={this.handleKeypress}/>
                 </div>
                 <div className="login-field">
                     <ButtonGroup>

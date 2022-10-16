@@ -74,9 +74,9 @@ class List extends Component{
             <div className="title-card" key={idx}>
                 <Title img={img} title={title} year={year} imdb={imdb}/>
                 <ButtonGroup variant="text" color="inherit">
-                    <Button className="rmvbtn" id={`rmv${idx}`} onClick={this.edit} style={{width: "7vw"}}><DeleteForeverIcon/></Button>
-                    <Button className="btn" id={`upp${idx}`} onClick={this.edit} style={{width: "8vw"}}><ArrowDropUpIcon/></Button>
-                    <Button className="btn" id={`dwn${idx}`} onClick={this.edit} style={{width: "7vw"}}><ArrowDropDownIcon/></Button>
+                    <Button className="rmvbtn" id={`rmv${idx}`} onClick={this.edit} style={{width: "7vw"}}><DeleteForeverIcon id={`rmv${idx}`}/></Button>
+                    <Button className="btn" id={`upp${idx}`} onClick={this.edit} style={{width: "8vw"}}><ArrowDropUpIcon id={`upp${idx}`}/></Button>
+                    <Button className="btn" id={`dwn${idx}`} onClick={this.edit} style={{width: "7vw"}}><ArrowDropDownIcon id={`dwn${idx}`}/></Button>
                 </ButtonGroup>
             </div>
         );

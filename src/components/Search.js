@@ -37,7 +37,6 @@ class Search extends Component{
     }
 
     search(e) { 
-        console.log("Doing search");
         e.preventDefault();
 
         this.setState({
