@@ -3,16 +3,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   margin: 0 auto;
   margin-top: 10px;
   width: 400px;
   padding: 1em;
   border: 5px double #cccccc;
   border-radius: 1em;
-  
+
   background-color: #fffafb;
-  
+
 }
 
 ul {
