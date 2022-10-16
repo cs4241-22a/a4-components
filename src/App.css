@@ -1,4 +1,25 @@
 .App {
     margin: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+.Login {
+  width: 100%;
+  text-align: center;
+}
+
+.List {
+  float: right;
+}
+
+.Search {
+  width: 70vw;
+  padding-top: 15px;
+}
+
+#logout {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}

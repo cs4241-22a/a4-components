@@ -1,0 +1,16 @@
+#search-bar-wrapper {
+    display: inline-block;
+    width: 80%;
+    color: #ffffff;
+}
+
+#search-button-wrapper {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 20%;
+    text-align: center;
+}
+
+#search-results {
+    padding-top: 10px;
+}
