@@ -1,0 +1,40 @@
+a.title {
+    width: fit-content;
+}
+
+a.title:link {
+    text-decoration: none;
+}
+
+a.title:visited {
+    text-decoration: none;
+}
+
+a.title:hover {
+    text-decoration: none;
+    filter: brightness(0.4);
+}
+
+a.title:active {
+    text-decoration: none;
+}
+
+div.title {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    width: fit-content;
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.poster {
+    width: 20vw;
+}
+
+p.title {
+    word-wrap: break-word;
+    max-width: 20vw;
+    color: #ffffff;
+}

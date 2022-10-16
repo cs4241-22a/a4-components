@@ -1,0 +1,7 @@
+.login-field {
+    padding: 10px;
+}
+
+#login-error {
+    color: red;
+}
