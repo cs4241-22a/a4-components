@@ -1,5 +1,7 @@
 export default function Sidebar() {
     return(
-        <p>Sidebar</p>
+        <div className="tasks-list--sidebar">
+            <div className="tasks-list--container" id="sidebar"></div>
+        </div>
     )
 }
