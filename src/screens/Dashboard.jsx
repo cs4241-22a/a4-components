@@ -1,5 +1,14 @@
+import Split from "react-split"
+import Sidebar from "../components/Sidebar"
+import Editor from "../components/Editor"
+
 export default function Dashboard() {
     return(
-        <p>Dashboard</p>
+        <Split
+        direction="horizontal"
+        sizes={[30, 70]}>
+            <Sidebar />
+            <Editor />
+        </Split>
     )
 }
