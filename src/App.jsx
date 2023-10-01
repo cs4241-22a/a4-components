@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      {loggedIn ? <Dashboard /> : <Login />}
+      {loggedIn ? <Dashboard /> : <Login setLoggedIn={setLoggedIn} />}
       <button
         onClick={() =>
           setLoggedIn((prevLoggedIn) => {
