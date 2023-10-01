@@ -27,6 +27,10 @@ app.use(
 );
 
 // Requests
+app.get("/init", async (req, res) => {
+    sendTasks(req, res);
+  });
+
 app.post("/login", async (req, res) => {
     // Find the user within the MongoDB
     const response = await usersCollection.findOne({
@@ -49,6 +53,13 @@ app.post("/login", async (req, res) => {
     }
     // Else say user not found and to create a new user.
 });
+
+async function sendTasks(req, res) {
+    if (collection !== null) {
+      const docs = await collection.find({}).toArray();
+      res.json(docs);
+    }
+  }
 
 ViteExpress.listen(app, port, () =>
     console.log("Server is listening on", port)
