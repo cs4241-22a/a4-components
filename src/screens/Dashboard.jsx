@@ -1,12 +1,10 @@
 import Sidebar from "../components/Sidebar";
 import Editor from "../components/Editor";
-import "../style.css";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
     const [tasksList, setTasksList] = useState([]);
-    const [currentTaskId, setCurrentTaskId] = useState("0");
-    const [currentTask, setCurrentTask] = useState({})
+    const [currentTask, setCurrentTask] = useState({});
 
     // Want to fetch data once when we initialize the app
     useEffect(() => {
@@ -16,18 +14,27 @@ export default function Dashboard() {
                 method: "GET",
             })
                 .then((response) => response.json())
-                .then((json) => setTasksList(json));    
+                .then((json) => setTasksList(json))
         }
-        fetchData()
-
-
-        
+        fetchData();
     }, []);
+
+    useEffect(() => {
+        if(tasksList.length > 0) {   
+            setCurrentTask(tasksList[0])
+        }
+        console.log(tasksList)
+
+    }, [tasksList])
 
     return (
         <main>
-            <Sidebar setCurrentTask={setCurrentTask} />
-            <Editor setTasksList={setTasksList} tasksList={tasksList} currentTaskId={currentTaskId} currentTask={currentTask} />
+            <Sidebar currentTask={currentTask} setCurrentTask={setCurrentTask} tasksList={tasksList} />
+            <Editor
+                setTasksList={setTasksList}
+                tasksList={tasksList}
+                currentTask={currentTask}
+            />
         </main>
     );
 }
