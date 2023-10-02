@@ -7,17 +7,14 @@ export default function Editor(props) {
     const [priority, setPriority] = useState("Low");
     const [description, setDescription] = useState("");
 
-    const {tasksList, currentTask, currentTaskId} = props
+    const {tasksList, currentTask} = props
 
     // Run this side-effect whenever a different note is selected
     useEffect(() => {
-        console.log(currentTask)
     }, [currentTask])
 
     function handleSaveNote(e) {
         e.preventDefault();
-
-        console.log(tasksList);
     }
 
     function handleDeleteNote(e) {
