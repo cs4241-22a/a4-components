@@ -23,8 +23,6 @@ export default function Dashboard() {
         if(tasksList.length > 0) {   
             setCurrentTask(tasksList[0])
         }
-        console.log(tasksList)
-
     }, [tasksList])
 
     return (

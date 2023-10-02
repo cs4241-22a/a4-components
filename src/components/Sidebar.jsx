@@ -26,15 +26,13 @@ export default function Sidebar(props) {
         </div>
     );
 
-    // this load tasks function will generate all of the clickable buttons on the right
+    // on click event handler when a task on the sidebar is clicked
     function changeTask(e) {
         const taskFound = tasksList.filter(task => {
             if (task._id === e.target.id) {
                 return task
             }
         })[0]
-
         setCurrentTask(taskFound)
-
     }
 }
