@@ -27,7 +27,7 @@ export default function Dashboard() {
 
     return (
         <main>
-            <Sidebar currentTask={currentTask} setCurrentTask={setCurrentTask} tasksList={tasksList} />
+            <Sidebar tasksList={tasksList} setTasksList={setTasksList} currentTask={currentTask} setCurrentTask={setCurrentTask} />
             <Editor
                 setTasksList={setTasksList}
                 tasksList={tasksList}

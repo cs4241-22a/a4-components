@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 
 export default function Editor(props) {
+    const {tasksList, setTasksList, currentTask, setCurrentTask } = props
+
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [priority, setPriority] = useState("Low");
     const [description, setDescription] = useState("");
 
-    const {tasksList, currentTask} = props
+    function populateForm() {
+        if(currentTask) {
+            setTitle(currentTask.title)
+            setDate(currentTask.date)
+            setDueDate(currentTask.dueDate)
+            setPriority(currentTask.priority)
+            setDescription(currentTask.description)
+        }
+    }
 
-    // Run this side-effect whenever a different note is selected
+    // Run this side-effect whenever a different note is selected (might not need to happen because of rerenders?)
     useEffect(() => {
+        populateForm()
     }, [currentTask])
 
     function handleSaveNote(e) {
