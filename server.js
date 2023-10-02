@@ -2,7 +2,7 @@
 import express from "express";
 import ViteExpress from "vite-express";
 import cookieSession from "cookie-session";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import "dotenv/config";
 
 const port = process.env.PORT;
@@ -53,6 +53,20 @@ app.post("/login", async (req, res) => {
     }
     // Else say user not found and to create a new user.
 });
+
+app.post("/new", async (req, res) => {
+    const newTask = {
+      title: "New Note",
+      date: new Date().toISOString().split("T")[0],
+      priority: "Low",
+      description: "",
+      dueDate: "",
+    };
+  
+    await collection.insertOne(newTask);
+  
+    sendTasks(req, res);
+  });
 
 async function sendTasks(req, res) {
     if (collection !== null) {
