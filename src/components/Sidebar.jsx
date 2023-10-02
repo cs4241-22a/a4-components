@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-// import { ObjectId } from "mongodb";
-
 export default function Sidebar(props) {
     const { currentTask, tasksList, setCurrentTask } = props;
 
