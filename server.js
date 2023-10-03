@@ -54,6 +54,36 @@ app.post("/login", async (req, res) => {
     // Else say user not found and to create a new user.
 });
 
+app.post("/submit", async (req, res) => {
+  let newTask = req.body;
+
+  if (newTask.due === "") {
+    const originalDate = new Date(newTask.date);
+    switch (newTask.priority) {
+      case "Low":
+        newTask.due = addDays(originalDate, 5).toISOString().split("T")[0];
+        break;
+      case "Medium":
+        newTask.due = addDays(originalDate, 3).toISOString().split("T")[0];
+        break;
+      case "High":
+        newTask.due = addDays(originalDate, 1).toISOString().split("T")[0];
+        break;
+    }
+  }
+
+  const cloneNewTask = { ...newTask };
+
+  delete cloneNewTask._id;
+
+  await collection.replaceOne(
+    { _id: new ObjectId(newTask._id) },
+    { ...cloneNewTask }
+  );
+
+  sendTasks(req, res);
+});
+
 app.post("/new", async (req, res) => {
     const newTask = {
       title: "New Note",
@@ -74,6 +104,12 @@ async function sendTasks(req, res) {
       res.json(docs);
     }
   }
+
+  app.delete("/delete", async (req, res) => {
+    await collection.deleteOne({ _id: new ObjectId(req.body.taskID) });
+  
+    sendTasks(req, res);
+  });
 
 ViteExpress.listen(app, port, () =>
     console.log("Server is listening on", port)

@@ -41,6 +41,9 @@ export default function Sidebar(props) {
             headers: { "Content-Type": "application/json" },
           })
             .then((response) => response.json())
-            .then((json) => setTasksList(json));
+            .then((json) => {
+                setTasksList(json)
+                setCurrentTask(json.at(-1))
+            });
     }
 }

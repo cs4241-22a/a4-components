@@ -23,7 +23,7 @@ export default function Dashboard() {
         if (tasksList.length > 0) {
             setCurrentTask(tasksList[0]);
         }
-    }, [tasksList]);
+    }, []);
 
     return (
         <main>

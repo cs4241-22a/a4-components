@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Editor(props) {
-    const {tasksList, setTasksList, currentTask } = props
+    const { tasksList, setTasksList, currentTask } = props;
 
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
@@ -10,26 +10,51 @@ export default function Editor(props) {
     const [description, setDescription] = useState("");
 
     function populateForm() {
-        if(currentTask) {
-            setTitle(currentTask.title)
-            setDate(currentTask.date)
-            setDueDate(currentTask.dueDate)
-            setPriority(currentTask.priority)
-            setDescription(currentTask.description)
+        if (currentTask) {
+            setTitle(currentTask.title);
+            setDate(currentTask.date);
+            setDueDate(currentTask.dueDate);
+            setPriority(currentTask.priority);
+            setDescription(currentTask.description);
         }
     }
 
     // Run this side-effect whenever a different note is selected (might not need to happen because of rerenders?)
     useEffect(() => {
-        populateForm()
-    }, [currentTask])
+        populateForm();
+    }, [currentTask]);
 
-    function handleSaveNote(e) {
+    async function handleSaveNote(e) {
         e.preventDefault();
+
+        const edit = {
+            title,
+            date,
+            dueDate,
+            priority,
+            description,
+            _id: currentTask._id
+        }
+
+        await fetch("/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(edit),
+        })
+            .then((response) => response.json())
+            .then((json) => (setTasksList(json)));
     }
 
-    function handleDeleteNote(e) {
+    async function handleDeleteNote(e) {
         e.preventDefault();
+
+        await fetch("/delete", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ taskID: currentTask._id }),
+        })
+            .then((response) => response.json())
+            .then((json) => setTasksList(json));
     }
 
     return (
