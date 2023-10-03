@@ -1,8 +1,6 @@
-# React + Vite
+# What to Do?
+http://a4-bdvuong.glitch.me
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Things added: Error message on login page now displays the error message on the page without needing to create an alert/popup message.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I would say that using React made things more streamlined and easier for me to keep track of how to develop my page. Instead of needing two HTML files that could get confusing to read, I instead had two components and two screens, one for login and the other for the dashboard. I would say the useState and useEffect hooks were the most difficult part to understanding React, but once I understood it made things easier.
