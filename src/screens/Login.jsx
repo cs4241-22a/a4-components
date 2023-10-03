@@ -3,6 +3,8 @@ import { useState } from "react";
 export default function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     function handleLogin(e) {
         e.preventDefault();
@@ -16,12 +18,17 @@ export default function Login(props) {
         }).then((response) => {
             if (response.status === 200) {
                 props.setLoggedIn(true);
+            } else if (response.status === 401) {
+                setErrorMessage("Incorrect password.")
+            } else if (response.status === 404) {
+                setErrorMessage("The user has not been found, but it has now been created. \n Log in again with the same credentials.")
             }
         });
     }
 
     return (
         <form>
+            {errorMessage === "" ? <></> : <div>{errorMessage}</div> }
             <input
                 type="text"
                 value={username}
