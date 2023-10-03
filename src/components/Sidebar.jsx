@@ -1,7 +1,7 @@
 export default function Sidebar(props) {
-    const { currentTask, tasksList, setCurrentTask } = props;
+    const { currentTask, setCurrentTask, tasksList, setTasksList } = props;
 
-    const taskElements = tasksList.map((task, index) => (
+    const taskElements = tasksList.map((task) => (
         <div
             key={task._id}
             onClick={e => changeTask(e)}
@@ -14,11 +14,13 @@ export default function Sidebar(props) {
         </div>
     ));
 
+    const addTaskButton = <div onClick={addTask} className="tasks-list--task">Add a new task!</div>
 
     return (
         <div className="tasks-list--sidebar">
             <div className="tasks-list--container" id="sidebar">
                 {taskElements}
+                {addTaskButton}
             </div>
         </div>
     );
@@ -31,5 +33,14 @@ export default function Sidebar(props) {
             }
         })[0]
         setCurrentTask(taskFound)
+    }
+
+    async function addTask() {
+        await fetch("/new", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((response) => response.json())
+            .then((json) => setTasksList(json));
     }
 }

@@ -14,23 +14,28 @@ export default function Dashboard() {
                 method: "GET",
             })
                 .then((response) => response.json())
-                .then((json) => setTasksList(json))
+                .then((json) => setTasksList(json));
         }
         fetchData();
     }, []);
 
     useEffect(() => {
-        if(tasksList.length > 0) {   
-            setCurrentTask(tasksList[0])
+        if (tasksList.length > 0) {
+            setCurrentTask(tasksList[0]);
         }
-    }, [tasksList])
+    }, [tasksList]);
 
     return (
         <main>
-            <Sidebar tasksList={tasksList} setTasksList={setTasksList} currentTask={currentTask} setCurrentTask={setCurrentTask} />
-            <Editor
-                setTasksList={setTasksList}
+            <Sidebar
                 tasksList={tasksList}
+                setTasksList={setTasksList}
+                currentTask={currentTask}
+                setCurrentTask={setCurrentTask}
+            />
+            <Editor
+                tasksList={tasksList}
+                setTasksList={setTasksList}
                 currentTask={currentTask}
             />
         </main>

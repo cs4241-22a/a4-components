@@ -8,15 +8,6 @@ function App() {
   return (
     <div>
       {loggedIn ? <Dashboard /> : <Login setLoggedIn={setLoggedIn} />}
-      <button
-        onClick={() =>
-          setLoggedIn((prevLoggedIn) => {
-            setLoggedIn(!prevLoggedIn);
-          })
-        }
-      >
-        Toggle Login Page
-      </button>
     </div>
   );
 }

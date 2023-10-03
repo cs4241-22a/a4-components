@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Editor(props) {
-    const {tasksList, setTasksList, currentTask, setCurrentTask } = props
+    const {tasksList, setTasksList, currentTask } = props
 
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
