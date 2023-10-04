@@ -1,4 +1,4 @@
-Hosting link: not yet implimented
+Hosting link: https://a4-ryanrabbitt.glitch.me/
 
 I used A2 functionality as a baseline for this assignment. I used the default react styling instead of the styling from a2/a3 due to time constraints. I had to change my original color inputs to regular text inputs, as react doesn't have very good support for color picker inputs by default.
 
